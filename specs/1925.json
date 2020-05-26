@@ -1,0 +1,435 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "<p>Sj\u00e5 <a href=\"https:\/\/data.norge.no\/node\/1925\">datasett-oppf\u00f8ring<\/a> for meir informasjon (kontaktinformasjon, oppdateringsfrekvens, lenker til dokumentasjon etc.)<\/p>\n",
+        "version": "1.0.0",
+        "title": "Pristilskudd til jordbruksforetak for 2016",
+        "license": {
+            "name": "Data-lisens",
+            "url": "http:\/\/data.norge.no\/nlod\/"
+        },
+        "termsOfService": "https:\/\/hotell.difi.no\/api"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/hotell.difi.no"
+        }
+    ],
+    "paths": {
+        "\/api\/{format}\/ldir\/pristilskudd\/jordbruksforetak2016": {
+            "get": {
+                "tags": [
+                    "jordbruksforetak2016"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getLdirPristilskuddJordbruksforetak2016Page",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    },
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "S\u00f8k i datasettet. Gir treff p\u00e5 felt: navn, orgnr, dt_kjott, dt_gris, gt_kjott, t_norskull, t_norskskinn, dt_melk, gt_melk, kt_storfe, ft_kraftfor, t_lam, sum_t",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "komnr",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "dt_egg",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ldir-pristilskudd-jordbruksforetak2016-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/ldir\/pristilskudd\/jordbruksforetak2016": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "jordbruksforetak2016"
+                ],
+                "operationId": "downloadLdirPristilskuddJordbruksforetak2016",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/ldir\/pristilskudd\/jordbruksforetak2016\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "jordbruksforetak2016"
+                ],
+                "operationId": "getLdirPristilskuddJordbruksforetak2016Metadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"jordbruksforetak2016\",\n    \"name\": \"Landbruksdirektoratet - Pristilskudd til jordbruksforetak for 2016\",\n    \"location\": \"ldir\/pristilskudd\/jordbruksforetak2016\",\n    \"updated\": 1491906900,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/ldir\/pristilskudd\/jordbruksforetak2016\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "jordbruksforetak2016"
+                ],
+                "operationId": "getLdirPristilskuddJordbruksforetak2016Fields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"Kommunenr\",\n        \"shortName\": \"komnr\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Navn\",\n        \"shortName\": \"navn\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Organisasjonsnummer\",\n        \"shortName\": \"orgnr\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Organisasjonsnummer brukes for \\u00e5 identifisere juridiske personer (enheter), i Norge, og tildeles ved registrering i Enhetsregisteret. Organisasjonsnummeret best\\u00e5r av ni siffer og starter p\\u00e5 tallet 8 eller 9. http:\/\/www.brreg.no\/samordning\/organisasjonsnummeret.html\"\n    },\n    {\n        \"name\": \"Distriktstilskudd egg\",\n        \"shortName\": \"dt_egg\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Distriktstilskudd kj\\u00f8tt\",\n        \"shortName\": \"dt_kjott\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Distriktstilskudd gris\",\n        \"shortName\": \"dt_gris\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Grunntilskudd kj\\u00f8tt\",\n        \"shortName\": \"gt_kjott\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Tilskudd norsk ull\",\n        \"shortName\": \"t_norskull\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Tilskudd norsk skinn\",\n        \"shortName\": \"t_norskskinn\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Distriktstilskudd melk\",\n        \"shortName\": \"dt_melk\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Grunntilskudd melk\",\n        \"shortName\": \"gt_melk\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Kvalitetstilskudd storfe\",\n        \"shortName\": \"kt_storfe\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Frakttilskudd kraftfor\",\n        \"shortName\": \"ft_kraftfor\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Tilskudd lam og kje\",\n        \"shortName\": \"t_lam\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Sum tilskudd\",\n        \"shortName\": \"sum_t\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "datahotelFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "csv",
+                    "yaml"
+                ]
+            },
+            "datahotelMetadataFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "yaml"
+                ]
+            },
+            "datasetMetadata": {
+                "type": "object",
+                "properties": {
+                    "shortName": {
+                        "type": "string",
+                        "description": "Kortnamn for datasettet. Samme som siste ledd i location."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Menneskelesbart namn for datasettet."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Unik datasett-id i datahotellet"
+                    },
+                    "updated": {
+                        "type": "integer",
+                        "description": "Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer)."
+                    },
+                    "dataset": {
+                        "type": "boolean",
+                        "description": "True dersom location er eit datasett, false dersom ikkje. Ved false kan location vere ein katalog som inneheld datasett."
+                    }
+                }
+            },
+            "datasetFields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Menneskelesbart namn p\u00e5 feltet."
+                        },
+                        "shortName": {
+                            "type": "string",
+                            "description": "Kortnamn for felt. Samme som feltnamn brukt i respons og overskriftsrad i CSV-fila."
+                        },
+                        "groupable": {
+                            "type": "boolean",
+                            "description": "Kan gruppere\/filtrere p\u00e5 dette feltet via query-parameter. E.g. \u00ab?shortName=verdi\u00bb."
+                        },
+                        "searchable": {
+                            "type": "boolean",
+                            "description": "Om dette feltet er s\u00f8kbart via query-parameteret. E.g. \u00ab?query=s\u00f8kestreng\u00bb"
+                        },
+                        "indexPrimaryKey": {
+                            "type": "boolean",
+                            "description": "Ikkje i bruk."
+                        }
+                    }
+                }
+            },
+            "ldir-pristilskudd-jordbruksforetak2016-record": {
+                "type": "object",
+                "properties": {
+                    "komnr": {
+                        "type": "string",
+                        "example": "0101",
+                        "description": "Kommunenr"
+                    },
+                    "navn": {
+                        "type": "string",
+                        "example": "CAMILLA BERGSTA"
+                    },
+                    "orgnr": {
+                        "type": "string",
+                        "example": "984638132",
+                        "description": "Organisasjonsnummer.\nOrganisasjonsnummer brukes for \u00e5 identifisere juridiske personer (enheter), i Norge, og tildeles ved registrering i Enhetsregisteret. Organisasjonsnummeret best\u00e5r av ni siffer og starter p\u00e5 tallet 8 eller 9. http:\/\/www.brreg.no\/samordning\/organisasjonsnummeret.html"
+                    },
+                    "dt_egg": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Distriktstilskudd egg"
+                    },
+                    "dt_kjott": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Distriktstilskudd kj\u00f8tt"
+                    },
+                    "dt_gris": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Distriktstilskudd gris"
+                    },
+                    "gt_kjott": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Grunntilskudd kj\u00f8tt"
+                    },
+                    "t_norskull": {
+                        "type": "string",
+                        "example": "837",
+                        "description": "Tilskudd norsk ull"
+                    },
+                    "t_norskskinn": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Tilskudd norsk skinn"
+                    },
+                    "dt_melk": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Distriktstilskudd melk"
+                    },
+                    "gt_melk": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Grunntilskudd melk"
+                    },
+                    "kt_storfe": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Kvalitetstilskudd storfe"
+                    },
+                    "ft_kraftfor": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Frakttilskudd kraftfor"
+                    },
+                    "t_lam": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Tilskudd lam og kje"
+                    },
+                    "sum_t": {
+                        "type": "string",
+                        "example": "837",
+                        "description": "Sum tilskudd"
+                    }
+                }
+            },
+            "ldir-pristilskudd-jordbruksforetak2016-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/ldir-pristilskudd-jordbruksforetak2016-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            }
+        },
+        "headers": {
+            "X-Datahotel-Page": {
+                "description": "Side (page) av resultatet som er returnert.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Pages": {
+                "description": "Tal p\u00e5 sider totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Posts": {
+                "description": "Tal p\u00e5 postar totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ETag": {
+                "description": "Fungerer som standard HTTP ETag. Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer).",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "jordbruksforetak2016",
+            "description": "Landbruksdirektoratet - Pristilskudd til jordbruksforetak for 2016",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=ldir\/pristilskudd\/jordbruksforetak2016"
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Meir dokumentasjon for hotell.difi.no",
+        "url": "https:\/\/hotell.difi.no\/api"
+    }
+}

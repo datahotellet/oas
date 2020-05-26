@@ -1,0 +1,1354 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "<p>Sj\u00e5 <a href=\"https:\/\/data.norge.no\/node\/569\">datasett-oppf\u00f8ring<\/a> for meir informasjon (kontaktinformasjon, oppdateringsfrekvens, lenker til dokumentasjon etc.)<\/p>\n",
+        "version": "1.0.0",
+        "title": "Avtalebasert omr\u00e5de (BAA)",
+        "license": {
+            "name": "Data-lisens",
+            "url": "http:\/\/data.norge.no\/nlod\/"
+        },
+        "termsOfService": "https:\/\/hotell.difi.no\/api"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/hotell.difi.no"
+        }
+    ],
+    "paths": {
+        "\/api\/{format}\/npd\/baa\/transfers": {
+            "get": {
+                "tags": [
+                    "transfers"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getNpdBaaTransfersPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/npd-baa-transfers-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/npd\/baa\/transfers": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "transfers"
+                ],
+                "operationId": "downloadNpdBaaTransfers",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/baa\/transfers\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "transfers"
+                ],
+                "operationId": "getNpdBaaTransfersMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"transfers\",\n    \"name\": \"NPD - BAA - Transfers\",\n    \"location\": \"npd\/baa\/transfers\",\n    \"updated\": 1590373882,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/baa\/transfers\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "transfers"
+                ],
+                "operationId": "getNpdBaaTransfersFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"baaName\",\n        \"shortName\": \"baaName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaTransferDateValidFrom\",\n        \"shortName\": \"baaTransferDateValidFrom\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaTransferDirection\",\n        \"shortName\": \"baaTransferDirection\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaTransferKind\",\n        \"shortName\": \"baaTransferKind\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"cmpLongName\",\n        \"shortName\": \"cmpLongName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaTransferredInterest\",\n        \"shortName\": \"baaTransferredInterest\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaTransferSdfi\",\n        \"shortName\": \"baaTransferSdfi\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaNpdidBsnsArrArea\",\n        \"shortName\": \"baaNpdidBsnsArrArea\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"cmpNpdidCompany\",\n        \"shortName\": \"cmpNpdidCompany\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaTransferDateUpdated\",\n        \"shortName\": \"baaTransferDateUpdated\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"DatesyncNPD\",\n        \"shortName\": \"DatesyncNPD\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/baa\/overview": {
+            "get": {
+                "tags": [
+                    "overview"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getNpdBaaOverviewPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/npd-baa-overview-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/npd\/baa\/overview": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "overview"
+                ],
+                "operationId": "downloadNpdBaaOverview",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/baa\/overview\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "overview"
+                ],
+                "operationId": "getNpdBaaOverviewMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"overview\",\n    \"name\": \"NPD - BAA - Overview\",\n    \"location\": \"npd\/baa\/overview\",\n    \"updated\": 1590373880,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/baa\/overview\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "overview"
+                ],
+                "operationId": "getNpdBaaOverviewFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"baaName\",\n        \"shortName\": \"baaName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaKind\",\n        \"shortName\": \"baaKind\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaDateApproved\",\n        \"shortName\": \"baaDateApproved\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaDateValidFrom\",\n        \"shortName\": \"baaDateValidFrom\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaDateValidTo\",\n        \"shortName\": \"baaDateValidTo\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaFactPageUrl\",\n        \"shortName\": \"baaFactPageUrl\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaFactMapUrl\",\n        \"shortName\": \"baaFactMapUrl\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaNpdidBsnsArrArea\",\n        \"shortName\": \"baaNpdidBsnsArrArea\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaDateUpdated\",\n        \"shortName\": \"baaDateUpdated\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaDateUpdatedMax\",\n        \"shortName\": \"baaDateUpdatedMax\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"dateSyncNPD\",\n        \"shortName\": \"dateSyncNPD\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/baa\/operators": {
+            "get": {
+                "tags": [
+                    "operators"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getNpdBaaOperatorsPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/npd-baa-operators-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/npd\/baa\/operators": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "operators"
+                ],
+                "operationId": "downloadNpdBaaOperators",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/baa\/operators\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "operators"
+                ],
+                "operationId": "getNpdBaaOperatorsMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"operators\",\n    \"name\": \"NPD - BAA - Operators\",\n    \"location\": \"npd\/baa\/operators\",\n    \"updated\": 1590373882,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/baa\/operators\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "operators"
+                ],
+                "operationId": "getNpdBaaOperatorsFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"baaName\",\n        \"shortName\": \"baaName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"cmpLongName\",\n        \"shortName\": \"cmpLongName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaNpdidBsnsArrArea\",\n        \"shortName\": \"baaNpdidBsnsArrArea\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"cmpNpdidCompany\",\n        \"shortName\": \"cmpNpdidCompany\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaOperatorDateUpdated\",\n        \"shortName\": \"baaOperatorDateUpdated\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"datesyncNPD\",\n        \"shortName\": \"datesyncNPD\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/baa\/licensees": {
+            "get": {
+                "tags": [
+                    "licensees"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getNpdBaaLicenseesPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/npd-baa-licensees-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/npd\/baa\/licensees": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "licensees"
+                ],
+                "operationId": "downloadNpdBaaLicensees",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/baa\/licensees\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "licensees"
+                ],
+                "operationId": "getNpdBaaLicenseesMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"licensees\",\n    \"name\": \"NPD - BAA - Licensees\",\n    \"location\": \"npd\/baa\/licensees\",\n    \"updated\": 1590373880,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/baa\/licensees\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "licensees"
+                ],
+                "operationId": "getNpdBaaLicenseesFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"baaName\",\n        \"shortName\": \"baaName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaLicenseeDateValidFrom\",\n        \"shortName\": \"baaLicenseeDateValidFrom\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaLicenseeDateValidTo\",\n        \"shortName\": \"baaLicenseeDateValidTo\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"cmpLongName\",\n        \"shortName\": \"cmpLongName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaLicenseeInterest\",\n        \"shortName\": \"baaLicenseeInterest\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaLicenseeSdfi\",\n        \"shortName\": \"baaLicenseeSdfi\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaNpdidBsnsArrArea\",\n        \"shortName\": \"baaNpdidBsnsArrArea\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"cmpNpdidCompany\",\n        \"shortName\": \"cmpNpdidCompany\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaLicenseeDateUpdated\",\n        \"shortName\": \"baaLicenseeDateUpdated\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"DatesyncNPD\",\n        \"shortName\": \"DatesyncNPD\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/baa\/area": {
+            "get": {
+                "tags": [
+                    "area"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getNpdBaaAreaPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/npd-baa-area-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/npd\/baa\/area": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "area"
+                ],
+                "operationId": "downloadNpdBaaArea",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/baa\/area\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "area"
+                ],
+                "operationId": "getNpdBaaAreaMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"area\",\n    \"name\": \"NPD - BAA - Area\",\n    \"location\": \"npd\/baa\/area\",\n    \"updated\": 1590373881,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/baa\/area\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "area"
+                ],
+                "operationId": "getNpdBaaAreaFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"baaName\",\n        \"shortName\": \"baaName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaAreaPolyDateValidFrom\",\n        \"shortName\": \"baaAreaPolyDateValidFrom\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaAreaPolyDateValidTo\",\n        \"shortName\": \"baaAreaPolyDateValidTo\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlName\",\n        \"shortName\": \"prlName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaAreaPolyNationCode2\",\n        \"shortName\": \"baaAreaPolyNationCode2\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaAreaPolyBlockName\",\n        \"shortName\": \"baaAreaPolyBlockName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaAreaPolyNo\",\n        \"shortName\": \"baaAreaPolyNo\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaAreaPolyArea\",\n        \"shortName\": \"baaAreaPolyArea\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaNpdidBsnsArrArea\",\n        \"shortName\": \"baaNpdidBsnsArrArea\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"baaAreaPolyDateUpdated\",\n        \"shortName\": \"baaAreaPolyDateUpdated\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"DatesyncNPD\",\n        \"shortName\": \"DatesyncNPD\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "datahotelFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "csv",
+                    "yaml"
+                ]
+            },
+            "datahotelMetadataFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "yaml"
+                ]
+            },
+            "datasetMetadata": {
+                "type": "object",
+                "properties": {
+                    "shortName": {
+                        "type": "string",
+                        "description": "Kortnamn for datasettet. Samme som siste ledd i location."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Menneskelesbart namn for datasettet."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Unik datasett-id i datahotellet"
+                    },
+                    "updated": {
+                        "type": "integer",
+                        "description": "Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer)."
+                    },
+                    "dataset": {
+                        "type": "boolean",
+                        "description": "True dersom location er eit datasett, false dersom ikkje. Ved false kan location vere ein katalog som inneheld datasett."
+                    }
+                }
+            },
+            "datasetFields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Menneskelesbart namn p\u00e5 feltet."
+                        },
+                        "shortName": {
+                            "type": "string",
+                            "description": "Kortnamn for felt. Samme som feltnamn brukt i respons og overskriftsrad i CSV-fila."
+                        },
+                        "groupable": {
+                            "type": "boolean",
+                            "description": "Kan gruppere\/filtrere p\u00e5 dette feltet via query-parameter. E.g. \u00ab?shortName=verdi\u00bb."
+                        },
+                        "searchable": {
+                            "type": "boolean",
+                            "description": "Om dette feltet er s\u00f8kbart via query-parameteret. E.g. \u00ab?query=s\u00f8kestreng\u00bb"
+                        },
+                        "indexPrimaryKey": {
+                            "type": "boolean",
+                            "description": "Ikkje i bruk."
+                        }
+                    }
+                }
+            },
+            "npd-baa-transfers-record": {
+                "type": "object",
+                "properties": {
+                    "baaName": {
+                        "type": "string",
+                        "example": "BLANE UNIT"
+                    },
+                    "baaTransferDateValidFrom": {
+                        "type": "string",
+                        "example": "15.05.2019"
+                    },
+                    "baaTransferDirection": {
+                        "type": "string",
+                        "example": "FROM"
+                    },
+                    "baaTransferKind": {
+                        "type": "string",
+                        "example": "CHANGE OF COMPANY NAME"
+                    },
+                    "cmpLongName": {
+                        "type": "string",
+                        "example": "Faroe Petroleum (UK) Limited"
+                    },
+                    "baaTransferredInterest": {
+                        "type": "string",
+                        "example": "43.493210"
+                    },
+                    "baaTransferSdfi": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "baaNpdidBsnsArrArea": {
+                        "type": "string",
+                        "example": "3437667"
+                    },
+                    "cmpNpdidCompany": {
+                        "type": "string",
+                        "example": "21614063"
+                    },
+                    "baaTransferDateUpdated": {
+                        "type": "string",
+                        "example": "03.10.2019"
+                    },
+                    "DatesyncNPD": {
+                        "type": "string",
+                        "example": "25.05.2020"
+                    }
+                }
+            },
+            "npd-baa-transfers-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/npd-baa-transfers-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "npd-baa-overview-record": {
+                "type": "object",
+                "properties": {
+                    "baaName": {
+                        "type": "string",
+                        "example": "BLANE UNIT"
+                    },
+                    "baaKind": {
+                        "type": "string",
+                        "example": "UNITIZED"
+                    },
+                    "baaDateApproved": {
+                        "type": "string",
+                        "example": "01.07.2005"
+                    },
+                    "baaDateValidFrom": {
+                        "type": "string",
+                        "example": "01.07.2005"
+                    },
+                    "baaDateValidTo": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "baaFactPageUrl": {
+                        "type": "string",
+                        "example": "https:\/\/factpages.npd.no\/factpages\/default.aspx?nav1=bsns_arr_area&nav2=PageView|All&nav3=3437667"
+                    },
+                    "baaFactMapUrl": {
+                        "type": "string",
+                        "example": "https:\/\/factmaps.npd.no\/factmaps\/3_0\/?run=BAAByNPDID&NPDID=3437667"
+                    },
+                    "baaNpdidBsnsArrArea": {
+                        "type": "string",
+                        "example": "3437667"
+                    },
+                    "baaDateUpdated": {
+                        "type": "string",
+                        "example": "22.11.2019"
+                    },
+                    "baaDateUpdatedMax": {
+                        "type": "string",
+                        "example": "03.10.2019"
+                    },
+                    "dateSyncNPD": {
+                        "type": "string",
+                        "example": "25.05.2020"
+                    }
+                }
+            },
+            "npd-baa-overview-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/npd-baa-overview-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "npd-baa-operators-record": {
+                "type": "object",
+                "properties": {
+                    "baaName": {
+                        "type": "string",
+                        "example": "BLANE UNIT"
+                    },
+                    "cmpLongName": {
+                        "type": "string",
+                        "example": "Repsol Norge AS"
+                    },
+                    "baaNpdidBsnsArrArea": {
+                        "type": "string",
+                        "example": "3437667"
+                    },
+                    "cmpNpdidCompany": {
+                        "type": "string",
+                        "example": "27052812"
+                    },
+                    "baaOperatorDateUpdated": {
+                        "type": "string",
+                        "example": "03.10.2019"
+                    },
+                    "datesyncNPD": {
+                        "type": "string",
+                        "example": "25.05.2020"
+                    }
+                }
+            },
+            "npd-baa-operators-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/npd-baa-operators-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "npd-baa-licensees-record": {
+                "type": "object",
+                "properties": {
+                    "baaName": {
+                        "type": "string",
+                        "example": "BLANE UNIT"
+                    },
+                    "baaLicenseeDateValidFrom": {
+                        "type": "string",
+                        "example": "15.05.2019"
+                    },
+                    "baaLicenseeDateValidTo": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "cmpLongName": {
+                        "type": "string",
+                        "example": "DNO North Sea (UK) Limited"
+                    },
+                    "baaLicenseeInterest": {
+                        "type": "string",
+                        "example": "43.493210"
+                    },
+                    "baaLicenseeSdfi": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "baaNpdidBsnsArrArea": {
+                        "type": "string",
+                        "example": "3437667"
+                    },
+                    "cmpNpdidCompany": {
+                        "type": "string",
+                        "example": "34780063"
+                    },
+                    "baaLicenseeDateUpdated": {
+                        "type": "string",
+                        "example": "03.10.2019"
+                    },
+                    "DatesyncNPD": {
+                        "type": "string",
+                        "example": "25.05.2020"
+                    }
+                }
+            },
+            "npd-baa-licensees-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/npd-baa-licensees-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "npd-baa-area-record": {
+                "type": "object",
+                "properties": {
+                    "baaName": {
+                        "type": "string",
+                        "example": "BLANE UNIT"
+                    },
+                    "baaAreaPolyDateValidFrom": {
+                        "type": "string",
+                        "example": "01.07.2005"
+                    },
+                    "baaAreaPolyDateValidTo": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "prlName": {
+                        "type": "string",
+                        "example": "143 BS"
+                    },
+                    "baaAreaPolyNationCode2": {
+                        "type": "string",
+                        "example": "NO"
+                    },
+                    "baaAreaPolyBlockName": {
+                        "type": "string",
+                        "example": "1\/2"
+                    },
+                    "baaAreaPolyNo": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "baaAreaPolyArea": {
+                        "type": "string",
+                        "example": "39.770"
+                    },
+                    "baaNpdidBsnsArrArea": {
+                        "type": "string",
+                        "example": "3437667"
+                    },
+                    "baaAreaPolyDateUpdated": {
+                        "type": "string",
+                        "example": "03.10.2019"
+                    },
+                    "DatesyncNPD": {
+                        "type": "string",
+                        "example": "25.05.2020"
+                    }
+                }
+            },
+            "npd-baa-area-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/npd-baa-area-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            }
+        },
+        "headers": {
+            "X-Datahotel-Page": {
+                "description": "Side (page) av resultatet som er returnert.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Pages": {
+                "description": "Tal p\u00e5 sider totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Posts": {
+                "description": "Tal p\u00e5 postar totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ETag": {
+                "description": "Fungerer som standard HTTP ETag. Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer).",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "transfers",
+            "description": "NPD - BAA - Transfers",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=npd\/baa\/transfers"
+            }
+        },
+        {
+            "name": "overview",
+            "description": "NPD - BAA - Overview",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=npd\/baa\/overview"
+            }
+        },
+        {
+            "name": "operators",
+            "description": "NPD - BAA - Operators",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=npd\/baa\/operators"
+            }
+        },
+        {
+            "name": "licensees",
+            "description": "NPD - BAA - Licensees",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=npd\/baa\/licensees"
+            }
+        },
+        {
+            "name": "area",
+            "description": "NPD - BAA - Area",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=npd\/baa\/area"
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Meir dokumentasjon for hotell.difi.no",
+        "url": "https:\/\/hotell.difi.no\/api"
+    }
+}

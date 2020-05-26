@@ -1,0 +1,693 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "<p>Sj\u00e5 <a href=\"https:\/\/data.norge.no\/node\/1567\">datasett-oppf\u00f8ring<\/a> for meir informasjon (kontaktinformasjon, oppdateringsfrekvens, lenker til dokumentasjon etc.)<\/p>\n",
+        "version": "1.0.0",
+        "title": "Smilefjestilsyn p\u00e5 serveringssteder",
+        "license": {
+            "name": "Data-lisens",
+            "url": "http:\/\/data.norge.no\/nlod\/"
+        },
+        "termsOfService": "https:\/\/hotell.difi.no\/api"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/hotell.difi.no"
+        }
+    ],
+    "paths": {
+        "\/api\/{format}\/mattilsynet\/smilefjes\/tilsyn": {
+            "get": {
+                "tags": [
+                    "tilsyn"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getMattilsynetSmilefjesTilsynPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    },
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "S\u00f8k i datasettet. Gir treff p\u00e5 felt: tilsynsobjektid, orgnummer, navn, adrlinje1, adrlinje2, postnr, poststed, tilsynid, sakref, status, dato, total_karakter, tilsynsbesoektype, tema1_no, tema1_nn, karakter1, tema2_no, tema2_nn, karakter2, tema3_no, tema3_nn, karakter3, tema4_no, tema4_nn, karakter4",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tilsynsobjektid",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "orgnummer",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "navn",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "adrlinje1",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "adrlinje2",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "postnr",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "poststed",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tilsynid",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sakref",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "dato",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "total_karakter",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tilsynsbesoektype",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tema1_no",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tema1_nn",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "karakter1",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tema2_no",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tema2_nn",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "karakter2",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tema3_no",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tema3_nn",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "karakter3",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tema4_no",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tema4_nn",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "karakter4",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/mattilsynet-smilefjes-tilsyn-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/mattilsynet\/smilefjes\/tilsyn": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "tilsyn"
+                ],
+                "operationId": "downloadMattilsynetSmilefjesTilsyn",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/mattilsynet\/smilefjes\/tilsyn\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "tilsyn"
+                ],
+                "operationId": "getMattilsynetSmilefjesTilsynMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"tilsyn\",\n    \"name\": \"Mattilsynet - Smilefjes - Tilsyn\",\n    \"location\": \"mattilsynet\/smilefjes\/tilsyn\",\n    \"updated\": 1590355801,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/mattilsynet\/smilefjes\/tilsyn\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "tilsyn"
+                ],
+                "operationId": "getMattilsynetSmilefjesTilsynFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"tilsynsobjektid\",\n        \"shortName\": \"tilsynsobjektid\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"N\\u00f8kkel for entydig identifisering av spisested\"\n    },\n    {\n        \"name\": \"orgnummer\",\n        \"shortName\": \"orgnummer\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Organisasjonsnummer, normalt p\\u00e5 virksomhet, som angitt fra brreg.no\"\n    },\n    {\n        \"name\": \"navn\",\n        \"shortName\": \"navn\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Spisestedets navn (uavhengig av virksomhetens navn i brreg)\"\n    },\n    {\n        \"name\": \"adrlinje1\",\n        \"shortName\": \"adrlinje1\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Gateadresse for spisestedet\"\n    },\n    {\n        \"name\": \"adrlinje2\",\n        \"shortName\": \"adrlinje2\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Gateadresse for spisestedet\"\n    },\n    {\n        \"name\": \"postnr\",\n        \"shortName\": \"postnr\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Postnummer\"\n    },\n    {\n        \"name\": \"poststed\",\n        \"shortName\": \"poststed\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Poststed\"\n    },\n    {\n        \"name\": \"tilsynid\",\n        \"shortName\": \"tilsynid\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"N\\u00f8kkel for \\u00e5 entydig kunne identifisere ett tilsynsbes\\u00f8k og koble dette til kravpunktene\"\n    },\n    {\n        \"name\": \"sakref\",\n        \"shortName\": \"sakref\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Saksreferanse for offentlig journal. Dette feltet knytter ogs\\u00e5 sammen ulike tilsynsbes\\u00f8k knyttet til samme tilsynsl\\u00f8p\"\n    },\n    {\n        \"name\": \"status\",\n        \"shortName\": \"status\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tilsyns status (1\/0). 1 = Tilsynsbes\\u00f8k er gjennomf\\u00f8rt og Mattilsynet er ferdig med saken. 0 = Tilsynsbes\\u00f8k er gjennomf\\u00f8rt og mattilsynet f\\u00f8lger opp saken videre\"\n    },\n    {\n        \"name\": \"dato\",\n        \"shortName\": \"dato\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Dato tilsynet ble utf\\u00f8rt angitt YYYYMMDD\"\n    },\n    {\n        \"name\": \"total_karakter\",\n        \"shortName\": \"total_karakter\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Karakter p\\u00e5 hele tilsynet. Karakteren er det d\\u00e5rligste resultatet av alle kravpunkter som er unders\\u00f8kt. Mulige verdier er: 0 = Ingen anmerkning. Stort smil. 1 = Mattilsynet p\\u00e5peker plikt til \\u00e5 etterleve regelverket (mindre\/midlertidig avvik). Stort smil. 2 = Mattilsynet har funnet brudd p\\u00e5 regelverket og varsler om at vedtak vil bli fattet dersom feilen ikke utbedres innen frist. Strek munn. 3 = Mattilsynet har funnet vesentlige brudd p\\u00e5 regelverket. Sur munn. \"\n    },\n    {\n        \"name\": \"tilsynsbesoektype\",\n        \"shortName\": \"tilsynsbesoektype\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"0 eller 1. 0 = Ordin\\u00e6rt(fullt) tilsyn, 1 = oppf\\u00f8lgingstilsyn\"\n    },\n    {\n        \"name\": \"tema1_no\",\n        \"shortName\": \"tema1_no\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Navn p\\u00e5 tema nr 1, bokm\\u00e5l\"\n    },\n    {\n        \"name\": \"tema1_nn\",\n        \"shortName\": \"tema1_nn\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Navn p\\u00e5 tema nr 1, nynorsk\"\n    },\n    {\n        \"name\": \"karakter1\",\n        \"shortName\": \"karakter1\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Samlet karakter for f\\u00f8rste tema (som angitt p\\u00e5 plakat).\"\n    },\n    {\n        \"name\": \"tema2_no\",\n        \"shortName\": \"tema2_no\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Navn p\\u00e5 tema nr 2, bokm\\u00e5l\"\n    },\n    {\n        \"name\": \"tema2_nn\",\n        \"shortName\": \"tema2_nn\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Navn p\\u00e5 tema nr 2, nynorsk\"\n    },\n    {\n        \"name\": \"karakter2\",\n        \"shortName\": \"karakter2\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Samlet karakter for andre tema (som angitt p\\u00e5 plakat)\"\n    },\n    {\n        \"name\": \"tema3_no\",\n        \"shortName\": \"tema3_no\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Navn p\\u00e5 tema nr 3, bokm\\u00e5l\"\n    },\n    {\n        \"name\": \"tema3_nn\",\n        \"shortName\": \"tema3_nn\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Navn p\\u00e5 tema nr 3, nynorsk\"\n    },\n    {\n        \"name\": \"karakter3\",\n        \"shortName\": \"karakter3\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Samlet karakter for tredje tema (som angitt p\\u00e5 plakat)\"\n    },\n    {\n        \"name\": \"tema4_no\",\n        \"shortName\": \"tema4_no\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Navn p\\u00e5 tema nr 4, bokm\\u00e5l\"\n    },\n    {\n        \"name\": \"tema4_nn\",\n        \"shortName\": \"tema4_nn\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Navn p\\u00e5 tema nr 4, nynorsk\"\n    },\n    {\n        \"name\": \"karakter4\",\n        \"shortName\": \"karakter4\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Samlet karakter for fjerde tema (som angitt p\\u00e5 plakat)\"\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "datahotelFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "csv",
+                    "yaml"
+                ]
+            },
+            "datahotelMetadataFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "yaml"
+                ]
+            },
+            "datasetMetadata": {
+                "type": "object",
+                "properties": {
+                    "shortName": {
+                        "type": "string",
+                        "description": "Kortnamn for datasettet. Samme som siste ledd i location."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Menneskelesbart namn for datasettet."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Unik datasett-id i datahotellet"
+                    },
+                    "updated": {
+                        "type": "integer",
+                        "description": "Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer)."
+                    },
+                    "dataset": {
+                        "type": "boolean",
+                        "description": "True dersom location er eit datasett, false dersom ikkje. Ved false kan location vere ein katalog som inneheld datasett."
+                    }
+                }
+            },
+            "datasetFields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Menneskelesbart namn p\u00e5 feltet."
+                        },
+                        "shortName": {
+                            "type": "string",
+                            "description": "Kortnamn for felt. Samme som feltnamn brukt i respons og overskriftsrad i CSV-fila."
+                        },
+                        "groupable": {
+                            "type": "boolean",
+                            "description": "Kan gruppere\/filtrere p\u00e5 dette feltet via query-parameter. E.g. \u00ab?shortName=verdi\u00bb."
+                        },
+                        "searchable": {
+                            "type": "boolean",
+                            "description": "Om dette feltet er s\u00f8kbart via query-parameteret. E.g. \u00ab?query=s\u00f8kestreng\u00bb"
+                        },
+                        "indexPrimaryKey": {
+                            "type": "boolean",
+                            "description": "Ikkje i bruk."
+                        }
+                    }
+                }
+            },
+            "mattilsynet-smilefjes-tilsyn-record": {
+                "type": "object",
+                "properties": {
+                    "tilsynsobjektid": {
+                        "type": "string",
+                        "example": "Z1109221353241620198KUOWI_Tilsynsobjekt",
+                        "description": "N\u00f8kkel for entydig identifisering av spisested"
+                    },
+                    "orgnummer": {
+                        "type": "string",
+                        "example": "997046722",
+                        "description": "Organisasjonsnummer, normalt p\u00e5 virksomhet, som angitt fra brreg.no"
+                    },
+                    "navn": {
+                        "type": "string",
+                        "example": "Baker Brun Telegrafen",
+                        "description": "Spisestedets navn (uavhengig av virksomhetens navn i brreg)"
+                    },
+                    "adrlinje1": {
+                        "type": "string",
+                        "example": "Starvhusgaen 4",
+                        "description": "Gateadresse for spisestedet"
+                    },
+                    "adrlinje2": {
+                        "type": "string",
+                        "example": "",
+                        "description": "Gateadresse for spisestedet"
+                    },
+                    "postnr": {
+                        "type": "string",
+                        "example": "5014",
+                        "description": "Postnummer"
+                    },
+                    "poststed": {
+                        "type": "string",
+                        "example": "Bergen",
+                        "description": "Poststed"
+                    },
+                    "tilsynid": {
+                        "type": "string",
+                        "example": "Z1601210829297260239EKKLG_TilsynAvtale",
+                        "description": "N\u00f8kkel for \u00e5 entydig kunne identifisere ett tilsynsbes\u00f8k og koble dette til kravpunktene"
+                    },
+                    "sakref": {
+                        "type": "string",
+                        "example": "2016\/14321",
+                        "description": "Saksreferanse for offentlig journal. Dette feltet knytter ogs\u00e5 sammen ulike tilsynsbes\u00f8k knyttet til samme tilsynsl\u00f8p"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Tilsyns status (1\/0). 1 = Tilsynsbes\u00f8k er gjennomf\u00f8rt og Mattilsynet er ferdig med saken. 0 = Tilsynsbes\u00f8k er gjennomf\u00f8rt og mattilsynet f\u00f8lger opp saken videre"
+                    },
+                    "dato": {
+                        "type": "string",
+                        "example": "20012016",
+                        "description": "Dato tilsynet ble utf\u00f8rt angitt YYYYMMDD"
+                    },
+                    "total_karakter": {
+                        "type": "string",
+                        "example": "1",
+                        "description": "Karakter p\u00e5 hele tilsynet. Karakteren er det d\u00e5rligste resultatet av alle kravpunkter som er unders\u00f8kt. Mulige verdier er: 0 = Ingen anmerkning. Stort smil. 1 = Mattilsynet p\u00e5peker plikt til \u00e5 etterleve regelverket (mindre\/midlertidig avvik). Stort smil. 2 = Mattilsynet har funnet brudd p\u00e5 regelverket og varsler om at vedtak vil bli fattet dersom feilen ikke utbedres innen frist. Strek munn. 3 = Mattilsynet har funnet vesentlige brudd p\u00e5 regelverket. Sur munn. "
+                    },
+                    "tilsynsbesoektype": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "0 eller 1. 0 = Ordin\u00e6rt(fullt) tilsyn, 1 = oppf\u00f8lgingstilsyn"
+                    },
+                    "tema1_no": {
+                        "type": "string",
+                        "example": "Rutiner og ledelse",
+                        "description": "Navn p\u00e5 tema nr 1, bokm\u00e5l"
+                    },
+                    "tema1_nn": {
+                        "type": "string",
+                        "example": "Rutiner og leiing",
+                        "description": "Navn p\u00e5 tema nr 1, nynorsk"
+                    },
+                    "karakter1": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Samlet karakter for f\u00f8rste tema (som angitt p\u00e5 plakat)."
+                    },
+                    "tema2_no": {
+                        "type": "string",
+                        "example": "Lokaler og utstyr",
+                        "description": "Navn p\u00e5 tema nr 2, bokm\u00e5l"
+                    },
+                    "tema2_nn": {
+                        "type": "string",
+                        "example": "Lokaler og utstyr",
+                        "description": "Navn p\u00e5 tema nr 2, nynorsk"
+                    },
+                    "karakter2": {
+                        "type": "string",
+                        "example": "1",
+                        "description": "Samlet karakter for andre tema (som angitt p\u00e5 plakat)"
+                    },
+                    "tema3_no": {
+                        "type": "string",
+                        "example": "Mat-h\u00e5ndtering og tilberedning",
+                        "description": "Navn p\u00e5 tema nr 3, bokm\u00e5l"
+                    },
+                    "tema3_nn": {
+                        "type": "string",
+                        "example": "Mat-handtering og tillaging",
+                        "description": "Navn p\u00e5 tema nr 3, nynorsk"
+                    },
+                    "karakter3": {
+                        "type": "string",
+                        "example": "1",
+                        "description": "Samlet karakter for tredje tema (som angitt p\u00e5 plakat)"
+                    },
+                    "tema4_no": {
+                        "type": "string",
+                        "example": "Merking og sporbarhet",
+                        "description": "Navn p\u00e5 tema nr 4, bokm\u00e5l"
+                    },
+                    "tema4_nn": {
+                        "type": "string",
+                        "example": "Merking og sporbarheit",
+                        "description": "Navn p\u00e5 tema nr 4, nynorsk"
+                    },
+                    "karakter4": {
+                        "type": "string",
+                        "example": "1",
+                        "description": "Samlet karakter for fjerde tema (som angitt p\u00e5 plakat)"
+                    }
+                }
+            },
+            "mattilsynet-smilefjes-tilsyn-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/mattilsynet-smilefjes-tilsyn-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            }
+        },
+        "headers": {
+            "X-Datahotel-Page": {
+                "description": "Side (page) av resultatet som er returnert.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Pages": {
+                "description": "Tal p\u00e5 sider totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Posts": {
+                "description": "Tal p\u00e5 postar totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ETag": {
+                "description": "Fungerer som standard HTTP ETag. Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer).",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "tilsyn",
+            "description": "Mattilsynet - Smilefjes - Tilsyn",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=mattilsynet\/smilefjes\/tilsyn"
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Meir dokumentasjon for hotell.difi.no",
+        "url": "https:\/\/hotell.difi.no\/api"
+    }
+}

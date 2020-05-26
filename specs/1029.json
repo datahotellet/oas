@@ -1,0 +1,429 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "<p>Sj\u00e5 <a href=\"https:\/\/data.norge.no\/node\/1029\">datasett-oppf\u00f8ring<\/a> for meir informasjon (kontaktinformasjon, oppdateringsfrekvens, lenker til dokumentasjon etc.)<\/p>\n",
+        "version": "1.0.0",
+        "title": "Produksjons- og avl\u00f8sertilskudd jordbruksforetak - s\u00f8knadsomgang januar 2014",
+        "license": {
+            "name": "Data-lisens",
+            "url": "http:\/\/data.norge.no\/nlod\/"
+        },
+        "termsOfService": "https:\/\/hotell.difi.no\/api"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/hotell.difi.no"
+        }
+    ],
+    "paths": {
+        "\/api\/{format}\/ldir\/produksjonstilskudd\/2014jan": {
+            "get": {
+                "tags": [
+                    "2014jan"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getLdirProduksjonstilskudd2014janPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    },
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "S\u00f8k i datasettet. Gir treff p\u00e5 felt: navn",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "orgnr",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "kommune",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ldir-produksjonstilskudd-2014jan-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/ldir\/produksjonstilskudd\/2014jan": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "2014jan"
+                ],
+                "operationId": "downloadLdirProduksjonstilskudd2014jan",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/ldir\/produksjonstilskudd\/2014jan\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "2014jan"
+                ],
+                "operationId": "getLdirProduksjonstilskudd2014janMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"2014jan\",\n    \"name\": \"Landbruksdirektoratet - Produksjons- og avl\\u00f8sertilskudd jordbruksforetak januar 2014\",\n    \"location\": \"ldir\/produksjonstilskudd\/2014jan\",\n    \"updated\": 1414152358,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/ldir\/produksjonstilskudd\/2014jan\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "2014jan"
+                ],
+                "operationId": "getLdirProduksjonstilskudd2014janFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"Organisasjonsnummer\",\n        \"shortName\": \"orgnr\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Navn\",\n        \"shortName\": \"navn\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Kommunenummer\",\n        \"shortName\": \"kommune\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Tilskudd melk\",\n        \"shortName\": \"dt_melk\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Driftstilskudd til melkeproduksjon\"\n    },\n    {\n        \"name\": \"Tilskudd kj\\u00f8ttfe\",\n        \"shortName\": \"dt_kjottfe\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Driftstilskudd til kj\\u00f8ttfe-produksjon\"\n    },\n    {\n        \"name\": \"Tilskudd husdyr\",\n        \"shortName\": \"t_husdyr\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tilskudd til husdyr\"\n    },\n    {\n        \"name\": \"Tilskudd lammeslakt\",\n        \"shortName\": \"t_lam\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tilskudd til lammeslakt\"\n    },\n    {\n        \"name\": \"Tilskudd gr\\u00f8ntproduksjon\",\n        \"shortName\": \"t_gront\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Distrikts- og kvalitetstilskudd til gr\\u00f8ntproduksjon\"\n    },\n    {\n        \"name\": \"Tilskudd matpoteter\",\n        \"shortName\": \"t_matpoteter\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Distriktstilskudd for produksjon av matpoteter\"\n    },\n    {\n        \"name\": \"Tilskudd storferaser\",\n        \"shortName\": \"t_storferaser\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tilskudd til bevaringsverdige storferaser\"\n    },\n    {\n        \"name\": \"Tilskudd \\u00f8ko husdyr\",\n        \"shortName\": \"t_oko_husdyr\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tilskudd til \\u00f8kologisk landbruk - husdyrtilskudd\"\n    },\n    {\n        \"name\": \"Tilskudd avl\\u00f8sning\",\n        \"shortName\": \"t_avlosning\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tilskudd til avl\\u00f8sning ved ferie og fritid\"\n    },\n    {\n        \"name\": \"Bunnfradrag\",\n        \"shortName\": \"bunnfradrag\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Sum tilskudd\",\n        \"shortName\": \"tilskudd\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "datahotelFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "csv",
+                    "yaml"
+                ]
+            },
+            "datahotelMetadataFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "yaml"
+                ]
+            },
+            "datasetMetadata": {
+                "type": "object",
+                "properties": {
+                    "shortName": {
+                        "type": "string",
+                        "description": "Kortnamn for datasettet. Samme som siste ledd i location."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Menneskelesbart namn for datasettet."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Unik datasett-id i datahotellet"
+                    },
+                    "updated": {
+                        "type": "integer",
+                        "description": "Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer)."
+                    },
+                    "dataset": {
+                        "type": "boolean",
+                        "description": "True dersom location er eit datasett, false dersom ikkje. Ved false kan location vere ein katalog som inneheld datasett."
+                    }
+                }
+            },
+            "datasetFields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Menneskelesbart namn p\u00e5 feltet."
+                        },
+                        "shortName": {
+                            "type": "string",
+                            "description": "Kortnamn for felt. Samme som feltnamn brukt i respons og overskriftsrad i CSV-fila."
+                        },
+                        "groupable": {
+                            "type": "boolean",
+                            "description": "Kan gruppere\/filtrere p\u00e5 dette feltet via query-parameter. E.g. \u00ab?shortName=verdi\u00bb."
+                        },
+                        "searchable": {
+                            "type": "boolean",
+                            "description": "Om dette feltet er s\u00f8kbart via query-parameteret. E.g. \u00ab?query=s\u00f8kestreng\u00bb"
+                        },
+                        "indexPrimaryKey": {
+                            "type": "boolean",
+                            "description": "Ikkje i bruk."
+                        }
+                    }
+                }
+            },
+            "ldir-produksjonstilskudd-2014jan-record": {
+                "type": "object",
+                "properties": {
+                    "orgnr": {
+                        "type": "string",
+                        "example": "993954144",
+                        "description": "Organisasjonsnummer"
+                    },
+                    "navn": {
+                        "type": "string",
+                        "example": "ANDERS MARTIN GJERLAUG"
+                    },
+                    "kommune": {
+                        "type": "string",
+                        "example": "0101",
+                        "description": "Kommunenummer"
+                    },
+                    "dt_melk": {
+                        "type": "string",
+                        "example": "61000",
+                        "description": "Tilskudd melk.\nDriftstilskudd til melkeproduksjon"
+                    },
+                    "dt_kjottfe": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Tilskudd kj\u00f8ttfe.\nDriftstilskudd til kj\u00f8ttfe-produksjon"
+                    },
+                    "t_husdyr": {
+                        "type": "string",
+                        "example": "60458",
+                        "description": "Tilskudd husdyr.\nTilskudd til husdyr"
+                    },
+                    "t_lam": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Tilskudd lammeslakt.\nTilskudd til lammeslakt"
+                    },
+                    "t_gront": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Tilskudd gr\u00f8ntproduksjon.\nDistrikts- og kvalitetstilskudd til gr\u00f8ntproduksjon"
+                    },
+                    "t_matpoteter": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Tilskudd matpoteter.\nDistriktstilskudd for produksjon av matpoteter"
+                    },
+                    "t_storferaser": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Tilskudd storferaser.\nTilskudd til bevaringsverdige storferaser"
+                    },
+                    "t_oko_husdyr": {
+                        "type": "string",
+                        "example": "56229",
+                        "description": "Tilskudd \u00f8ko husdyr.\nTilskudd til \u00f8kologisk landbruk - husdyrtilskudd"
+                    },
+                    "t_avlosning": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Tilskudd avl\u00f8sning.\nTilskudd til avl\u00f8sning ved ferie og fritid"
+                    },
+                    "bunnfradrag": {
+                        "type": "string",
+                        "example": "3000"
+                    },
+                    "tilskudd": {
+                        "type": "string",
+                        "example": "174687",
+                        "description": "Sum tilskudd"
+                    }
+                }
+            },
+            "ldir-produksjonstilskudd-2014jan-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/ldir-produksjonstilskudd-2014jan-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            }
+        },
+        "headers": {
+            "X-Datahotel-Page": {
+                "description": "Side (page) av resultatet som er returnert.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Pages": {
+                "description": "Tal p\u00e5 sider totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Posts": {
+                "description": "Tal p\u00e5 postar totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ETag": {
+                "description": "Fungerer som standard HTTP ETag. Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer).",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "2014jan",
+            "description": "Landbruksdirektoratet - Produksjons- og avl\u00f8sertilskudd jordbruksforetak januar 2014",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=ldir\/produksjonstilskudd\/2014jan"
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Meir dokumentasjon for hotell.difi.no",
+        "url": "https:\/\/hotell.difi.no\/api"
+    }
+}

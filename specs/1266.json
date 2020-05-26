@@ -1,0 +1,465 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "<p>Sj\u00e5 <a href=\"https:\/\/data.norge.no\/node\/1266\">datasett-oppf\u00f8ring<\/a> for meir informasjon (kontaktinformasjon, oppdateringsfrekvens, lenker til dokumentasjon etc.)<\/p>\n",
+        "version": "1.0.0",
+        "title": "Kvalitet p\u00e5 nett - resultatliste 2011",
+        "license": {
+            "name": "Data-lisens",
+            "url": "http:\/\/data.norge.no\/nlod\/"
+        },
+        "termsOfService": "https:\/\/hotell.difi.no\/api"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/hotell.difi.no"
+        }
+    ],
+    "paths": {
+        "\/api\/{format}\/difi\/kvalitet\/oversikt2011": {
+            "get": {
+                "tags": [
+                    "oversikt2011"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getDifiKvalitetOversikt2011Page",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    },
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "S\u00f8k i datasettet. Gir treff p\u00e5 felt: nettstednavn",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "vurderingid",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "poeng",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "snittprosent",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "stjerner",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tilgang_poeng",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "brukertilpass_poeng",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nyttig_poeng",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/difi-kvalitet-oversikt2011-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/difi\/kvalitet\/oversikt2011": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "oversikt2011"
+                ],
+                "operationId": "downloadDifiKvalitetOversikt2011",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/difi\/kvalitet\/oversikt2011\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "oversikt2011"
+                ],
+                "operationId": "getDifiKvalitetOversikt2011Metadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"oversikt2011\",\n    \"name\": \"Oversikt 2011\",\n    \"location\": \"difi\/kvalitet\/oversikt2011\",\n    \"updated\": 1403076821,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/difi\/kvalitet\/oversikt2011\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "oversikt2011"
+                ],
+                "operationId": "getDifiKvalitetOversikt2011Fields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"VURDREINGID\",\n        \"shortName\": \"vurderingid\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"CREATED\",\n        \"shortName\": \"created\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"NETTSTEDNAVN\",\n        \"shortName\": \"nettstednavn\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"URL\",\n        \"shortName\": \"url\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"POENG\",\n        \"shortName\": \"poeng\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"MAXPOENG\",\n        \"shortName\": \"maxpoeng\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"SNITTPOROSENT\",\n        \"shortName\": \"snittprosent\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"ANTALLSTJERNER\",\n        \"shortName\": \"stjerner\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"TILGANG_POENG\",\n        \"shortName\": \"tilgang_poeng\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"TILGANG_MAXPOENG\",\n        \"shortName\": \"tilgang_maxpoeng\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"BRUKERTILPASS_POENG\",\n        \"shortName\": \"brukertilpass_poeng\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"BRUKERTILPASS_MAXPOENG\",\n        \"shortName\": \"brukertilpass_maxpoeng\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"NYTTIG_POENG\",\n        \"shortName\": \"nyttig_poeng\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"NYTTIG_MAXPOENG\",\n        \"shortName\": \"nyttig_maxpoeng\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "datahotelFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "csv",
+                    "yaml"
+                ]
+            },
+            "datahotelMetadataFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "yaml"
+                ]
+            },
+            "datasetMetadata": {
+                "type": "object",
+                "properties": {
+                    "shortName": {
+                        "type": "string",
+                        "description": "Kortnamn for datasettet. Samme som siste ledd i location."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Menneskelesbart namn for datasettet."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Unik datasett-id i datahotellet"
+                    },
+                    "updated": {
+                        "type": "integer",
+                        "description": "Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer)."
+                    },
+                    "dataset": {
+                        "type": "boolean",
+                        "description": "True dersom location er eit datasett, false dersom ikkje. Ved false kan location vere ein katalog som inneheld datasett."
+                    }
+                }
+            },
+            "datasetFields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Menneskelesbart namn p\u00e5 feltet."
+                        },
+                        "shortName": {
+                            "type": "string",
+                            "description": "Kortnamn for felt. Samme som feltnamn brukt i respons og overskriftsrad i CSV-fila."
+                        },
+                        "groupable": {
+                            "type": "boolean",
+                            "description": "Kan gruppere\/filtrere p\u00e5 dette feltet via query-parameter. E.g. \u00ab?shortName=verdi\u00bb."
+                        },
+                        "searchable": {
+                            "type": "boolean",
+                            "description": "Om dette feltet er s\u00f8kbart via query-parameteret. E.g. \u00ab?query=s\u00f8kestreng\u00bb"
+                        },
+                        "indexPrimaryKey": {
+                            "type": "boolean",
+                            "description": "Ikkje i bruk."
+                        }
+                    }
+                }
+            },
+            "difi-kvalitet-oversikt2011-record": {
+                "type": "object",
+                "properties": {
+                    "vurderingid": {
+                        "type": "string",
+                        "example": "14946",
+                        "description": "VURDREINGID"
+                    },
+                    "created": {
+                        "type": "string",
+                        "example": "08\/16\/2011 09:06:03"
+                    },
+                    "nettstednavn": {
+                        "type": "string",
+                        "example": "Agdenes kommune"
+                    },
+                    "url": {
+                        "type": "string",
+                        "example": "http:\/\/www.agdenes.kommune.no\/"
+                    },
+                    "poeng": {
+                        "type": "string",
+                        "example": "57"
+                    },
+                    "maxpoeng": {
+                        "type": "string",
+                        "example": "93"
+                    },
+                    "snittprosent": {
+                        "type": "string",
+                        "example": "61",
+                        "description": "SNITTPOROSENT"
+                    },
+                    "stjerner": {
+                        "type": "string",
+                        "example": "4",
+                        "description": "ANTALLSTJERNER"
+                    },
+                    "tilgang_poeng": {
+                        "type": "string",
+                        "example": "14"
+                    },
+                    "tilgang_maxpoeng": {
+                        "type": "string",
+                        "example": "28"
+                    },
+                    "brukertilpass_poeng": {
+                        "type": "string",
+                        "example": "19"
+                    },
+                    "brukertilpass_maxpoeng": {
+                        "type": "string",
+                        "example": "30"
+                    },
+                    "nyttig_poeng": {
+                        "type": "string",
+                        "example": "24"
+                    },
+                    "nyttig_maxpoeng": {
+                        "type": "string",
+                        "example": "35"
+                    }
+                }
+            },
+            "difi-kvalitet-oversikt2011-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/difi-kvalitet-oversikt2011-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            }
+        },
+        "headers": {
+            "X-Datahotel-Page": {
+                "description": "Side (page) av resultatet som er returnert.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Pages": {
+                "description": "Tal p\u00e5 sider totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Posts": {
+                "description": "Tal p\u00e5 postar totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ETag": {
+                "description": "Fungerer som standard HTTP ETag. Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer).",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "oversikt2011",
+            "description": "Oversikt 2011",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=difi\/kvalitet\/oversikt2011"
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Meir dokumentasjon for hotell.difi.no",
+        "url": "https:\/\/hotell.difi.no\/api"
+    }
+}

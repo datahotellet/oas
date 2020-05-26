@@ -1,0 +1,455 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "<p>Sj\u00e5 <a href=\"https:\/\/data.norge.no\/node\/2147\">datasett-oppf\u00f8ring<\/a> for meir informasjon (kontaktinformasjon, oppdateringsfrekvens, lenker til dokumentasjon etc.)<\/p>\n",
+        "version": "1.0.0",
+        "title": "Bes\u00f8kstal for datahotellet",
+        "license": {
+            "name": "Data-lisens",
+            "url": "http:\/\/data.norge.no\/nlod\/"
+        },
+        "termsOfService": "https:\/\/hotell.difi.no\/api"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/hotell.difi.no"
+        }
+    ],
+    "paths": {
+        "\/api\/{format}\/difi\/datahotell\/sidevisninger-pr-datasett": {
+            "get": {
+                "tags": [
+                    "sidevisninger-pr-datasett"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getDifiDatahotellSidevisninger-pr-datasettPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    },
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "S\u00f8k i datasettet. Gir treff p\u00e5 felt: dataset_location, datanorgeTitle, datanorgePublisherName",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "year",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "month",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "datanorgeLink",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/difi-datahotell-sidevisninger-pr-datasett-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/difi\/datahotell\/sidevisninger-pr-datasett": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "sidevisninger-pr-datasett"
+                ],
+                "operationId": "downloadDifiDatahotellSidevisninger-pr-datasett",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/difi\/datahotell\/sidevisninger-pr-datasett\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "sidevisninger-pr-datasett"
+                ],
+                "operationId": "getDifiDatahotellSidevisninger-pr-datasettMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"sidevisninger-pr-datasett\",\n    \"name\": \"Sidevisninger pr. datasett p\\u00e5 datahotellet\",\n    \"location\": \"difi\/datahotell\/sidevisninger-pr-datasett\",\n    \"updated\": 1588681800,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/difi\/datahotell\/sidevisninger-pr-datasett\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "sidevisninger-pr-datasett"
+                ],
+                "operationId": "getDifiDatahotellSidevisninger-pr-datasettFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"\\u00c5r\",\n        \"shortName\": \"year\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Kva \\u00e5r statistikken gjeld for.\"\n    },\n    {\n        \"name\": \"M\\u00e5nad\",\n        \"shortName\": \"month\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"M\\u00e5nad statistikken gjeld (01-12). Stjerne (\\\"*\\\") tyder at statistikken gjeld heile \\u00e5ret.\"\n    },\n    {\n        \"name\": \"Dekke\",\n        \"shortName\": \"coverage\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Stjerne (\\\"*\\\") tyder at data p\\u00e5 denne rada gjeld heile perioden som er nemt i felta for \\u00c5r og M\\u00e5nad. Eksempel p\\u00e5 at statistikken ikkje gjeld heile perioden er verdi som \\\"2017-12-07_0020\\\", som tyder at tala kun gjeld fram til det tidspunktet.\"\n    },\n    {\n        \"name\": \"Datasett\",\n        \"shortName\": \"dataset_location\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Datasett statistikken gjeld for, oppgjeve ved datasettet sin identifikator (\\\"location\\\") i datahotellet.\"\n    },\n    {\n        \"name\": \"Sidevisningar totalt\",\n        \"shortName\": \"total_pageviews\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Totalt antal sidevisningar. Talet er sum av sidevisningar p\\u00e5 ulike format (JSON, JSONP, XML, YAML og Komplette nedlastingar). API-kall til \/meta og \/fields er utelatt fr\\u00e5 statistikken.\"\n    },\n    {\n        \"name\": \"JSON\",\n        \"shortName\": \"json\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tal p\\u00e5 API-kall med JSON som format.\"\n    },\n    {\n        \"name\": \"JSONP\",\n        \"shortName\": \"jsonp\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tal p\\u00e5 API-kall med JSONP som format. Vising av datasettet via web-grensesnittet p\\u00e5 hotell.difi.no vil gje utslag her.\"\n    },\n    {\n        \"name\": \"XML\",\n        \"shortName\": \"xml\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tal p\\u00e5 API-kall med XML som format.\"\n    },\n    {\n        \"name\": \"YAML\",\n        \"shortName\": \"yaml\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tal p\\u00e5 API-kall med YAML som format.\"\n    },\n    {\n        \"name\": \"CSV\",\n        \"shortName\": \"csv\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tal p\\u00e5 API-kall med CSV som format. Komplette nedlastingar, ogs\\u00e5 i CSV-format, er telt for seg sj\\u00f8lv.\"\n    },\n    {\n        \"name\": \"Komplette nedlastingar\",\n        \"shortName\": \"download\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Antall komplette nedlastingar av datasettet.\"\n    },\n    {\n        \"name\": \"Trafikk i bytes\",\n        \"shortName\": \"traffic_bytes\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Sum av snitt-st\\u00f8rrelse p\\u00e5 kvar type API-kall (JSON, XML etc.) ganga opp med antall API-kall for den enkelte typen. Snitt-st\\u00f8rrelse er fr\\u00e5 AWStats. Feltet egner seg for \\u00e5 sortere tabellen etter trafikk.\"\n    },\n    {\n        \"name\": \"Trafikk - lesbart\",\n        \"shortName\": \"traffic_hr\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Menneskelesbar versjon av \\\"Trafikk i bytes\\\".\"\n    },\n    {\n        \"name\": \"Synleg i datahotellet\",\n        \"shortName\": \"hotel_visible\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Om eit datasett er synleg i datahotellet. \\\"No\\\" betyr at datasettet enten er fjerna fr\\u00e5 datahotellet, eller at det er sett til \\u00e5 vere usynleg. Eit datasett kan bli sett til \\u00e5 vere usynleg fordi det er avpublisert, eller skal fasast ut. Verdien er sett i det statistikk-datasettet vart generert, sj\\u00e5 dette datasettets ETag for ca. tidspunkt for n\\u00e5r datasettet vart generert.\"\n    },\n    {\n        \"name\": \"Data.norge.no - URL\",\n        \"shortName\": \"datanorgeLink\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Lenke til oppf\\u00f8ring p\\u00e5 data.norge.no. Lenken er sett inn i det datasettet vart generert, og vil endre seg etter kvart som innhaldet p\\u00e5 data.norge.no endrar seg.\"\n    },\n    {\n        \"name\": \"Data.norge.no - Tittel\",\n        \"shortName\": \"datanorgeTitle\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tittelen p\\u00e5 datasett-oppf\\u00f8ringa p\\u00e5 data.norge.no. Sett inn i det statistikken vart generert, og vil endre seg etter kvar som innhaldet p\\u00e5 data.norge.no endrar seg.\"\n    },\n    {\n        \"name\": \"Data.norge.no - Utgjevar\",\n        \"shortName\": \"datanorgePublisherName\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Navn p\\u00e5 utgjevar, fr\\u00e5 datasett-oppf\\u00f8ringa p\\u00e5 data.norge.no. Sett inn i det statistikken vart generert, og vil endre seg etter kvar som innhaldet p\\u00e5 data.norge.no endrar seg.\"\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "datahotelFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "csv",
+                    "yaml"
+                ]
+            },
+            "datahotelMetadataFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "yaml"
+                ]
+            },
+            "datasetMetadata": {
+                "type": "object",
+                "properties": {
+                    "shortName": {
+                        "type": "string",
+                        "description": "Kortnamn for datasettet. Samme som siste ledd i location."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Menneskelesbart namn for datasettet."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Unik datasett-id i datahotellet"
+                    },
+                    "updated": {
+                        "type": "integer",
+                        "description": "Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer)."
+                    },
+                    "dataset": {
+                        "type": "boolean",
+                        "description": "True dersom location er eit datasett, false dersom ikkje. Ved false kan location vere ein katalog som inneheld datasett."
+                    }
+                }
+            },
+            "datasetFields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Menneskelesbart namn p\u00e5 feltet."
+                        },
+                        "shortName": {
+                            "type": "string",
+                            "description": "Kortnamn for felt. Samme som feltnamn brukt i respons og overskriftsrad i CSV-fila."
+                        },
+                        "groupable": {
+                            "type": "boolean",
+                            "description": "Kan gruppere\/filtrere p\u00e5 dette feltet via query-parameter. E.g. \u00ab?shortName=verdi\u00bb."
+                        },
+                        "searchable": {
+                            "type": "boolean",
+                            "description": "Om dette feltet er s\u00f8kbart via query-parameteret. E.g. \u00ab?query=s\u00f8kestreng\u00bb"
+                        },
+                        "indexPrimaryKey": {
+                            "type": "boolean",
+                            "description": "Ikkje i bruk."
+                        }
+                    }
+                }
+            },
+            "difi-datahotell-sidevisninger-pr-datasett-record": {
+                "type": "object",
+                "properties": {
+                    "year": {
+                        "type": "string",
+                        "example": "2020",
+                        "description": "\u00c5r.\nKva \u00e5r statistikken gjeld for."
+                    },
+                    "month": {
+                        "type": "string",
+                        "example": "*",
+                        "description": "M\u00e5nad.\nM\u00e5nad statistikken gjeld (01-12). Stjerne (\"*\") tyder at statistikken gjeld heile \u00e5ret."
+                    },
+                    "coverage": {
+                        "type": "string",
+                        "example": "2020-05-05_0020",
+                        "description": "Dekke.\nStjerne (\"*\") tyder at data p\u00e5 denne rada gjeld heile perioden som er nemt i felta for \u00c5r og M\u00e5nad. Eksempel p\u00e5 at statistikken ikkje gjeld heile perioden er verdi som \"2017-12-07_0020\", som tyder at tala kun gjeld fram til det tidspunktet."
+                    },
+                    "dataset_location": {
+                        "type": "string",
+                        "example": "brreg\/enhetsregisteret",
+                        "description": "Datasett.\nDatasett statistikken gjeld for, oppgjeve ved datasettet sin identifikator (\"location\") i datahotellet."
+                    },
+                    "total_pageviews": {
+                        "type": "string",
+                        "example": "89668925",
+                        "description": "Sidevisningar totalt.\nTotalt antal sidevisningar. Talet er sum av sidevisningar p\u00e5 ulike format (JSON, JSONP, XML, YAML og Komplette nedlastingar). API-kall til \/meta og \/fields er utelatt fr\u00e5 statistikken."
+                    },
+                    "json": {
+                        "type": "string",
+                        "example": "86056572",
+                        "description": "Tal p\u00e5 API-kall med JSON som format."
+                    },
+                    "jsonp": {
+                        "type": "string",
+                        "example": "273289",
+                        "description": "Tal p\u00e5 API-kall med JSONP som format. Vising av datasettet via web-grensesnittet p\u00e5 hotell.difi.no vil gje utslag her."
+                    },
+                    "xml": {
+                        "type": "string",
+                        "example": "1551286",
+                        "description": "Tal p\u00e5 API-kall med XML som format."
+                    },
+                    "yaml": {
+                        "type": "string",
+                        "example": "66",
+                        "description": "Tal p\u00e5 API-kall med YAML som format."
+                    },
+                    "csv": {
+                        "type": "string",
+                        "example": "1767641",
+                        "description": "Tal p\u00e5 API-kall med CSV som format. Komplette nedlastingar, ogs\u00e5 i CSV-format, er telt for seg sj\u00f8lv."
+                    },
+                    "download": {
+                        "type": "string",
+                        "example": "20071",
+                        "description": "Komplette nedlastingar.\nAntall komplette nedlastingar av datasettet."
+                    },
+                    "traffic_bytes": {
+                        "type": "string",
+                        "example": "3870941982599",
+                        "description": "Trafikk i bytes.\nSum av snitt-st\u00f8rrelse p\u00e5 kvar type API-kall (JSON, XML etc.) ganga opp med antall API-kall for den enkelte typen. Snitt-st\u00f8rrelse er fr\u00e5 AWStats. Feltet egner seg for \u00e5 sortere tabellen etter trafikk."
+                    },
+                    "traffic_hr": {
+                        "type": "string",
+                        "example": "3.87 TB",
+                        "description": "Trafikk - lesbart.\nMenneskelesbar versjon av \"Trafikk i bytes\"."
+                    },
+                    "hotel_visible": {
+                        "type": "string",
+                        "example": "yes",
+                        "description": "Synleg i datahotellet.\nOm eit datasett er synleg i datahotellet. \"No\" betyr at datasettet enten er fjerna fr\u00e5 datahotellet, eller at det er sett til \u00e5 vere usynleg. Eit datasett kan bli sett til \u00e5 vere usynleg fordi det er avpublisert, eller skal fasast ut. Verdien er sett i det statistikk-datasettet vart generert, sj\u00e5 dette datasettets ETag for ca. tidspunkt for n\u00e5r datasettet vart generert."
+                    },
+                    "datanorgeLink": {
+                        "type": "string",
+                        "example": "https:\/\/data.norge.no\/node\/197",
+                        "description": "Data.norge.no - URL.\nLenke til oppf\u00f8ring p\u00e5 data.norge.no. Lenken er sett inn i det datasettet vart generert, og vil endre seg etter kvart som innhaldet p\u00e5 data.norge.no endrar seg."
+                    },
+                    "datanorgeTitle": {
+                        "type": "string",
+                        "example": "Enhetsregisteret",
+                        "description": "Data.norge.no - Tittel.\nTittelen p\u00e5 datasett-oppf\u00f8ringa p\u00e5 data.norge.no. Sett inn i det statistikken vart generert, og vil endre seg etter kvar som innhaldet p\u00e5 data.norge.no endrar seg."
+                    },
+                    "datanorgePublisherName": {
+                        "type": "string",
+                        "example": "Br\u00f8nn\u00f8ysundregistrene",
+                        "description": "Data.norge.no - Utgjevar.\nNavn p\u00e5 utgjevar, fr\u00e5 datasett-oppf\u00f8ringa p\u00e5 data.norge.no. Sett inn i det statistikken vart generert, og vil endre seg etter kvar som innhaldet p\u00e5 data.norge.no endrar seg."
+                    }
+                }
+            },
+            "difi-datahotell-sidevisninger-pr-datasett-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/difi-datahotell-sidevisninger-pr-datasett-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            }
+        },
+        "headers": {
+            "X-Datahotel-Page": {
+                "description": "Side (page) av resultatet som er returnert.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Pages": {
+                "description": "Tal p\u00e5 sider totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Posts": {
+                "description": "Tal p\u00e5 postar totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ETag": {
+                "description": "Fungerer som standard HTTP ETag. Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer).",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "sidevisninger-pr-datasett",
+            "description": "Sidevisninger pr. datasett p\u00e5 datahotellet",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=difi\/datahotell\/sidevisninger-pr-datasett"
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Meir dokumentasjon for hotell.difi.no",
+        "url": "https:\/\/hotell.difi.no\/api"
+    }
+}

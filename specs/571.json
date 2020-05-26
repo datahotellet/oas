@@ -1,0 +1,688 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "<p>Sj\u00e5 <a href=\"https:\/\/data.norge.no\/node\/571\">datasett-oppf\u00f8ring<\/a> for meir informasjon (kontaktinformasjon, oppdateringsfrekvens, lenker til dokumentasjon etc.)<\/p>\n",
+        "version": "1.0.0",
+        "title": "Innretning (Facility)",
+        "license": {
+            "name": "Data-lisens",
+            "url": "http:\/\/data.norge.no\/nlod\/"
+        },
+        "termsOfService": "https:\/\/hotell.difi.no\/api"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/hotell.difi.no"
+        }
+    ],
+    "paths": {
+        "\/api\/{format}\/npd\/facility\/fixed": {
+            "get": {
+                "tags": [
+                    "fixed"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getNpdFacilityFixedPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/npd-facility-fixed-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/npd\/facility\/fixed": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "fixed"
+                ],
+                "operationId": "downloadNpdFacilityFixed",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/facility\/fixed\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "fixed"
+                ],
+                "operationId": "getNpdFacilityFixedMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"fixed\",\n    \"name\": \"NPD - Facility - Fixed\",\n    \"location\": \"npd\/facility\/fixed\",\n    \"updated\": 1590373911,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/facility\/fixed\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "fixed"
+                ],
+                "operationId": "getNpdFacilityFixedFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"fclName\",\n        \"shortName\": \"fclName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclPhase\",\n        \"shortName\": \"fclPhase\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclSurface\",\n        \"shortName\": \"fclSurface\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclCurrentOperatorName\",\n        \"shortName\": \"fclCurrentOperatorName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclKind\",\n        \"shortName\": \"fclKind\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclBelongsToName\",\n        \"shortName\": \"fclBelongsToName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclBelongsToKind\",\n        \"shortName\": \"fclBelongsToKind\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclBelongsToS\",\n        \"shortName\": \"fclBelongsToS\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclStartupDate\",\n        \"shortName\": \"fclStartupDate\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclGeodeticDatum\",\n        \"shortName\": \"fclGeodeticDatum\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclNsDeg\",\n        \"shortName\": \"fclNsDeg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclNsMin\",\n        \"shortName\": \"fclNsMin\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclNsSec\",\n        \"shortName\": \"fclNsSec\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclNsCode\",\n        \"shortName\": \"fclNsCode\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclEwDeg\",\n        \"shortName\": \"fclEwDeg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclEwMin\",\n        \"shortName\": \"fclEwMin\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclEwSec\",\n        \"shortName\": \"fclEwSec\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclEwCode\",\n        \"shortName\": \"fclEwCode\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclWaterDepth\",\n        \"shortName\": \"fclWaterDepth\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclFunctions\",\n        \"shortName\": \"fclFunctions\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclDesignLifetime\",\n        \"shortName\": \"fclDesignLifetime\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclFactPageUrl\",\n        \"shortName\": \"fclFactPageUrl\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclFactMapUrl\",\n        \"shortName\": \"fclFactMapUrl\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclNpdidFacility\",\n        \"shortName\": \"fclNpdidFacility\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclDateUpdated\",\n        \"shortName\": \"fclDateUpdated\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"datesyncNPD\",\n        \"shortName\": \"datesyncNPD\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/facility\/movable": {
+            "get": {
+                "tags": [
+                    "movable"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getNpdFacilityMovablePage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/npd-facility-movable-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/npd\/facility\/movable": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "movable"
+                ],
+                "operationId": "downloadNpdFacilityMovable",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/facility\/movable\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "movable"
+                ],
+                "operationId": "getNpdFacilityMovableMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"movable\",\n    \"name\": \"NPD - Facility - Movable\",\n    \"location\": \"npd\/facility\/movable\",\n    \"updated\": 1590373911,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/facility\/movable\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "movable"
+                ],
+                "operationId": "getNpdFacilityMovableFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"fclName\",\n        \"shortName\": \"fclName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclCurrentRespCompanyName\",\n        \"shortName\": \"fclCurrentRespCompanyName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclKind\",\n        \"shortName\": \"fclKind\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclFunctions\",\n        \"shortName\": \"fclFunctions\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclStatus\",\n        \"shortName\": \"fclStatus\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclNationName\",\n        \"shortName\": \"fclNationName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclFactPageUrl\",\n        \"shortName\": \"fclFactPageUrl\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclNpdidFacility\",\n        \"shortName\": \"fclNpdidFacility\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclNpdidCurrentRespCompany\",\n        \"shortName\": \"fclNpdidCurrentRespCompany\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"fclDateUpdated\",\n        \"shortName\": \"fclDateUpdated\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"datesyncNPD\",\n        \"shortName\": \"datesyncNPD\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "datahotelFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "csv",
+                    "yaml"
+                ]
+            },
+            "datahotelMetadataFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "yaml"
+                ]
+            },
+            "datasetMetadata": {
+                "type": "object",
+                "properties": {
+                    "shortName": {
+                        "type": "string",
+                        "description": "Kortnamn for datasettet. Samme som siste ledd i location."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Menneskelesbart namn for datasettet."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Unik datasett-id i datahotellet"
+                    },
+                    "updated": {
+                        "type": "integer",
+                        "description": "Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer)."
+                    },
+                    "dataset": {
+                        "type": "boolean",
+                        "description": "True dersom location er eit datasett, false dersom ikkje. Ved false kan location vere ein katalog som inneheld datasett."
+                    }
+                }
+            },
+            "datasetFields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Menneskelesbart namn p\u00e5 feltet."
+                        },
+                        "shortName": {
+                            "type": "string",
+                            "description": "Kortnamn for felt. Samme som feltnamn brukt i respons og overskriftsrad i CSV-fila."
+                        },
+                        "groupable": {
+                            "type": "boolean",
+                            "description": "Kan gruppere\/filtrere p\u00e5 dette feltet via query-parameter. E.g. \u00ab?shortName=verdi\u00bb."
+                        },
+                        "searchable": {
+                            "type": "boolean",
+                            "description": "Om dette feltet er s\u00f8kbart via query-parameteret. E.g. \u00ab?query=s\u00f8kestreng\u00bb"
+                        },
+                        "indexPrimaryKey": {
+                            "type": "boolean",
+                            "description": "Ikkje i bruk."
+                        }
+                    }
+                }
+            },
+            "npd-facility-fixed-record": {
+                "type": "object",
+                "properties": {
+                    "fclName": {
+                        "type": "string",
+                        "example": "1\/2-1 IM Blane"
+                    },
+                    "fclPhase": {
+                        "type": "string",
+                        "example": "IN SERVICE"
+                    },
+                    "fclSurface": {
+                        "type": "string",
+                        "example": "N"
+                    },
+                    "fclCurrentOperatorName": {
+                        "type": "string",
+                        "example": "Repsol Norge AS"
+                    },
+                    "fclKind": {
+                        "type": "string",
+                        "example": "SINGLE WELL TEMPLATE"
+                    },
+                    "fclBelongsToName": {
+                        "type": "string",
+                        "example": "BLANE"
+                    },
+                    "fclBelongsToKind": {
+                        "type": "string",
+                        "example": "FIELD"
+                    },
+                    "fclBelongsToS": {
+                        "type": "string",
+                        "example": "3437650"
+                    },
+                    "fclStartupDate": {
+                        "type": "string",
+                        "example": "12.09.2007"
+                    },
+                    "fclGeodeticDatum": {
+                        "type": "string",
+                        "example": "ED50"
+                    },
+                    "fclNsDeg": {
+                        "type": "string",
+                        "example": "56"
+                    },
+                    "fclNsMin": {
+                        "type": "string",
+                        "example": "54"
+                    },
+                    "fclNsSec": {
+                        "type": "string",
+                        "example": "30.57"
+                    },
+                    "fclNsCode": {
+                        "type": "string",
+                        "example": "N"
+                    },
+                    "fclEwDeg": {
+                        "type": "string",
+                        "example": "2"
+                    },
+                    "fclEwMin": {
+                        "type": "string",
+                        "example": "27"
+                    },
+                    "fclEwSec": {
+                        "type": "string",
+                        "example": "15.12"
+                    },
+                    "fclEwCode": {
+                        "type": "string",
+                        "example": "E"
+                    },
+                    "fclWaterDepth": {
+                        "type": "string",
+                        "example": "74"
+                    },
+                    "fclFunctions": {
+                        "type": "string",
+                        "example": "WATER INJECTION"
+                    },
+                    "fclDesignLifetime": {
+                        "type": "string",
+                        "example": "15"
+                    },
+                    "fclFactPageUrl": {
+                        "type": "string",
+                        "example": "https:\/\/factpages.npd.no\/factpages\/default.aspx?nav1=facility&nav2=PageView|Fixed|All&nav3=373104"
+                    },
+                    "fclFactMapUrl": {
+                        "type": "string",
+                        "example": "https:\/\/factmaps.npd.no\/factmaps\/3_0\/?run=FacilityByNPDID&scale=100000&NPDID=373104"
+                    },
+                    "fclNpdidFacility": {
+                        "type": "string",
+                        "example": "373104"
+                    },
+                    "fclDateUpdated": {
+                        "type": "string",
+                        "example": "02.10.2019"
+                    },
+                    "datesyncNPD": {
+                        "type": "string",
+                        "example": "25.05.2020"
+                    }
+                }
+            },
+            "npd-facility-fixed-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/npd-facility-fixed-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "npd-facility-movable-record": {
+                "type": "object",
+                "properties": {
+                    "fclName": {
+                        "type": "string",
+                        "example": "ABEILLE SUPPORT"
+                    },
+                    "fclCurrentRespCompanyName": {
+                        "type": "string",
+                        "example": "Stolt Offshore A\/S"
+                    },
+                    "fclKind": {
+                        "type": "string",
+                        "example": "VESSEL"
+                    },
+                    "fclFunctions": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "fclStatus": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "fclNationName": {
+                        "type": "string",
+                        "example": "France"
+                    },
+                    "fclFactPageUrl": {
+                        "type": "string",
+                        "example": "https:\/\/factpages.npd.no\/factpages\/default.aspx?nav1=facility&nav2=PageView|Moveable|All&nav3=294544"
+                    },
+                    "fclNpdidFacility": {
+                        "type": "string",
+                        "example": "294544"
+                    },
+                    "fclNpdidCurrentRespCompany": {
+                        "type": "string",
+                        "example": "2411309"
+                    },
+                    "fclDateUpdated": {
+                        "type": "string",
+                        "example": "02.10.2019"
+                    },
+                    "datesyncNPD": {
+                        "type": "string",
+                        "example": "25.05.2020"
+                    }
+                }
+            },
+            "npd-facility-movable-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/npd-facility-movable-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            }
+        },
+        "headers": {
+            "X-Datahotel-Page": {
+                "description": "Side (page) av resultatet som er returnert.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Pages": {
+                "description": "Tal p\u00e5 sider totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Posts": {
+                "description": "Tal p\u00e5 postar totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ETag": {
+                "description": "Fungerer som standard HTTP ETag. Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer).",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "fixed",
+            "description": "NPD - Facility - Fixed",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=npd\/facility\/fixed"
+            }
+        },
+        {
+            "name": "movable",
+            "description": "NPD - Facility - Movable",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=npd\/facility\/movable"
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Meir dokumentasjon for hotell.difi.no",
+        "url": "https:\/\/hotell.difi.no\/api"
+    }
+}

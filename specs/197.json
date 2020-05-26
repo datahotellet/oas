@@ -1,0 +1,1220 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "<p>Sj\u00e5 <a href=\"https:\/\/data.norge.no\/node\/197\">datasett-oppf\u00f8ring<\/a> for meir informasjon (kontaktinformasjon, oppdateringsfrekvens, lenker til dokumentasjon etc.)<\/p>\n",
+        "version": "1.0.0",
+        "title": "Enhetsregisteret",
+        "license": {
+            "name": "Data-lisens",
+            "url": "http:\/\/data.norge.no\/nlod\/"
+        },
+        "termsOfService": "https:\/\/hotell.difi.no\/api"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/hotell.difi.no"
+        }
+    ],
+    "paths": {
+        "\/api\/{format}\/brreg\/enhetsregisteret": {
+            "get": {
+                "tags": [
+                    "enhetsregisteret"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getBrregEnhetsregisteretPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    },
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "S\u00f8k i datasettet. Gir treff p\u00e5 felt: orgnr, navn, forretningsadr, forradrpostnr, forradrpoststed, forradrkommnavn, postadresse, ppoststed, ppostland",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "orgnr",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "organisasjonsform",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "forradrpostnr",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "forradrkommnr",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "forradrkommnavn",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "forradrland",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ppostnr",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "regifr",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "regimva",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nkode1",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nkode2",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nkode3",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sektorkode",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "konkurs",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "avvikling",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tvangsavvikling",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "regiaa",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "regifriv",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "regdato",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "stiftelsesdato",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tlf",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tlf_mobil",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "regnskap",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "hovedenhet",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ansatte_antall",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ansatte_dato",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/brreg-enhetsregisteret-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/brreg\/enhetsregisteret": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "enhetsregisteret"
+                ],
+                "operationId": "downloadBrregEnhetsregisteret",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/brreg\/enhetsregisteret\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "enhetsregisteret"
+                ],
+                "operationId": "getBrregEnhetsregisteretMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"enhetsregisteret\",\n    \"name\": \"Enhetsregisteret\",\n    \"location\": \"brreg\/enhetsregisteret\",\n    \"updated\": 1590271219,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/brreg\/enhetsregisteret\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "enhetsregisteret"
+                ],
+                "operationId": "getBrregEnhetsregisteretFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"Organisasjonsnummer\",\n        \"shortName\": \"orgnr\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Organisasjonsnummer brukes for \\u00e5 identifisere juridiske personer (enheter), i Norge, og tildeles ved registrering i Enhetsregisteret. Organisasjonsnummeret best\\u00e5r av ni siffer og starter p\\u00e5 tallet 8 eller 9. \\nhttp:\/\/www.brreg.no\/samordning\/organisasjonsnummeret.html\"\n    },\n    {\n        \"name\": \"Navn\",\n        \"shortName\": \"navn\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Enhetens\/foretakets offisielle navn\"\n    },\n    {\n        \"name\": \"Organisasjonsform\",\n        \"shortName\": \"organisasjonsform\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Organisasjonsformen sier noe om hvordan enheten er bygd opp, juridisk og organisatorisk\"\n    },\n    {\n        \"name\": \"Forretningsadresse\",\n        \"shortName\": \"forretningsadr\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Gate-\/veiadresse hvor enheten har sin bes\\u00f8ksadresse\/hovedkontor\"\n    },\n    {\n        \"name\": \"Forretningsadresse postnummer\",\n        \"shortName\": \"forradrpostnr\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Postnummer knyttet til forretningsadressen\"\n    },\n    {\n        \"name\": \"Forretningsadresse poststed\",\n        \"shortName\": \"forradrpoststed\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Poststed knyttet til forretningsadressen\"\n    },\n    {\n        \"name\": \"Forretningsadresse kommunenummer\",\n        \"shortName\": \"forradrkommnr\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Kommunenummer knyttet til forretningsadressen\"\n    },\n    {\n        \"name\": \"Forretningsadresse kommunenavn\",\n        \"shortName\": \"forradrkommnavn\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Navn p\\u00e5 kommune der enheten har sin forretningsadresse\"\n    },\n    {\n        \"name\": \"Forretningsadresse land\",\n        \"shortName\": \"forradrland\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Angir landet til enhetens forretningsadresse\"\n    },\n    {\n        \"name\": \"Postadresse\",\n        \"shortName\": \"postadresse\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Enhetens postadresse\"\n    },\n    {\n        \"name\": \"Postadresse postnummer\",\n        \"shortName\": \"ppostnr\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Postnummer knyttet til postadressen\"\n    },\n    {\n        \"name\": \"Postadresse poststed\",\n        \"shortName\": \"ppoststed\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Poststed knyttet til postadressen\"\n    },\n    {\n        \"name\": \"Postadresse land\",\n        \"shortName\": \"ppostland\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Angir landet til enhetens postadresse\"\n    },\n    {\n        \"name\": \"Registrert i Foretaksregisteret\",\n        \"shortName\": \"regifr\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Angir om enheten er registrert i Foretaksregisteret, i tillegg til Enhetsregisteret\"\n    },\n    {\n        \"name\": \"Registrert i Merverdiavgiftsregisteret\",\n        \"shortName\": \"regimva\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Angir om enheten er registrert i Merverdiavgiftsregisteret\"\n    },\n    {\n        \"name\": \"NACE 1\",\n        \"shortName\": \"nkode1\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"N\\u00e6ringskoder fastsettes etter Standard for n\\u00e6ringsgruppering. N\\u00e6ringskoden viser enhetens viktigste aktivitet og registreres normalt p\\u00e5 bakgrunn av opplysningene i Enhetsregisteret som beskriver virksomheten som ut\\u00f8ves. Hovedregelen er at den f\\u00f8rste n\\u00e6ringskoden (NACE 1), gjelder hovedaktiviter. Sekund\\u00e6rkoder (NACE 2 og 3), registreres bare unntaksvis.\"\n    },\n    {\n        \"name\": \"NACE 2\",\n        \"shortName\": \"nkode2\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"N\\u00e6ringskoder fastsettes etter Standard for n\\u00e6ringsgruppering. N\\u00e6ringskoden viser enhetens viktigste aktivitet og registreres normalt p\\u00e5 bakgrunn av opplysningene i Enhetsregisteret som beskriver virksomheten som ut\\u00f8ves. Hovedregelen er at den f\\u00f8rste n\\u00e6ringskoden (NACE 1), gjelder hovedaktiviter. Sekund\\u00e6rkoder (NACE 2 og 3), registreres bare unntaksvis.\"\n    },\n    {\n        \"name\": \"NACE 3\",\n        \"shortName\": \"nkode3\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"N\\u00e6ringskoder fastsettes etter Standard for n\\u00e6ringsgruppering. N\\u00e6ringskoden viser enhetens viktigste aktivitet og registreres normalt p\\u00e5 bakgrunn av opplysningene i Enhetsregisteret som beskriver virksomheten som ut\\u00f8ves. Hovedregelen er at den f\\u00f8rste n\\u00e6ringskoden (NACE 1), gjelder hovedaktiviter. Sekund\\u00e6rkoder (NACE 2 og 3), registreres bare unntaksvis.\"\n    },\n    {\n        \"name\": \"Institusjonell sektorkode\",\n        \"shortName\": \"sektorkode\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Institusjonell sektorgruppering er en statistisk standard som benyttes ved utarbeidelse av nasjonalregnskapet, finansregnskapet og annen statistikkproduksjon, samt i \\u00f8konomiske og politiske analyser. Den inneb\\u00e6rer at den norske \\u00f8konomien deles inn i sektorer p\\u00e5 basis av en gruppering av ensartede institusjonelle enheter, som for eksempel kommuner, forsikringsselskap og aksjeselskap.\"\n    },\n    {\n        \"name\": \"Konkurs\",\n        \"shortName\": \"konkurs\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Angir om enheten er under konkursbehandling. Konkurs \\u00e5pnes n\\u00e5r en person eller en enhet ikke er i stand til \\u00e5 dekke sine forpliktelser.\"\n    },\n    {\n        \"name\": \"Under avvikling (frivillig)\",\n        \"shortName\": \"avvikling\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Angir om enheten er registrert oppl\\u00f8st\"\n    },\n    {\n        \"name\": \"Under tvangsavvikling eller tvangsoppl\\u00f8sning\",\n        \"shortName\": \"tvangsavvikling\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tvangsavvikling \\u00e5pnes n\\u00e5r et selskap har meldt oppl\\u00f8sning, men unnlatt \\u00e5 melde endelig sletting i Foretaksregisteret. Tvangsoppl\\u00f8sning \\u00e5pnes n\\u00e5r et selskap ikke har meldt inn nytt styre, revisor eller daglig leder, eller ikke har sendt inn \\u00e5rsregnskap.\"\n    },\n    {\n        \"name\": \"Registrert i NAV Aa-registeret\",\n        \"shortName\": \"regiaa\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Angir om enheten er registrert i arbeidsgiverdelen til Arbeidsgiver- og arbeidstakerregisteret\"\n    },\n    {\n        \"name\": \"Registrert i Frivillighetsregisteret\",\n        \"shortName\": \"regifriv\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Angir om enheten er registrert i Frivillighetsregisteret\"\n    },\n    {\n        \"name\": \"Registreringsdato i Enhetsregisteret\",\n        \"shortName\": \"regdato\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Dato for n\\u00e5r enheten ble registrert i Enhetsregisteret\"\n    },\n    {\n        \"name\": \"Stiftelsesdato\",\n        \"shortName\": \"stiftelsesdato\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Dato for n\\u00e5r enheten ble opprettet\/stiftet\"\n    },\n    {\n        \"name\": \"Telefonnummer\",\n        \"shortName\": \"tlf\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Meldt telefonnummer for enheten\"\n    },\n    {\n        \"name\": \"Mobiltelefonnummer\",\n        \"shortName\": \"tlf_mobil\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Meldt mobiltelefonnummer for enheten\"\n    },\n    {\n        \"name\": \"Hjemmeside\",\n        \"shortName\": \"url\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Meldt hjemmeside for enheten\"\n    },\n    {\n        \"name\": \"Sist innsendte \\u00e5rsregnskap\",\n        \"shortName\": \"regnskap\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Angir \\u00e5rstall for det siste registrerte \\u00e5rsregnskapet i Regnskapsregisteret\"\n    },\n    {\n        \"name\": \"Organisasjonsnummer til hovedenhet (ORGL)\",\n        \"shortName\": \"hovedenhet\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Antall ansatte\",\n        \"shortName\": \"ansatte_antall\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Dato for antall ansatte\",\n        \"shortName\": \"ansatte_dato\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/brreg\/organisasjonsform": {
+            "get": {
+                "tags": [
+                    "organisasjonsform"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getBrregOrganisasjonsformPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    },
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "S\u00f8k i datasettet. Gir treff p\u00e5 felt: enhetstype, enhetstype_tekst, enhetstype_tekst_engelsk",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "enhetstype",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/brreg-organisasjonsform-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/brreg\/organisasjonsform": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "organisasjonsform"
+                ],
+                "operationId": "downloadBrregOrganisasjonsform",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/brreg\/organisasjonsform\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "organisasjonsform"
+                ],
+                "operationId": "getBrregOrganisasjonsformMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"organisasjonsform\",\n    \"name\": \"Organisasjonsformer\",\n    \"location\": \"brreg\/organisasjonsform\",\n    \"updated\": 1484668376,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/brreg\/organisasjonsform\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "organisasjonsform"
+                ],
+                "operationId": "getBrregOrganisasjonsformFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"Organisasjonsform\",\n        \"shortName\": \"enhetstype\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Organisasjonsformen sier noe om hvordan en enhet er bygd opp, juridisk og organisatorisk\"\n    },\n    {\n        \"name\": \"Beskrivelse\",\n        \"shortName\": \"enhetstype_tekst\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Beskrivelse, engelsk\",\n        \"shortName\": \"enhetstype_tekst_engelsk\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/brreg\/naeringskode": {
+            "get": {
+                "tags": [
+                    "naeringskode"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getBrregNaeringskodePage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    },
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "S\u00f8k i datasettet. Gir treff p\u00e5 felt: naerk, naerk_tekst, naerk_tekst_engelsk",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "naerk",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/brreg-naeringskode-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/brreg\/naeringskode": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "naeringskode"
+                ],
+                "operationId": "downloadBrregNaeringskode",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/brreg\/naeringskode\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "naeringskode"
+                ],
+                "operationId": "getBrregNaeringskodeMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"naeringskode\",\n    \"name\": \"N\\u00e6ringskoder\",\n    \"location\": \"brreg\/naeringskode\",\n    \"updated\": 1480032000,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/brreg\/naeringskode\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "naeringskode"
+                ],
+                "operationId": "getBrregNaeringskodeFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"N\\u00e6ringskode\",\n        \"shortName\": \"naerk\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"N?ringskoder fastsettes etter Standard for n?ringsgruppering. N?ringskoden viser en enhets viktigste aktivitet og registreres normalt p? bakgrunn av opplysningene i Enhetsregisteret som beskriver virksomheten som ut?ves. Hovedregelen er at den f?rste n?ringskoden (NACE 1), gjelder hovedaktiviter. Sekund?rkoder (NACE 2 og 3), registreres bare unntaksvis.\"\n    },\n    {\n        \"name\": \"Beskrivelse\",\n        \"shortName\": \"naerk_tekst\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Beskrivelse, engelsk\",\n        \"shortName\": \"naerk_tekst_engelsk\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "datahotelFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "csv",
+                    "yaml"
+                ]
+            },
+            "datahotelMetadataFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "yaml"
+                ]
+            },
+            "datasetMetadata": {
+                "type": "object",
+                "properties": {
+                    "shortName": {
+                        "type": "string",
+                        "description": "Kortnamn for datasettet. Samme som siste ledd i location."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Menneskelesbart namn for datasettet."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Unik datasett-id i datahotellet"
+                    },
+                    "updated": {
+                        "type": "integer",
+                        "description": "Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer)."
+                    },
+                    "dataset": {
+                        "type": "boolean",
+                        "description": "True dersom location er eit datasett, false dersom ikkje. Ved false kan location vere ein katalog som inneheld datasett."
+                    }
+                }
+            },
+            "datasetFields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Menneskelesbart namn p\u00e5 feltet."
+                        },
+                        "shortName": {
+                            "type": "string",
+                            "description": "Kortnamn for felt. Samme som feltnamn brukt i respons og overskriftsrad i CSV-fila."
+                        },
+                        "groupable": {
+                            "type": "boolean",
+                            "description": "Kan gruppere\/filtrere p\u00e5 dette feltet via query-parameter. E.g. \u00ab?shortName=verdi\u00bb."
+                        },
+                        "searchable": {
+                            "type": "boolean",
+                            "description": "Om dette feltet er s\u00f8kbart via query-parameteret. E.g. \u00ab?query=s\u00f8kestreng\u00bb"
+                        },
+                        "indexPrimaryKey": {
+                            "type": "boolean",
+                            "description": "Ikkje i bruk."
+                        }
+                    }
+                }
+            },
+            "brreg-enhetsregisteret-record": {
+                "type": "object",
+                "properties": {
+                    "orgnr": {
+                        "type": "string",
+                        "example": "974766507",
+                        "description": "Organisasjonsnummer.\nOrganisasjonsnummer brukes for \u00e5 identifisere juridiske personer (enheter), i Norge, og tildeles ved registrering i Enhetsregisteret. Organisasjonsnummeret best\u00e5r av ni siffer og starter p\u00e5 tallet 8 eller 9. \nhttp:\/\/www.brreg.no\/samordning\/organisasjonsnummeret.html"
+                    },
+                    "navn": {
+                        "type": "string",
+                        "example": "VOSS HERAD KOMMUNALAVDELING OPPVEKST",
+                        "description": "Enhetens\/foretakets offisielle navn"
+                    },
+                    "organisasjonsform": {
+                        "type": "string",
+                        "example": "ORGL",
+                        "description": "Organisasjonsformen sier noe om hvordan enheten er bygd opp, juridisk og organisatorisk"
+                    },
+                    "forretningsadr": {
+                        "type": "string",
+                        "example": "",
+                        "description": "Forretningsadresse.\nGate-\/veiadresse hvor enheten har sin bes\u00f8ksadresse\/hovedkontor"
+                    },
+                    "forradrpostnr": {
+                        "type": "string",
+                        "example": "5700",
+                        "description": "Forretningsadresse postnummer.\nPostnummer knyttet til forretningsadressen"
+                    },
+                    "forradrpoststed": {
+                        "type": "string",
+                        "example": "VOSS",
+                        "description": "Forretningsadresse poststed.\nPoststed knyttet til forretningsadressen"
+                    },
+                    "forradrkommnr": {
+                        "type": "string",
+                        "example": "4621",
+                        "description": "Forretningsadresse kommunenummer.\nKommunenummer knyttet til forretningsadressen"
+                    },
+                    "forradrkommnavn": {
+                        "type": "string",
+                        "example": "VOSS",
+                        "description": "Forretningsadresse kommunenavn.\nNavn p\u00e5 kommune der enheten har sin forretningsadresse"
+                    },
+                    "forradrland": {
+                        "type": "string",
+                        "example": "Norge",
+                        "description": "Forretningsadresse land.\nAngir landet til enhetens forretningsadresse"
+                    },
+                    "postadresse": {
+                        "type": "string",
+                        "example": "",
+                        "description": "Enhetens postadresse"
+                    },
+                    "ppostnr": {
+                        "type": "string",
+                        "example": "5701",
+                        "description": "Postadresse postnummer.\nPostnummer knyttet til postadressen"
+                    },
+                    "ppoststed": {
+                        "type": "string",
+                        "example": "VOSS",
+                        "description": "Postadresse poststed.\nPoststed knyttet til postadressen"
+                    },
+                    "ppostland": {
+                        "type": "string",
+                        "example": "Norge",
+                        "description": "Postadresse land.\nAngir landet til enhetens postadresse"
+                    },
+                    "regifr": {
+                        "type": "string",
+                        "example": "N",
+                        "description": "Registrert i Foretaksregisteret.\nAngir om enheten er registrert i Foretaksregisteret, i tillegg til Enhetsregisteret"
+                    },
+                    "regimva": {
+                        "type": "string",
+                        "example": "N",
+                        "description": "Registrert i Merverdiavgiftsregisteret.\nAngir om enheten er registrert i Merverdiavgiftsregisteret"
+                    },
+                    "nkode1": {
+                        "type": "string",
+                        "example": "84.120",
+                        "description": "NACE 1.\nN\u00e6ringskoder fastsettes etter Standard for n\u00e6ringsgruppering. N\u00e6ringskoden viser enhetens viktigste aktivitet og registreres normalt p\u00e5 bakgrunn av opplysningene i Enhetsregisteret som beskriver virksomheten som ut\u00f8ves. Hovedregelen er at den f\u00f8rste n\u00e6ringskoden (NACE 1), gjelder hovedaktiviter. Sekund\u00e6rkoder (NACE 2 og 3), registreres bare unntaksvis."
+                    },
+                    "nkode2": {
+                        "type": "string",
+                        "example": "",
+                        "description": "NACE 2.\nN\u00e6ringskoder fastsettes etter Standard for n\u00e6ringsgruppering. N\u00e6ringskoden viser enhetens viktigste aktivitet og registreres normalt p\u00e5 bakgrunn av opplysningene i Enhetsregisteret som beskriver virksomheten som ut\u00f8ves. Hovedregelen er at den f\u00f8rste n\u00e6ringskoden (NACE 1), gjelder hovedaktiviter. Sekund\u00e6rkoder (NACE 2 og 3), registreres bare unntaksvis."
+                    },
+                    "nkode3": {
+                        "type": "string",
+                        "example": "",
+                        "description": "NACE 3.\nN\u00e6ringskoder fastsettes etter Standard for n\u00e6ringsgruppering. N\u00e6ringskoden viser enhetens viktigste aktivitet og registreres normalt p\u00e5 bakgrunn av opplysningene i Enhetsregisteret som beskriver virksomheten som ut\u00f8ves. Hovedregelen er at den f\u00f8rste n\u00e6ringskoden (NACE 1), gjelder hovedaktiviter. Sekund\u00e6rkoder (NACE 2 og 3), registreres bare unntaksvis."
+                    },
+                    "sektorkode": {
+                        "type": "string",
+                        "example": "6500",
+                        "description": "Institusjonell sektorkode.\nInstitusjonell sektorgruppering er en statistisk standard som benyttes ved utarbeidelse av nasjonalregnskapet, finansregnskapet og annen statistikkproduksjon, samt i \u00f8konomiske og politiske analyser. Den inneb\u00e6rer at den norske \u00f8konomien deles inn i sektorer p\u00e5 basis av en gruppering av ensartede institusjonelle enheter, som for eksempel kommuner, forsikringsselskap og aksjeselskap."
+                    },
+                    "konkurs": {
+                        "type": "string",
+                        "example": "N",
+                        "description": "Angir om enheten er under konkursbehandling. Konkurs \u00e5pnes n\u00e5r en person eller en enhet ikke er i stand til \u00e5 dekke sine forpliktelser."
+                    },
+                    "avvikling": {
+                        "type": "string",
+                        "example": "N",
+                        "description": "Under avvikling (frivillig).\nAngir om enheten er registrert oppl\u00f8st"
+                    },
+                    "tvangsavvikling": {
+                        "type": "string",
+                        "example": "N",
+                        "description": "Under tvangsavvikling eller tvangsoppl\u00f8sning.\nTvangsavvikling \u00e5pnes n\u00e5r et selskap har meldt oppl\u00f8sning, men unnlatt \u00e5 melde endelig sletting i Foretaksregisteret. Tvangsoppl\u00f8sning \u00e5pnes n\u00e5r et selskap ikke har meldt inn nytt styre, revisor eller daglig leder, eller ikke har sendt inn \u00e5rsregnskap."
+                    },
+                    "regiaa": {
+                        "type": "string",
+                        "example": "J",
+                        "description": "Registrert i NAV Aa-registeret.\nAngir om enheten er registrert i arbeidsgiverdelen til Arbeidsgiver- og arbeidstakerregisteret"
+                    },
+                    "regifriv": {
+                        "type": "string",
+                        "example": "N",
+                        "description": "Registrert i Frivillighetsregisteret.\nAngir om enheten er registrert i Frivillighetsregisteret"
+                    },
+                    "regdato": {
+                        "type": "string",
+                        "example": "01.09.1996",
+                        "description": "Registreringsdato i Enhetsregisteret.\nDato for n\u00e5r enheten ble registrert i Enhetsregisteret"
+                    },
+                    "stiftelsesdato": {
+                        "type": "string",
+                        "example": "01.02.1969",
+                        "description": "Dato for n\u00e5r enheten ble opprettet\/stiftet"
+                    },
+                    "tlf": {
+                        "type": "string",
+                        "example": "",
+                        "description": "Telefonnummer.\nMeldt telefonnummer for enheten"
+                    },
+                    "tlf_mobil": {
+                        "type": "string",
+                        "example": "",
+                        "description": "Mobiltelefonnummer.\nMeldt mobiltelefonnummer for enheten"
+                    },
+                    "url": {
+                        "type": "string",
+                        "example": "",
+                        "description": "Hjemmeside.\nMeldt hjemmeside for enheten"
+                    },
+                    "regnskap": {
+                        "type": "string",
+                        "example": "",
+                        "description": "Sist innsendte \u00e5rsregnskap.\nAngir \u00e5rstall for det siste registrerte \u00e5rsregnskapet i Regnskapsregisteret"
+                    },
+                    "hovedenhet": {
+                        "type": "string",
+                        "example": "960510542",
+                        "description": "Organisasjonsnummer til hovedenhet (ORGL)"
+                    },
+                    "ansatte_antall": {
+                        "type": "string",
+                        "example": "1100",
+                        "description": "Antall ansatte"
+                    },
+                    "ansatte_dato": {
+                        "type": "string",
+                        "example": "11.05.2020",
+                        "description": "Dato for antall ansatte"
+                    }
+                }
+            },
+            "brreg-enhetsregisteret-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/brreg-enhetsregisteret-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "brreg-organisasjonsform-record": {
+                "type": "object",
+                "properties": {
+                    "enhetstype": {
+                        "type": "string",
+                        "example": "ADOS",
+                        "description": "Organisasjonsform.\nOrganisasjonsformen sier noe om hvordan en enhet er bygd opp, juridisk og organisatorisk"
+                    },
+                    "enhetstype_tekst": {
+                        "type": "string",
+                        "example": "Administrativ enhet - offentlig sektor",
+                        "description": "Beskrivelse"
+                    },
+                    "enhetstype_tekst_engelsk": {
+                        "type": "string",
+                        "example": "NULL",
+                        "description": "Beskrivelse, engelsk"
+                    }
+                }
+            },
+            "brreg-organisasjonsform-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/brreg-organisasjonsform-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "brreg-naeringskode-record": {
+                "type": "object",
+                "properties": {
+                    "naerk": {
+                        "type": "string",
+                        "example": "00.000",
+                        "description": "N\u00e6ringskode.\nN?ringskoder fastsettes etter Standard for n?ringsgruppering. N?ringskoden viser en enhets viktigste aktivitet og registreres normalt p? bakgrunn av opplysningene i Enhetsregisteret som beskriver virksomheten som ut?ves. Hovedregelen er at den f?rste n?ringskoden (NACE 1), gjelder hovedaktiviter. Sekund?rkoder (NACE 2 og 3), registreres bare unntaksvis."
+                    },
+                    "naerk_tekst": {
+                        "type": "string",
+                        "example": "Uoppgitt",
+                        "description": "Beskrivelse"
+                    },
+                    "naerk_tekst_engelsk": {
+                        "type": "string",
+                        "example": "Unknown",
+                        "description": "Beskrivelse, engelsk"
+                    }
+                }
+            },
+            "brreg-naeringskode-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/brreg-naeringskode-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            }
+        },
+        "headers": {
+            "X-Datahotel-Page": {
+                "description": "Side (page) av resultatet som er returnert.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Pages": {
+                "description": "Tal p\u00e5 sider totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Posts": {
+                "description": "Tal p\u00e5 postar totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ETag": {
+                "description": "Fungerer som standard HTTP ETag. Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer).",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "enhetsregisteret",
+            "description": "Enhetsregisteret",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=brreg\/enhetsregisteret"
+            }
+        },
+        {
+            "name": "organisasjonsform",
+            "description": "Organisasjonsformer",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=brreg\/organisasjonsform"
+            }
+        },
+        {
+            "name": "naeringskode",
+            "description": "N\u00e6ringskoder",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=brreg\/naeringskode"
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Meir dokumentasjon for hotell.difi.no",
+        "url": "https:\/\/hotell.difi.no\/api"
+    }
+}

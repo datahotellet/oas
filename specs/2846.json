@@ -1,0 +1,477 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "<p>Sj\u00e5 <a href=\"https:\/\/data.norge.no\/node\/2846\">datasett-oppf\u00f8ring<\/a> for meir informasjon (kontaktinformasjon, oppdateringsfrekvens, lenker til dokumentasjon etc.)<\/p>\n",
+        "version": "1.0.0",
+        "title": "Leveranser til slakteri i landbruket i 2011",
+        "license": {
+            "name": "Data-lisens",
+            "url": "http:\/\/data.norge.no\/nlod\/"
+        },
+        "termsOfService": "https:\/\/hotell.difi.no\/api"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/hotell.difi.no"
+        }
+    ],
+    "paths": {
+        "\/api\/{format}\/ldir\/leveransedata-slakt-2005-2012\/2011": {
+            "get": {
+                "tags": [
+                    "2011"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getLdirLeveransedata-slakt-2005-20122011Page",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    },
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "S\u00f8k i datasettet. Gir treff p\u00e5 felt: orgnr, navn, komnr",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ldir-leveransedata-slakt-2005-2012-2011-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/ldir\/leveransedata-slakt-2005-2012\/2011": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "2011"
+                ],
+                "operationId": "downloadLdirLeveransedata-slakt-2005-20122011",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/ldir\/leveransedata-slakt-2005-2012\/2011\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "2011"
+                ],
+                "operationId": "getLdirLeveransedata-slakt-2005-20122011Metadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"2011\",\n    \"name\": \"Slakteleveranser 2011\",\n    \"location\": \"ldir\/leveransedata-slakt-2005-2012\/2011\",\n    \"updated\": 1538131542,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/ldir\/leveransedata-slakt-2005-2012\/2011\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "2011"
+                ],
+                "operationId": "getLdirLeveransedata-slakt-2005-20122011Fields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"Organisasjonsnr\",\n        \"shortName\": \"orgnr\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"Navn\",\n        \"shortName\": \"navn\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"Kommunenummer\",\n        \"shortName\": \"komnr\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"And (kg)\",\n        \"shortName\": \"and_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"Geit (kg)\",\n        \"shortName\": \"geit_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"Gris (kg)\",\n        \"shortName\": \"gris_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"G\\u00e5s (kg)\",\n        \"shortName\": \"gaas_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"Hane (kg)\",\n        \"shortName\": \"hane_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"Hest f\\u00f8ll (kg)\",\n        \"shortName\": \"hest_foll_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"H\\u00f8ns (kg)\",\n        \"shortName\": \"hons_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"Kalkun (kg)\",\n        \"shortName\": \"kalkun_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"Kalv (kg)\",\n        \"shortName\": \"kalv_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"Kje (kg)\",\n        \"shortName\": \"kje_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"Ku (kg)\",\n        \"shortName\": \"ku_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"Kvige (kg)\",\n        \"shortName\": \"kvige_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"Kylling (kg)\",\n        \"shortName\": \"kylling_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"Lam (kg)\",\n        \"shortName\": \"lam_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"Lam villsau (kg)\",\n        \"shortName\": \"lam_villsau_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"Okse (kg)\",\n        \"shortName\": \"okse_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"Purke (kg)\",\n        \"shortName\": \"purke_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"R\\u00e5ne (kg)\",\n        \"shortName\": \"raane_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"Sau (kg)\",\n        \"shortName\": \"sau_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"Ungokse kastrat (kg)\",\n        \"shortName\": \"ungokse_kastrat_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"Ull (kg)\",\n        \"shortName\": \"ull_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"Ungku (kg)\",\n        \"shortName\": \"ungku_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"Ungsau (kg)\",\n        \"shortName\": \"ungsau_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"V\\u00e6r (kg)\",\n        \"shortName\": \"vaer_kg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "datahotelFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "csv",
+                    "yaml"
+                ]
+            },
+            "datahotelMetadataFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "yaml"
+                ]
+            },
+            "datasetMetadata": {
+                "type": "object",
+                "properties": {
+                    "shortName": {
+                        "type": "string",
+                        "description": "Kortnamn for datasettet. Samme som siste ledd i location."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Menneskelesbart namn for datasettet."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Unik datasett-id i datahotellet"
+                    },
+                    "updated": {
+                        "type": "integer",
+                        "description": "Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer)."
+                    },
+                    "dataset": {
+                        "type": "boolean",
+                        "description": "True dersom location er eit datasett, false dersom ikkje. Ved false kan location vere ein katalog som inneheld datasett."
+                    }
+                }
+            },
+            "datasetFields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Menneskelesbart namn p\u00e5 feltet."
+                        },
+                        "shortName": {
+                            "type": "string",
+                            "description": "Kortnamn for felt. Samme som feltnamn brukt i respons og overskriftsrad i CSV-fila."
+                        },
+                        "groupable": {
+                            "type": "boolean",
+                            "description": "Kan gruppere\/filtrere p\u00e5 dette feltet via query-parameter. E.g. \u00ab?shortName=verdi\u00bb."
+                        },
+                        "searchable": {
+                            "type": "boolean",
+                            "description": "Om dette feltet er s\u00f8kbart via query-parameteret. E.g. \u00ab?query=s\u00f8kestreng\u00bb"
+                        },
+                        "indexPrimaryKey": {
+                            "type": "boolean",
+                            "description": "Ikkje i bruk."
+                        }
+                    }
+                }
+            },
+            "ldir-leveransedata-slakt-2005-2012-2011-record": {
+                "type": "object",
+                "properties": {
+                    "orgnr": {
+                        "type": "string",
+                        "example": "997536886",
+                        "description": "Organisasjonsnr.\n"
+                    },
+                    "navn": {
+                        "type": "string",
+                        "example": "BJ\u00d8RKENG; STEIN OTTO"
+                    },
+                    "komnr": {
+                        "type": "string",
+                        "example": "1721",
+                        "description": "Kommunenummer.\n"
+                    },
+                    "and_kg": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "And (kg).\n"
+                    },
+                    "geit_kg": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Geit (kg).\n"
+                    },
+                    "gris_kg": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Gris (kg).\n"
+                    },
+                    "gaas_kg": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "G\u00e5s (kg).\n"
+                    },
+                    "hane_kg": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Hane (kg).\n"
+                    },
+                    "hest_foll_kg": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Hest f\u00f8ll (kg).\n"
+                    },
+                    "hons_kg": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "H\u00f8ns (kg).\n"
+                    },
+                    "kalkun_kg": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Kalkun (kg).\n"
+                    },
+                    "kalv_kg": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Kalv (kg).\n"
+                    },
+                    "kje_kg": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Kje (kg).\n"
+                    },
+                    "ku_kg": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Ku (kg).\n"
+                    },
+                    "kvige_kg": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Kvige (kg).\n"
+                    },
+                    "kylling_kg": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Kylling (kg).\n"
+                    },
+                    "lam_kg": {
+                        "type": "string",
+                        "example": "1551,7",
+                        "description": "Lam (kg).\n"
+                    },
+                    "lam_villsau_kg": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Lam villsau (kg).\n"
+                    },
+                    "okse_kg": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Okse (kg).\n"
+                    },
+                    "purke_kg": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Purke (kg).\n"
+                    },
+                    "raane_kg": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "R\u00e5ne (kg).\n"
+                    },
+                    "sau_kg": {
+                        "type": "string",
+                        "example": "462,9",
+                        "description": "Sau (kg).\n"
+                    },
+                    "ungokse_kastrat_kg": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Ungokse kastrat (kg).\n"
+                    },
+                    "ull_kg": {
+                        "type": "string",
+                        "example": "124,2",
+                        "description": "Ull (kg).\n"
+                    },
+                    "ungku_kg": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Ungku (kg).\n"
+                    },
+                    "ungsau_kg": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Ungsau (kg).\n"
+                    },
+                    "vaer_kg": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "V\u00e6r (kg).\n"
+                    }
+                }
+            },
+            "ldir-leveransedata-slakt-2005-2012-2011-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/ldir-leveransedata-slakt-2005-2012-2011-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            }
+        },
+        "headers": {
+            "X-Datahotel-Page": {
+                "description": "Side (page) av resultatet som er returnert.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Pages": {
+                "description": "Tal p\u00e5 sider totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Posts": {
+                "description": "Tal p\u00e5 postar totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ETag": {
+                "description": "Fungerer som standard HTTP ETag. Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer).",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "2011",
+            "description": "Slakteleveranser 2011",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=ldir\/leveransedata-slakt-2005-2012\/2011"
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Meir dokumentasjon for hotell.difi.no",
+        "url": "https:\/\/hotell.difi.no\/api"
+    }
+}

@@ -1,0 +1,511 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "<p>Sj\u00e5 <a href=\"https:\/\/data.norge.no\/node\/1806\">datasett-oppf\u00f8ring<\/a> for meir informasjon (kontaktinformasjon, oppdateringsfrekvens, lenker til dokumentasjon etc.)<\/p>\n",
+        "version": "1.0.0",
+        "title": "Statistikk fra tilskuddsordningen organisert beitebruk (drift av beitelag)",
+        "license": {
+            "name": "Data-lisens",
+            "url": "http:\/\/data.norge.no\/nlod\/"
+        },
+        "termsOfService": "https:\/\/hotell.difi.no\/api"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/hotell.difi.no"
+        }
+    ],
+    "paths": {
+        "\/api\/{format}\/ldir\/organisert-beitebruk": {
+            "get": {
+                "tags": [
+                    "organisert-beitebruk"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getLdirOrganisert-beitebrukPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    },
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "S\u00f8k i datasettet. Gir treff p\u00e5 felt: navn",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "bel_lagnr",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "navn",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "beiteaar",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "beitekommune",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "beiteslipp",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "hovedsanking",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sau_lam_sluppet",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sau_lam_tapt",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "geit_sluppet",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "geit_tapt",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "storfe_sluppet",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "storfe_tapt",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ldir-organisert-beitebruk-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/ldir\/organisert-beitebruk": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "organisert-beitebruk"
+                ],
+                "operationId": "downloadLdirOrganisert-beitebruk",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/ldir\/organisert-beitebruk\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "organisert-beitebruk"
+                ],
+                "operationId": "getLdirOrganisert-beitebrukMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"organisert-beitebruk\",\n    \"name\": \"Landbruksdirektoratet - Tilskuddsordningen Organisert beitebruk i perioden 1992 \\u2013 2012\",\n    \"location\": \"ldir\/organisert-beitebruk\",\n    \"updated\": 1468223271,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/ldir\/organisert-beitebruk\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "organisert-beitebruk"
+                ],
+                "operationId": "getLdirOrganisert-beitebrukFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"Org.nummer beitelag\",\n        \"shortName\": \"bel_lagnr\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Beitelagets organisasjonsnummer\"\n    },\n    {\n        \"name\": \"Navn\",\n        \"shortName\": \"navn\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Beitelagets navn\"\n    },\n    {\n        \"name\": \"Beite\\u00e5r\",\n        \"shortName\": \"beiteaar\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Hvilken beitesesong statistikken gjelder for\"\n    },\n    {\n        \"name\": \"Beitekommune\",\n        \"shortName\": \"beitekommune\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Kommunen hvor st\\u00f8rsteparten av beitingen foregikk\"\n    },\n    {\n        \"name\": \"Beiteslipp (dato)\",\n        \"shortName\": \"beiteslipp\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Dato for beiteslipp\"\n    },\n    {\n        \"name\": \"Hovedsanking (dato)\",\n        \"shortName\": \"hovedsanking\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Dato for hovedsanking\"\n    },\n    {\n        \"name\": \"Sau+lam sluppet\",\n        \"shortName\": \"sau_lam_sluppet\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Totalt antall sauer og lam sluppet p\\u00e5 beite\"\n    },\n    {\n        \"name\": \"Sau+lam tapt\",\n        \"shortName\": \"sau_lam_tapt\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Totalt antall sauer og lam tapt p\\u00e5 beite\"\n    },\n    {\n        \"name\": \"Geit sluppet\",\n        \"shortName\": \"geit_sluppet\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Totalt antall geiter sluppet p\\u00e5 beite\"\n    },\n    {\n        \"name\": \"Geit tapt\",\n        \"shortName\": \"geit_tapt\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Totalt antall geiter tapt p\\u00e5 beite\"\n    },\n    {\n        \"name\": \"Storfe sluppet\",\n        \"shortName\": \"storfe_sluppet\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Totalt antall storfe sluppet p\\u00e5 beite\"\n    },\n    {\n        \"name\": \"Storfe tapt\",\n        \"shortName\": \"storfe_tapt\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Totalt antall storfe tapt p\\u00e5 beite\"\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "datahotelFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "csv",
+                    "yaml"
+                ]
+            },
+            "datahotelMetadataFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "yaml"
+                ]
+            },
+            "datasetMetadata": {
+                "type": "object",
+                "properties": {
+                    "shortName": {
+                        "type": "string",
+                        "description": "Kortnamn for datasettet. Samme som siste ledd i location."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Menneskelesbart namn for datasettet."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Unik datasett-id i datahotellet"
+                    },
+                    "updated": {
+                        "type": "integer",
+                        "description": "Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer)."
+                    },
+                    "dataset": {
+                        "type": "boolean",
+                        "description": "True dersom location er eit datasett, false dersom ikkje. Ved false kan location vere ein katalog som inneheld datasett."
+                    }
+                }
+            },
+            "datasetFields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Menneskelesbart namn p\u00e5 feltet."
+                        },
+                        "shortName": {
+                            "type": "string",
+                            "description": "Kortnamn for felt. Samme som feltnamn brukt i respons og overskriftsrad i CSV-fila."
+                        },
+                        "groupable": {
+                            "type": "boolean",
+                            "description": "Kan gruppere\/filtrere p\u00e5 dette feltet via query-parameter. E.g. \u00ab?shortName=verdi\u00bb."
+                        },
+                        "searchable": {
+                            "type": "boolean",
+                            "description": "Om dette feltet er s\u00f8kbart via query-parameteret. E.g. \u00ab?query=s\u00f8kestreng\u00bb"
+                        },
+                        "indexPrimaryKey": {
+                            "type": "boolean",
+                            "description": "Ikkje i bruk."
+                        }
+                    }
+                }
+            },
+            "ldir-organisert-beitebruk-record": {
+                "type": "object",
+                "properties": {
+                    "bel_lagnr": {
+                        "type": "string",
+                        "example": "985803757",
+                        "description": "Org.nummer beitelag.\nBeitelagets organisasjonsnummer"
+                    },
+                    "navn": {
+                        "type": "string",
+                        "example": "MYSUSETER-KAMPEN BEITELAG BA",
+                        "description": "Beitelagets navn"
+                    },
+                    "beiteaar": {
+                        "type": "string",
+                        "example": "2012",
+                        "description": "Beite\u00e5r.\nHvilken beitesesong statistikken gjelder for"
+                    },
+                    "beitekommune": {
+                        "type": "string",
+                        "example": "517",
+                        "description": "Kommunen hvor st\u00f8rsteparten av beitingen foregikk"
+                    },
+                    "beiteslipp": {
+                        "type": "string",
+                        "example": "17.06.2012",
+                        "description": "Beiteslipp (dato).\nDato for beiteslipp"
+                    },
+                    "hovedsanking": {
+                        "type": "string",
+                        "example": "15.09.2012",
+                        "description": "Hovedsanking (dato).\nDato for hovedsanking"
+                    },
+                    "sau_lam_sluppet": {
+                        "type": "string",
+                        "example": "747",
+                        "description": "Sau+lam sluppet.\nTotalt antall sauer og lam sluppet p\u00e5 beite"
+                    },
+                    "sau_lam_tapt": {
+                        "type": "string",
+                        "example": "31",
+                        "description": "Sau+lam tapt.\nTotalt antall sauer og lam tapt p\u00e5 beite"
+                    },
+                    "geit_sluppet": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Geit sluppet.\nTotalt antall geiter sluppet p\u00e5 beite"
+                    },
+                    "geit_tapt": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Geit tapt.\nTotalt antall geiter tapt p\u00e5 beite"
+                    },
+                    "storfe_sluppet": {
+                        "type": "string",
+                        "example": "40",
+                        "description": "Storfe sluppet.\nTotalt antall storfe sluppet p\u00e5 beite"
+                    },
+                    "storfe_tapt": {
+                        "type": "string",
+                        "example": "1",
+                        "description": "Storfe tapt.\nTotalt antall storfe tapt p\u00e5 beite"
+                    }
+                }
+            },
+            "ldir-organisert-beitebruk-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/ldir-organisert-beitebruk-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            }
+        },
+        "headers": {
+            "X-Datahotel-Page": {
+                "description": "Side (page) av resultatet som er returnert.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Pages": {
+                "description": "Tal p\u00e5 sider totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Posts": {
+                "description": "Tal p\u00e5 postar totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ETag": {
+                "description": "Fungerer som standard HTTP ETag. Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer).",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "organisert-beitebruk",
+            "description": "Landbruksdirektoratet - Tilskuddsordningen Organisert beitebruk i perioden 1992 \u2013 2012",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=ldir\/organisert-beitebruk"
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Meir dokumentasjon for hotell.difi.no",
+        "url": "https:\/\/hotell.difi.no\/api"
+    }
+}

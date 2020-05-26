@@ -1,0 +1,1918 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "<p>Sj\u00e5 <a href=\"https:\/\/data.norge.no\/node\/573\">datasett-oppf\u00f8ring<\/a> for meir informasjon (kontaktinformasjon, oppdateringsfrekvens, lenker til dokumentasjon etc.)<\/p>\n",
+        "version": "1.0.0",
+        "title": "Lisens (Licence)",
+        "license": {
+            "name": "Data-lisens",
+            "url": "http:\/\/data.norge.no\/nlod\/"
+        },
+        "termsOfService": "https:\/\/hotell.difi.no\/api"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/hotell.difi.no"
+        }
+    ],
+    "paths": {
+        "\/api\/{format}\/npd\/licence\/work-obligations": {
+            "get": {
+                "tags": [
+                    "work-obligations"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getNpdLicenceWork-obligationsPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/npd-licence-work-obligations-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/npd\/licence\/work-obligations": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "work-obligations"
+                ],
+                "operationId": "downloadNpdLicenceWork-obligations",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/licence\/work-obligations\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "work-obligations"
+                ],
+                "operationId": "getNpdLicenceWork-obligationsMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"work-obligations\",\n    \"name\": \"NPD - Licence - Work obligations\",\n    \"location\": \"npd\/licence\/work-obligations\",\n    \"updated\": 1590373872,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/licence\/work-obligations\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "work-obligations"
+                ],
+                "operationId": "getNpdLicenceWork-obligationsFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"prlName\",\n        \"shortName\": \"prlName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlTaskName\",\n        \"shortName\": \"prlTaskName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlTaskCategory\",\n        \"shortName\": \"prlTaskCategory\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlTaskTypeNo\",\n        \"shortName\": \"prlTaskTypeNo\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlTaskTypeEn\",\n        \"shortName\": \"prlTaskTypeEn\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlTaskStatusNo\",\n        \"shortName\": \"prlTaskStatusNo\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlTaskStatusEn\",\n        \"shortName\": \"prlTaskStatusEn\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlTaskExpiryDate\",\n        \"shortName\": \"prlTaskExpiryDate\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"wlbName\",\n        \"shortName\": \"wlbName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlDateValidTo\",\n        \"shortName\": \"prlDateValidTo\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlLicensingActivityName\",\n        \"shortName\": \"prlLicensingActivityName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"cmpLongName\",\n        \"shortName\": \"cmpLongName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"cmpNpdidCompany\",\n        \"shortName\": \"cmpNpdidCompany\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlNpdidLicence\",\n        \"shortName\": \"prlNpdidLicence\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlTaskID\",\n        \"shortName\": \"prlTaskID\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlTaskRefID\",\n        \"shortName\": \"prlTaskRefID\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlTaskDateUpdated\",\n        \"shortName\": \"prlTaskDateUpdated\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"datesyncNPD\",\n        \"shortName\": \"datesyncNPD\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/licence\/transfers": {
+            "get": {
+                "tags": [
+                    "transfers"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getNpdLicenceTransfersPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/npd-licence-transfers-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/npd\/licence\/transfers": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "transfers"
+                ],
+                "operationId": "downloadNpdLicenceTransfers",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/licence\/transfers\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "transfers"
+                ],
+                "operationId": "getNpdLicenceTransfersMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"transfers\",\n    \"name\": \"NPD - Licence - Transfers\",\n    \"location\": \"npd\/licence\/transfers\",\n    \"updated\": 1590373870,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/licence\/transfers\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "transfers"
+                ],
+                "operationId": "getNpdLicenceTransfersFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"prlName\",\n        \"shortName\": \"prlName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlTransferDateValidFrom\",\n        \"shortName\": \"prlTransferDateValidFrom\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlTransferDirection\",\n        \"shortName\": \"prlTransferDirection\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlTransferKind\",\n        \"shortName\": \"prlTransferKind\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"cmpLongName\",\n        \"shortName\": \"cmpLongName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlTransferredInterest\",\n        \"shortName\": \"prlTransferredInterest\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlTransferSdfi\",\n        \"shortName\": \"prlTransferSdfi\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlNpdidLicence\",\n        \"shortName\": \"prlNpdidLicence\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"cmpNpdidCompany\",\n        \"shortName\": \"cmpNpdidCompany\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlTransferDateUpdated\",\n        \"shortName\": \"prlTransferDateUpdated\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"DatesyncNPD\",\n        \"shortName\": \"DatesyncNPD\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/licence\/phases": {
+            "get": {
+                "tags": [
+                    "phases"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getNpdLicencePhasesPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/npd-licence-phases-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/npd\/licence\/phases": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "phases"
+                ],
+                "operationId": "downloadNpdLicencePhases",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/licence\/phases\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "phases"
+                ],
+                "operationId": "getNpdLicencePhasesMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"phases\",\n    \"name\": \"NPD - Licence - Phases\",\n    \"location\": \"npd\/licence\/phases\",\n    \"updated\": 1590373870,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/licence\/phases\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "phases"
+                ],
+                "operationId": "getNpdLicencePhasesFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"prlName\",\n        \"shortName\": \"prlName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlDatePhaseValidFrom\",\n        \"shortName\": \"prlDatePhaseValidFrom\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlDatePhaseValidTo\",\n        \"shortName\": \"prlDatePhaseValidTo\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlPhase\",\n        \"shortName\": \"prlPhase\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlDateGranted\",\n        \"shortName\": \"prlDateGranted\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlDateValidTo\",\n        \"shortName\": \"prlDateValidTo\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlDateInitialPeriodExpires\",\n        \"shortName\": \"prlDateInitialPeriodExpires\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlActiveStatusIndicator\",\n        \"shortName\": \"prlActiveStatusIndicator\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlNpdidLicence\",\n        \"shortName\": \"prlNpdidLicence\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlPhaseDateUpdated\",\n        \"shortName\": \"prlPhaseDateUpdated\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"datesyncNPD\",\n        \"shortName\": \"datesyncNPD\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/licence\/overview": {
+            "get": {
+                "tags": [
+                    "overview"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getNpdLicenceOverviewPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/npd-licence-overview-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/npd\/licence\/overview": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "overview"
+                ],
+                "operationId": "downloadNpdLicenceOverview",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/licence\/overview\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "overview"
+                ],
+                "operationId": "getNpdLicenceOverviewMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"overview\",\n    \"name\": \"NPD - Licence - Overview\",\n    \"location\": \"npd\/licence\/overview\",\n    \"updated\": 1590373864,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/licence\/overview\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "overview"
+                ],
+                "operationId": "getNpdLicenceOverviewFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"prlName\",\n        \"shortName\": \"prlName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlLicensingActivityName\",\n        \"shortName\": \"prlLicensingActivityName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlMainArea\",\n        \"shortName\": \"prlMainArea\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlStatus\",\n        \"shortName\": \"prlStatus\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlStratigraphical\",\n        \"shortName\": \"prlStratigraphical\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlDateGranted\",\n        \"shortName\": \"prlDateGranted\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlDateValidTo\",\n        \"shortName\": \"prlDateValidTo\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlOriginalArea\",\n        \"shortName\": \"prlOriginalArea\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlCurrentArea\",\n        \"shortName\": \"prlCurrentArea\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlPhaseCurrent\",\n        \"shortName\": \"prlPhaseCurrent\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlNpdidLicence\",\n        \"shortName\": \"prlNpdidLicence\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlFactPageUrl\",\n        \"shortName\": \"prlFactPageUrl\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlFactMapUrl\",\n        \"shortName\": \"prlFactMapUrl\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlDateUpdated\",\n        \"shortName\": \"prlDateUpdated\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlDateUpdatedMax\",\n        \"shortName\": \"prlDateUpdatedMax\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"DatesyncNPD\",\n        \"shortName\": \"DatesyncNPD\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/licence\/operators": {
+            "get": {
+                "tags": [
+                    "operators"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getNpdLicenceOperatorsPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/npd-licence-operators-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/npd\/licence\/operators": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "operators"
+                ],
+                "operationId": "downloadNpdLicenceOperators",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/licence\/operators\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "operators"
+                ],
+                "operationId": "getNpdLicenceOperatorsMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"operators\",\n    \"name\": \"NPD - Licence - Operators\",\n    \"location\": \"npd\/licence\/operators\",\n    \"updated\": 1590373868,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/licence\/operators\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "operators"
+                ],
+                "operationId": "getNpdLicenceOperatorsFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"prlName\",\n        \"shortName\": \"prlName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlOperDateValidFrom\",\n        \"shortName\": \"prlOperDateValidFrom\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlOperDateValidTo\",\n        \"shortName\": \"prlOperDateValidTo\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"cmpLongName\",\n        \"shortName\": \"cmpLongName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlNpdidLicence\",\n        \"shortName\": \"prlNpdidLicence\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"cmpNpdidCompany\",\n        \"shortName\": \"cmpNpdidCompany\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlOperDateUpdated\",\n        \"shortName\": \"prlOperDateUpdated\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"DatesyncNPD\",\n        \"shortName\": \"DatesyncNPD\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/licence\/licensees": {
+            "get": {
+                "tags": [
+                    "licensees"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getNpdLicenceLicenseesPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/npd-licence-licensees-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/npd\/licence\/licensees": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "licensees"
+                ],
+                "operationId": "downloadNpdLicenceLicensees",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/licence\/licensees\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "licensees"
+                ],
+                "operationId": "getNpdLicenceLicenseesMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"licensees\",\n    \"name\": \"NPD - Licence - Licensees\",\n    \"location\": \"npd\/licence\/licensees\",\n    \"updated\": 1590373865,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/licence\/licensees\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "licensees"
+                ],
+                "operationId": "getNpdLicenceLicenseesFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"prlName\",\n        \"shortName\": \"prlName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlLicenseeDateValidFrom\",\n        \"shortName\": \"prlLicenseeDateValidFrom\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlLicenseeDateValidTo\",\n        \"shortName\": \"prlLicenseeDateValidTo\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"cmpLongName\",\n        \"shortName\": \"cmpLongName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlLicenseeInterest\",\n        \"shortName\": \"prlLicenseeInterest\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlLicenseeSdfi\",\n        \"shortName\": \"prlLicenseeSdfi\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlOperDateValidFrom\",\n        \"shortName\": \"prlOperDateValidFrom\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlOperDateValidTo\",\n        \"shortName\": \"prlOperDateValidTo\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlNpdidLicence\",\n        \"shortName\": \"prlNpdidLicence\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"cmpNpdidCompany\",\n        \"shortName\": \"cmpNpdidCompany\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlLicenseeDateUpdated\",\n        \"shortName\": \"prlLicenseeDateUpdated\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"DatesyncNPD\",\n        \"shortName\": \"DatesyncNPD\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/licence\/area": {
+            "get": {
+                "tags": [
+                    "area"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getNpdLicenceAreaPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/npd-licence-area-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/npd\/licence\/area": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "area"
+                ],
+                "operationId": "downloadNpdLicenceArea",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/licence\/area\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "area"
+                ],
+                "operationId": "getNpdLicenceAreaMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"area\",\n    \"name\": \"NPD - Licence - Area\",\n    \"location\": \"npd\/licence\/area\",\n    \"updated\": 1590373869,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/licence\/area\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "area"
+                ],
+                "operationId": "getNpdLicenceAreaFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"prlName\",\n        \"shortName\": \"prlName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlAreaPolyDateValidFrom\",\n        \"shortName\": \"prlAreaPolyDateValidFrom\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlAreaPolyDateValidTo\",\n        \"shortName\": \"prlAreaPolyDateValidTo\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlAreaPolyNationCode\",\n        \"shortName\": \"prlAreaPolyNationCode\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlAreaPolyBlockName\",\n        \"shortName\": \"prlAreaPolyBlockName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlAreaPolyStratigraphical\",\n        \"shortName\": \"prlAreaPolyStratigraphical\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlAreaPolyPolyNo\",\n        \"shortName\": \"prlAreaPolyPolyNo\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlAreaPolyPolyArea\",\n        \"shortName\": \"prlAreaPolyPolyArea\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlNpdidLicence\",\n        \"shortName\": \"prlNpdidLicence\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"prlAreaDateUpdated\",\n        \"shortName\": \"prlAreaDateUpdated\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"DatesyncNPD\",\n        \"shortName\": \"DatesyncNPD\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "datahotelFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "csv",
+                    "yaml"
+                ]
+            },
+            "datahotelMetadataFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "yaml"
+                ]
+            },
+            "datasetMetadata": {
+                "type": "object",
+                "properties": {
+                    "shortName": {
+                        "type": "string",
+                        "description": "Kortnamn for datasettet. Samme som siste ledd i location."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Menneskelesbart namn for datasettet."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Unik datasett-id i datahotellet"
+                    },
+                    "updated": {
+                        "type": "integer",
+                        "description": "Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer)."
+                    },
+                    "dataset": {
+                        "type": "boolean",
+                        "description": "True dersom location er eit datasett, false dersom ikkje. Ved false kan location vere ein katalog som inneheld datasett."
+                    }
+                }
+            },
+            "datasetFields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Menneskelesbart namn p\u00e5 feltet."
+                        },
+                        "shortName": {
+                            "type": "string",
+                            "description": "Kortnamn for felt. Samme som feltnamn brukt i respons og overskriftsrad i CSV-fila."
+                        },
+                        "groupable": {
+                            "type": "boolean",
+                            "description": "Kan gruppere\/filtrere p\u00e5 dette feltet via query-parameter. E.g. \u00ab?shortName=verdi\u00bb."
+                        },
+                        "searchable": {
+                            "type": "boolean",
+                            "description": "Om dette feltet er s\u00f8kbart via query-parameteret. E.g. \u00ab?query=s\u00f8kestreng\u00bb"
+                        },
+                        "indexPrimaryKey": {
+                            "type": "boolean",
+                            "description": "Ikkje i bruk."
+                        }
+                    }
+                }
+            },
+            "npd-licence-work-obligations-record": {
+                "type": "object",
+                "properties": {
+                    "prlName": {
+                        "type": "string",
+                        "example": "006 D"
+                    },
+                    "prlTaskName": {
+                        "type": "string",
+                        "example": "Geologi- og geofysikk studier"
+                    },
+                    "prlTaskCategory": {
+                        "type": "string",
+                        "example": "WORKOBLIGATION"
+                    },
+                    "prlTaskTypeNo": {
+                        "type": "string",
+                        "example": "Geologi- og geofysikkstudier"
+                    },
+                    "prlTaskTypeEn": {
+                        "type": "string",
+                        "example": "Study of geology and geophysics"
+                    },
+                    "prlTaskStatusNo": {
+                        "type": "string",
+                        "example": "Godkjent"
+                    },
+                    "prlTaskStatusEn": {
+                        "type": "string",
+                        "example": "Approved"
+                    },
+                    "prlTaskExpiryDate": {
+                        "type": "string",
+                        "example": "28.02.2011"
+                    },
+                    "wlbName": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "prlDateValidTo": {
+                        "type": "string",
+                        "example": "29.08.2011"
+                    },
+                    "prlLicensingActivityName": {
+                        "type": "string",
+                        "example": "TFO2007"
+                    },
+                    "cmpLongName": {
+                        "type": "string",
+                        "example": "Lundin Norway AS"
+                    },
+                    "cmpNpdidCompany": {
+                        "type": "string",
+                        "example": "2767314"
+                    },
+                    "prlNpdidLicence": {
+                        "type": "string",
+                        "example": "4909688"
+                    },
+                    "prlTaskID": {
+                        "type": "string",
+                        "example": "4944110"
+                    },
+                    "prlTaskRefID": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "prlTaskDateUpdated": {
+                        "type": "string",
+                        "example": "02.10.2019"
+                    },
+                    "datesyncNPD": {
+                        "type": "string",
+                        "example": "25.05.2020"
+                    }
+                }
+            },
+            "npd-licence-work-obligations-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/npd-licence-work-obligations-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "npd-licence-transfers-record": {
+                "type": "object",
+                "properties": {
+                    "prlName": {
+                        "type": "string",
+                        "example": "001"
+                    },
+                    "prlTransferDateValidFrom": {
+                        "type": "string",
+                        "example": "01.08.2019"
+                    },
+                    "prlTransferDirection": {
+                        "type": "string",
+                        "example": "FROM"
+                    },
+                    "prlTransferKind": {
+                        "type": "string",
+                        "example": "TRANSFER"
+                    },
+                    "cmpLongName": {
+                        "type": "string",
+                        "example": "V\u00e5r Energi AS"
+                    },
+                    "prlTransferredInterest": {
+                        "type": "string",
+                        "example": "10.000000"
+                    },
+                    "prlTransferSdfi": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "prlNpdidLicence": {
+                        "type": "string",
+                        "example": "20756"
+                    },
+                    "cmpNpdidCompany": {
+                        "type": "string",
+                        "example": "33360957"
+                    },
+                    "prlTransferDateUpdated": {
+                        "type": "string",
+                        "example": "02.10.2019"
+                    },
+                    "DatesyncNPD": {
+                        "type": "string",
+                        "example": "25.05.2020"
+                    }
+                }
+            },
+            "npd-licence-transfers-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/npd-licence-transfers-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "npd-licence-phases-record": {
+                "type": "object",
+                "properties": {
+                    "prlName": {
+                        "type": "string",
+                        "example": "001"
+                    },
+                    "prlDatePhaseValidFrom": {
+                        "type": "string",
+                        "example": "01.09.1965"
+                    },
+                    "prlDatePhaseValidTo": {
+                        "type": "string",
+                        "example": "31.08.1971"
+                    },
+                    "prlPhase": {
+                        "type": "string",
+                        "example": "INITIAL"
+                    },
+                    "prlDateGranted": {
+                        "type": "string",
+                        "example": "01.09.1965"
+                    },
+                    "prlDateValidTo": {
+                        "type": "string",
+                        "example": "01.03.2030"
+                    },
+                    "prlDateInitialPeriodExpires": {
+                        "type": "string",
+                        "example": "31.08.1971"
+                    },
+                    "prlActiveStatusIndicator": {
+                        "type": "string",
+                        "example": "ACTIVE"
+                    },
+                    "prlNpdidLicence": {
+                        "type": "string",
+                        "example": "20756"
+                    },
+                    "prlPhaseDateUpdated": {
+                        "type": "string",
+                        "example": "04.04.2017"
+                    },
+                    "datesyncNPD": {
+                        "type": "string",
+                        "example": "25.05.2020"
+                    }
+                }
+            },
+            "npd-licence-phases-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/npd-licence-phases-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "npd-licence-overview-record": {
+                "type": "object",
+                "properties": {
+                    "prlName": {
+                        "type": "string",
+                        "example": "001"
+                    },
+                    "prlLicensingActivityName": {
+                        "type": "string",
+                        "example": "1-A"
+                    },
+                    "prlMainArea": {
+                        "type": "string",
+                        "example": "North Sea"
+                    },
+                    "prlStatus": {
+                        "type": "string",
+                        "example": "ACTIVE"
+                    },
+                    "prlStratigraphical": {
+                        "type": "string",
+                        "example": "YES OR PARTLY"
+                    },
+                    "prlDateGranted": {
+                        "type": "string",
+                        "example": "01.09.1965"
+                    },
+                    "prlDateValidTo": {
+                        "type": "string",
+                        "example": "01.03.2030"
+                    },
+                    "prlOriginalArea": {
+                        "type": "string",
+                        "example": "2145.855"
+                    },
+                    "prlCurrentArea": {
+                        "type": "string",
+                        "example": "100.779"
+                    },
+                    "prlPhaseCurrent": {
+                        "type": "string",
+                        "example": "PRODUCTION EXTENDED"
+                    },
+                    "prlNpdidLicence": {
+                        "type": "string",
+                        "example": "20756"
+                    },
+                    "prlFactPageUrl": {
+                        "type": "string",
+                        "example": "https:\/\/factpages.npd.no\/factpages\/default.aspx?nav1=licence&nav2=PageView|All&nav3=20756"
+                    },
+                    "prlFactMapUrl": {
+                        "type": "string",
+                        "example": "https:\/\/factmaps.npd.no\/factmaps\/3_0\/?run=LicenceActiveByNPDID&NPDID=20756"
+                    },
+                    "prlDateUpdated": {
+                        "type": "string",
+                        "example": "15.02.2020"
+                    },
+                    "prlDateUpdatedMax": {
+                        "type": "string",
+                        "example": "02.10.2019"
+                    },
+                    "DatesyncNPD": {
+                        "type": "string",
+                        "example": "25.05.2020"
+                    }
+                }
+            },
+            "npd-licence-overview-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/npd-licence-overview-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "npd-licence-operators-record": {
+                "type": "object",
+                "properties": {
+                    "prlName": {
+                        "type": "string",
+                        "example": "001"
+                    },
+                    "prlOperDateValidFrom": {
+                        "type": "string",
+                        "example": "10.12.2018"
+                    },
+                    "prlOperDateValidTo": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "cmpLongName": {
+                        "type": "string",
+                        "example": "V\u00e5r Energi AS"
+                    },
+                    "prlNpdidLicence": {
+                        "type": "string",
+                        "example": "20756"
+                    },
+                    "cmpNpdidCompany": {
+                        "type": "string",
+                        "example": "33360957"
+                    },
+                    "prlOperDateUpdated": {
+                        "type": "string",
+                        "example": "02.10.2019"
+                    },
+                    "DatesyncNPD": {
+                        "type": "string",
+                        "example": "25.05.2020"
+                    }
+                }
+            },
+            "npd-licence-operators-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/npd-licence-operators-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "npd-licence-licensees-record": {
+                "type": "object",
+                "properties": {
+                    "prlName": {
+                        "type": "string",
+                        "example": "001"
+                    },
+                    "prlLicenseeDateValidFrom": {
+                        "type": "string",
+                        "example": "01.08.2019"
+                    },
+                    "prlLicenseeDateValidTo": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "cmpLongName": {
+                        "type": "string",
+                        "example": "Mime Petroleum AS"
+                    },
+                    "prlLicenseeInterest": {
+                        "type": "string",
+                        "example": "10.000000"
+                    },
+                    "prlLicenseeSdfi": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "prlOperDateValidFrom": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "prlOperDateValidTo": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "prlNpdidLicence": {
+                        "type": "string",
+                        "example": "20756"
+                    },
+                    "cmpNpdidCompany": {
+                        "type": "string",
+                        "example": "29491564"
+                    },
+                    "prlLicenseeDateUpdated": {
+                        "type": "string",
+                        "example": "02.10.2019"
+                    },
+                    "DatesyncNPD": {
+                        "type": "string",
+                        "example": "25.05.2020"
+                    }
+                }
+            },
+            "npd-licence-licensees-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/npd-licence-licensees-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "npd-licence-area-record": {
+                "type": "object",
+                "properties": {
+                    "prlName": {
+                        "type": "string",
+                        "example": "001"
+                    },
+                    "prlAreaPolyDateValidFrom": {
+                        "type": "string",
+                        "example": "29.09.2017"
+                    },
+                    "prlAreaPolyDateValidTo": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "prlAreaPolyNationCode": {
+                        "type": "string",
+                        "example": "NO"
+                    },
+                    "prlAreaPolyBlockName": {
+                        "type": "string",
+                        "example": "25\/11"
+                    },
+                    "prlAreaPolyStratigraphical": {
+                        "type": "string",
+                        "example": "NO"
+                    },
+                    "prlAreaPolyPolyNo": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "prlAreaPolyPolyArea": {
+                        "type": "string",
+                        "example": "83.098"
+                    },
+                    "prlNpdidLicence": {
+                        "type": "string",
+                        "example": "20756"
+                    },
+                    "prlAreaDateUpdated": {
+                        "type": "string",
+                        "example": "25.04.2019"
+                    },
+                    "DatesyncNPD": {
+                        "type": "string",
+                        "example": "25.05.2020"
+                    }
+                }
+            },
+            "npd-licence-area-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/npd-licence-area-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            }
+        },
+        "headers": {
+            "X-Datahotel-Page": {
+                "description": "Side (page) av resultatet som er returnert.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Pages": {
+                "description": "Tal p\u00e5 sider totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Posts": {
+                "description": "Tal p\u00e5 postar totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ETag": {
+                "description": "Fungerer som standard HTTP ETag. Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer).",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "work-obligations",
+            "description": "NPD - Licence - Work obligations",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=npd\/licence\/work-obligations"
+            }
+        },
+        {
+            "name": "transfers",
+            "description": "NPD - Licence - Transfers",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=npd\/licence\/transfers"
+            }
+        },
+        {
+            "name": "phases",
+            "description": "NPD - Licence - Phases",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=npd\/licence\/phases"
+            }
+        },
+        {
+            "name": "overview",
+            "description": "NPD - Licence - Overview",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=npd\/licence\/overview"
+            }
+        },
+        {
+            "name": "operators",
+            "description": "NPD - Licence - Operators",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=npd\/licence\/operators"
+            }
+        },
+        {
+            "name": "licensees",
+            "description": "NPD - Licence - Licensees",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=npd\/licence\/licensees"
+            }
+        },
+        {
+            "name": "area",
+            "description": "NPD - Licence - Area",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=npd\/licence\/area"
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Meir dokumentasjon for hotell.difi.no",
+        "url": "https:\/\/hotell.difi.no\/api"
+    }
+}

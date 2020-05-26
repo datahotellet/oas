@@ -1,0 +1,503 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "<p>Sj\u00e5 <a href=\"https:\/\/data.norge.no\/node\/533\">datasett-oppf\u00f8ring<\/a> for meir informasjon (kontaktinformasjon, oppdateringsfrekvens, lenker til dokumentasjon etc.)<\/p>\n",
+        "version": "1.0.0",
+        "title": "Frivillighetsregisteret",
+        "license": {
+            "name": "Data-lisens",
+            "url": "http:\/\/data.norge.no\/nlod\/"
+        },
+        "termsOfService": "https:\/\/hotell.difi.no\/api"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/hotell.difi.no"
+        }
+    ],
+    "paths": {
+        "\/api\/{format}\/brreg\/frivillighetsregisteret": {
+            "get": {
+                "tags": [
+                    "frivillighetsregisteret"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getBrregFrivillighetsregisteretPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    },
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "S\u00f8k i datasettet. Gir treff p\u00e5 felt: orgnr, navn, kommnavn, kategori1_tekst, kategori2_tekst, kategori3_tekst",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "orgnr",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "organisasjonsform",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "kommnr",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "kommnavn",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "kategori1",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "kategori2",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "kategori3",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "vedtekter",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "arsregnskap",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "grasrotandel",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/brreg-frivillighetsregisteret-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/brreg\/frivillighetsregisteret": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "frivillighetsregisteret"
+                ],
+                "operationId": "downloadBrregFrivillighetsregisteret",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/brreg\/frivillighetsregisteret\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "frivillighetsregisteret"
+                ],
+                "operationId": "getBrregFrivillighetsregisteretMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"frivillighetsregisteret\",\n    \"name\": \"Frivillighetsregisteret\",\n    \"location\": \"brreg\/frivillighetsregisteret\",\n    \"updated\": 1590271228,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/brreg\/frivillighetsregisteret\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "frivillighetsregisteret"
+                ],
+                "operationId": "getBrregFrivillighetsregisteretFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"Organisasjonsnummer\",\n        \"shortName\": \"orgnr\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Organisasjonsnummer brukes for \\u00e5 identifisere juridiske personer (enheter), i Norge, og tildeles ved registrering i Enhetsregisteret. Organisasjonsnummeret best\\u00e5r av ni siffer og starter p\\u00e5 tallet 8 eller 9. http:\/\/www.brreg.no\/samordning\/organisasjonsnummeret.html\"\n    },\n    {\n        \"name\": \"Navn\",\n        \"shortName\": \"navn\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Enhetens\/foretakets offisielle navn\"\n    },\n    {\n        \"name\": \"Organisasjonsform\",\n        \"shortName\": \"organisasjonsform\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Organisasjonsformen sier noe om hvordan enheten er bygd opp, juridisk og organisatorisk\"\n    },\n    {\n        \"name\": \"Kommunenummer\",\n        \"shortName\": \"kommnr\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Kommunenummer knyttet til forretningsadressen\"\n    },\n    {\n        \"name\": \"Kommunenavn\",\n        \"shortName\": \"kommnavn\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Navn p\\u00e5 kommune der enheten har sin forretningsadresse\"\n    },\n    {\n        \"name\": \"Kategori 1\",\n        \"shortName\": \"kategori1\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Enheten skal gi opplysning om kategori eller aktivitetsomr\\u00e5de. Dersom det er meldt flere kategorier m\\u00e5 disse v\\u00e6re rangert etter \\u00f8konomisk omfang. Hvis enheten driver flere typer aktiviteter kan det registreres inntil tre kategorier.\"\n    },\n    {\n        \"name\": \"Kategori 1 tekst\",\n        \"shortName\": \"kategori1_tekst\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Kategori 2\",\n        \"shortName\": \"kategori2\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Enheten skal gi opplysning om kategori eller aktivitetsomr\\u00e5de. Dersom det er meldt flere kategorier m\\u00e5 disse v\\u00e6re rangert etter \\u00f8konomisk omfang. Hvis enheten driver flere typer aktiviteter kan det registreres inntil tre kategorier.\"\n    },\n    {\n        \"name\": \"Kategori 2 tekst\",\n        \"shortName\": \"kategori2_tekst\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Kategori 3\",\n        \"shortName\": \"kategori3\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Enheten skal gi opplysning om kategori eller aktivitetsomr\\u00e5de. Dersom det er meldt flere kategorier m\\u00e5 disse v\\u00e6re rangert etter \\u00f8konomisk omfang. Hvis enheten driver flere typer aktiviteter kan det registreres inntil tre kategorier.\"\n    },\n    {\n        \"name\": \"Kategori 3 tekst\",\n        \"shortName\": \"kategori3_tekst\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Vedtekter\",\n        \"shortName\": \"vedtekter\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Angir om enheten har p\\u00e5tatt seg \\u00e5 melde vedtektene sine til Frivillighetsregisteret\"\n    },\n    {\n        \"name\": \"\\u00c5rsregnskap\",\n        \"shortName\": \"arsregnskap\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Angir om enheten har p\\u00e5tatt seg \\u00e5 rapportere \\u00e5rsregnskap til Regnskapsregisteret\"\n    },\n    {\n        \"name\": \"Grasrotandel\",\n        \"shortName\": \"grasrotandel\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Angir om enheten deltar i grasrotandelordningen\"\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "datahotelFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "csv",
+                    "yaml"
+                ]
+            },
+            "datahotelMetadataFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "yaml"
+                ]
+            },
+            "datasetMetadata": {
+                "type": "object",
+                "properties": {
+                    "shortName": {
+                        "type": "string",
+                        "description": "Kortnamn for datasettet. Samme som siste ledd i location."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Menneskelesbart namn for datasettet."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Unik datasett-id i datahotellet"
+                    },
+                    "updated": {
+                        "type": "integer",
+                        "description": "Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer)."
+                    },
+                    "dataset": {
+                        "type": "boolean",
+                        "description": "True dersom location er eit datasett, false dersom ikkje. Ved false kan location vere ein katalog som inneheld datasett."
+                    }
+                }
+            },
+            "datasetFields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Menneskelesbart namn p\u00e5 feltet."
+                        },
+                        "shortName": {
+                            "type": "string",
+                            "description": "Kortnamn for felt. Samme som feltnamn brukt i respons og overskriftsrad i CSV-fila."
+                        },
+                        "groupable": {
+                            "type": "boolean",
+                            "description": "Kan gruppere\/filtrere p\u00e5 dette feltet via query-parameter. E.g. \u00ab?shortName=verdi\u00bb."
+                        },
+                        "searchable": {
+                            "type": "boolean",
+                            "description": "Om dette feltet er s\u00f8kbart via query-parameteret. E.g. \u00ab?query=s\u00f8kestreng\u00bb"
+                        },
+                        "indexPrimaryKey": {
+                            "type": "boolean",
+                            "description": "Ikkje i bruk."
+                        }
+                    }
+                }
+            },
+            "brreg-frivillighetsregisteret-record": {
+                "type": "object",
+                "properties": {
+                    "orgnr": {
+                        "type": "string",
+                        "example": "917887721",
+                        "description": "Organisasjonsnummer.\nOrganisasjonsnummer brukes for \u00e5 identifisere juridiske personer (enheter), i Norge, og tildeles ved registrering i Enhetsregisteret. Organisasjonsnummeret best\u00e5r av ni siffer og starter p\u00e5 tallet 8 eller 9. http:\/\/www.brreg.no\/samordning\/organisasjonsnummeret.html"
+                    },
+                    "navn": {
+                        "type": "string",
+                        "example": "&ACTION",
+                        "description": "Enhetens\/foretakets offisielle navn"
+                    },
+                    "organisasjonsform": {
+                        "type": "string",
+                        "example": "FLI",
+                        "description": "Organisasjonsformen sier noe om hvordan enheten er bygd opp, juridisk og organisatorisk"
+                    },
+                    "kommnr": {
+                        "type": "string",
+                        "example": "5006",
+                        "description": "Kommunenummer.\nKommunenummer knyttet til forretningsadressen"
+                    },
+                    "kommnavn": {
+                        "type": "string",
+                        "example": "STEINKJER",
+                        "description": "Kommunenavn.\nNavn p\u00e5 kommune der enheten har sin forretningsadresse"
+                    },
+                    "kategori1": {
+                        "type": "string",
+                        "example": "1100",
+                        "description": "Kategori 1.\nEnheten skal gi opplysning om kategori eller aktivitetsomr\u00e5de. Dersom det er meldt flere kategorier m\u00e5 disse v\u00e6re rangert etter \u00f8konomisk omfang. Hvis enheten driver flere typer aktiviteter kan det registreres inntil tre kategorier."
+                    },
+                    "kategori1_tekst": {
+                        "type": "string",
+                        "example": "Kultur og kunst",
+                        "description": "Kategori 1 tekst"
+                    },
+                    "kategori2": {
+                        "type": "string",
+                        "example": "",
+                        "description": "Kategori 2.\nEnheten skal gi opplysning om kategori eller aktivitetsomr\u00e5de. Dersom det er meldt flere kategorier m\u00e5 disse v\u00e6re rangert etter \u00f8konomisk omfang. Hvis enheten driver flere typer aktiviteter kan det registreres inntil tre kategorier."
+                    },
+                    "kategori2_tekst": {
+                        "type": "string",
+                        "example": "",
+                        "description": "Kategori 2 tekst"
+                    },
+                    "kategori3": {
+                        "type": "string",
+                        "example": "",
+                        "description": "Kategori 3.\nEnheten skal gi opplysning om kategori eller aktivitetsomr\u00e5de. Dersom det er meldt flere kategorier m\u00e5 disse v\u00e6re rangert etter \u00f8konomisk omfang. Hvis enheten driver flere typer aktiviteter kan det registreres inntil tre kategorier."
+                    },
+                    "kategori3_tekst": {
+                        "type": "string",
+                        "example": "",
+                        "description": "Kategori 3 tekst"
+                    },
+                    "vedtekter": {
+                        "type": "string",
+                        "example": "J",
+                        "description": "Angir om enheten har p\u00e5tatt seg \u00e5 melde vedtektene sine til Frivillighetsregisteret"
+                    },
+                    "arsregnskap": {
+                        "type": "string",
+                        "example": "N",
+                        "description": "\u00c5rsregnskap.\nAngir om enheten har p\u00e5tatt seg \u00e5 rapportere \u00e5rsregnskap til Regnskapsregisteret"
+                    },
+                    "grasrotandel": {
+                        "type": "string",
+                        "example": "N",
+                        "description": "Angir om enheten deltar i grasrotandelordningen"
+                    }
+                }
+            },
+            "brreg-frivillighetsregisteret-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/brreg-frivillighetsregisteret-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            }
+        },
+        "headers": {
+            "X-Datahotel-Page": {
+                "description": "Side (page) av resultatet som er returnert.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Pages": {
+                "description": "Tal p\u00e5 sider totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Posts": {
+                "description": "Tal p\u00e5 postar totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ETag": {
+                "description": "Fungerer som standard HTTP ETag. Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer).",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "frivillighetsregisteret",
+            "description": "Frivillighetsregisteret",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=brreg\/frivillighetsregisteret"
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Meir dokumentasjon for hotell.difi.no",
+        "url": "https:\/\/hotell.difi.no\/api"
+    }
+}

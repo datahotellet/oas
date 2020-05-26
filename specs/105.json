@@ -1,0 +1,415 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "<p>Sj\u00e5 <a href=\"https:\/\/data.norge.no\/node\/105\">datasett-oppf\u00f8ring<\/a> for meir informasjon (kontaktinformasjon, oppdateringsfrekvens, lenker til dokumentasjon etc.)<\/p>\n",
+        "version": "1.0.0",
+        "title": "Kandidatk\u00e5ring for Leikanger kommune",
+        "license": {
+            "name": "Data-lisens",
+            "url": "http:\/\/data.norge.no\/nlod\/"
+        },
+        "termsOfService": "https:\/\/hotell.difi.no\/api"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/hotell.difi.no"
+        }
+    ],
+    "paths": {
+        "\/api\/{format}\/leikanger\/valg\/mandatkaring": {
+            "get": {
+                "tags": [
+                    "mandatkaring"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getLeikangerValgMandatkaringPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    },
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "S\u00f8k i datasettet. Gir treff p\u00e5 felt: parti, kandidatnavn",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "parti",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "f\u00f8dsels\u00e5r",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/leikanger-valg-mandatkaring-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/leikanger\/valg\/mandatkaring": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "mandatkaring"
+                ],
+                "operationId": "downloadLeikangerValgMandatkaring",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/leikanger\/valg\/mandatkaring\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "mandatkaring"
+                ],
+                "operationId": "getLeikangerValgMandatkaringMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"mandatkaring\",\n    \"name\": \"Mandatk\\u00e5ring\",\n    \"location\": \"leikanger\/valg\/mandatkaring\",\n    \"updated\": 0,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/leikanger\/valg\/mandatkaring\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "mandatkaring"
+                ],
+                "operationId": "getLeikangerValgMandatkaringFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"Parti\",\n        \"shortName\": \"parti\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Hvilket parti delegaten representerer.\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Kandidatnummer\",\n        \"shortName\": \"kandidatnummer\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Kandidatens nummer p\\u00e5 valglisten.\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"Kandidatnavn\",\n        \"shortName\": \"kandidatnavn\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Kandidatens navn\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"F\\u00f8dsels\\u00e5r\",\n        \"shortName\": \"f\\u00f8dsels\\u00e5r\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Kandidatens f\\u00f8dsels\\u00e5r\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"Stemmetillegg\",\n        \"shortName\": \"stemmetillegg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Hvor mange stemmetillegg kandidaten har f\\u00e5tt.\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"Personstemmer\",\n        \"shortName\": \"personstemmer\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Hvor mange personstemmer kandidaten har f\\u00e5tt.\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"Slengere\",\n        \"shortName\": \"slengere\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Hvor mange slengere kandidaten har f\\u00e5tt.\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"Totalt\",\n        \"shortName\": \"totalt\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Hvor mange stemmer kandidaten har f\\u00e5tt totalt.\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"Status\",\n        \"shortName\": \"status\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Om kandidaten er valgt, vara eller ikke.\",\n        \"definition\": \"kategori\"\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "datahotelFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "csv",
+                    "yaml"
+                ]
+            },
+            "datahotelMetadataFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "yaml"
+                ]
+            },
+            "datasetMetadata": {
+                "type": "object",
+                "properties": {
+                    "shortName": {
+                        "type": "string",
+                        "description": "Kortnamn for datasettet. Samme som siste ledd i location."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Menneskelesbart namn for datasettet."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Unik datasett-id i datahotellet"
+                    },
+                    "updated": {
+                        "type": "integer",
+                        "description": "Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer)."
+                    },
+                    "dataset": {
+                        "type": "boolean",
+                        "description": "True dersom location er eit datasett, false dersom ikkje. Ved false kan location vere ein katalog som inneheld datasett."
+                    }
+                }
+            },
+            "datasetFields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Menneskelesbart namn p\u00e5 feltet."
+                        },
+                        "shortName": {
+                            "type": "string",
+                            "description": "Kortnamn for felt. Samme som feltnamn brukt i respons og overskriftsrad i CSV-fila."
+                        },
+                        "groupable": {
+                            "type": "boolean",
+                            "description": "Kan gruppere\/filtrere p\u00e5 dette feltet via query-parameter. E.g. \u00ab?shortName=verdi\u00bb."
+                        },
+                        "searchable": {
+                            "type": "boolean",
+                            "description": "Om dette feltet er s\u00f8kbart via query-parameteret. E.g. \u00ab?query=s\u00f8kestreng\u00bb"
+                        },
+                        "indexPrimaryKey": {
+                            "type": "boolean",
+                            "description": "Ikkje i bruk."
+                        }
+                    }
+                }
+            },
+            "leikanger-valg-mandatkaring-record": {
+                "type": "object",
+                "properties": {
+                    "parti": {
+                        "type": "string",
+                        "example": "Det norske Arbeidarparti",
+                        "description": "Hvilket parti delegaten representerer."
+                    },
+                    "kandidatnummer": {
+                        "type": "string",
+                        "example": "01 x",
+                        "description": "Kandidatens nummer p\u00e5 valglisten."
+                    },
+                    "kandidatnavn": {
+                        "type": "string",
+                        "example": "Lunden, Olav",
+                        "description": "Kandidatens navn"
+                    },
+                    "f\u00f8dsels\u00e5r": {
+                        "type": "string",
+                        "example": "1955",
+                        "description": "Kandidatens f\u00f8dsels\u00e5r"
+                    },
+                    "stemmetillegg": {
+                        "type": "string",
+                        "example": "124,25",
+                        "description": "Hvor mange stemmetillegg kandidaten har f\u00e5tt."
+                    },
+                    "personstemmer": {
+                        "type": "string",
+                        "example": "129",
+                        "description": "Hvor mange personstemmer kandidaten har f\u00e5tt."
+                    },
+                    "slengere": {
+                        "type": "string",
+                        "example": "17",
+                        "description": "Hvor mange slengere kandidaten har f\u00e5tt."
+                    },
+                    "totalt": {
+                        "type": "string",
+                        "example": "270.25",
+                        "description": "Hvor mange stemmer kandidaten har f\u00e5tt totalt."
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "VALGT",
+                        "description": "Om kandidaten er valgt, vara eller ikke."
+                    }
+                }
+            },
+            "leikanger-valg-mandatkaring-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/leikanger-valg-mandatkaring-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            }
+        },
+        "headers": {
+            "X-Datahotel-Page": {
+                "description": "Side (page) av resultatet som er returnert.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Pages": {
+                "description": "Tal p\u00e5 sider totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Posts": {
+                "description": "Tal p\u00e5 postar totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ETag": {
+                "description": "Fungerer som standard HTTP ETag. Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer).",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "mandatkaring",
+            "description": "Mandatk\u00e5ring",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=leikanger\/valg\/mandatkaring"
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Meir dokumentasjon for hotell.difi.no",
+        "url": "https:\/\/hotell.difi.no\/api"
+    }
+}

@@ -1,0 +1,646 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "<p>Sj\u00e5 <a href=\"https:\/\/data.norge.no\/node\/3247\">datasett-oppf\u00f8ring<\/a> for meir informasjon (kontaktinformasjon, oppdateringsfrekvens, lenker til dokumentasjon etc.)<\/p>\n",
+        "version": "1.0.0",
+        "title": "Produksjons- og avl\u00f8sertilskudd til jordbruksforetak \u2013 s\u00f8knadsomgang 2020 del 1",
+        "license": {
+            "name": "Data-lisens",
+            "url": "http:\/\/data.norge.no\/nlod\/"
+        },
+        "termsOfService": "https:\/\/hotell.difi.no\/api"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/hotell.difi.no"
+        }
+    ],
+    "paths": {
+        "\/api\/{format}\/ldir\/produksjon-og-avlosertilskudd\/2020": {
+            "get": {
+                "tags": [
+                    "2020"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getLdirProduksjon-og-avlosertilskudd2020Page",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    },
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "S\u00f8k i datasettet. Gir treff p\u00e5 felt: orgnr, orgnavn",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "soeknads_aar",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "saksbehandlende_kommune",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "orgnr",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "kommunenr",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "gaardsnummer",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "bruksnummer",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "festenummer",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ldir-produksjon-og-avlosertilskudd-2020-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/ldir\/produksjon-og-avlosertilskudd\/2020": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "2020"
+                ],
+                "operationId": "downloadLdirProduksjon-og-avlosertilskudd2020",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/ldir\/produksjon-og-avlosertilskudd\/2020\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "2020"
+                ],
+                "operationId": "getLdirProduksjon-og-avlosertilskudd2020Metadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"2020\",\n    \"name\": \"Produksjons- og avl\\u00f8sertilskudd til jordbruksforetak \\u2013 s\\u00f8knadsomgang 2020 del 1\",\n    \"location\": \"ldir\/produksjon-og-avlosertilskudd\/2020\",\n    \"updated\": 1587372561,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/ldir\/produksjon-og-avlosertilskudd\/2020\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "2020"
+                ],
+                "operationId": "getLdirProduksjon-og-avlosertilskudd2020Fields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"S\\u00f8knads\\u00e5r\",\n        \"shortName\": \"soeknads_aar\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"S\\u00f8knads\\u00e5r\"\n    },\n    {\n        \"name\": \"Saksbehandlende kommune\",\n        \"shortName\": \"saksbehandlende_kommune\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Kommune som behandler s\\u00f8knaden\"\n    },\n    {\n        \"name\": \"Orgnr\",\n        \"shortName\": \"orgnr\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"S\\u00f8kers organisasjonsnummer for foretak eller bedrift\"\n    },\n    {\n        \"name\": \"Orgnavn\",\n        \"shortName\": \"orgnavn\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Navn p\\u00e5 foretak eller bedrift\"\n    },\n    {\n        \"name\": \"Kommunenr\",\n        \"shortName\": \"kommunenr\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Kommune hvor s\\u00f8kers driftssenter ligger\"\n    },\n    {\n        \"name\": \"G\\u00e5rdsnummer\",\n        \"shortName\": \"gaardsnummer\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Gardsnummer for landbrukseiendommen hvor s\\u00f8kers driftssenter ligger\"\n    },\n    {\n        \"name\": \"Bruksnummer\",\n        \"shortName\": \"bruksnummer\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Bruksnummer for landbrukseiendommen hvor s\\u00f8kers driftssenter ligger\"\n    },\n    {\n        \"name\": \"Festenummer\",\n        \"shortName\": \"festenummer\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Festenummer for landbrukseiendommen hvor s\\u00f8kers driftssenter ligger\"\n    },\n    {\n        \"name\": \"P115 v\\u00e5r\",\n        \"shortName\": \"p115_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Hester, under 3 \\u00e5r\"\n    },\n    {\n        \"name\": \"P116 v\\u00e5r\",\n        \"shortName\": \"p116_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Hester, 3 \\u00e5r og eldre\"\n    },\n    {\n        \"name\": \"P118 v\\u00e5r\",\n        \"shortName\": \"p118_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Herav (av P121) kyr av minst 50 % av spesifiserte raser\"\n    },\n    {\n        \"name\": \"P119 v\\u00e5r\",\n        \"shortName\": \"p119_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\\u00d8vrig storfe\"\n    },\n    {\n        \"name\": \"P120 v\\u00e5r\",\n        \"shortName\": \"p120_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Melkekyr\"\n    },\n    {\n        \"name\": \"P121 v\\u00e5r\",\n        \"shortName\": \"p121_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Ammekyr\"\n    },\n    {\n        \"name\": \"P139 v\\u00e5r\",\n        \"shortName\": \"p139_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Melkesau, f\\u00f8dt i fjor eller tidligere\"\n    },\n    {\n        \"name\": \"P140 v\\u00e5r\",\n        \"shortName\": \"p140_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Melkegeiter\"\n    },\n    {\n        \"name\": \"P142 v\\u00e5r\",\n        \"shortName\": \"p142_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Ammegeiter\"\n    },\n    {\n        \"name\": \"P144 v\\u00e5r\",\n        \"shortName\": \"p144_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Bukker og ungdyr, medregnet kje\"\n    },\n    {\n        \"name\": \"P145 v\\u00e5r\",\n        \"shortName\": \"p145_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"S\\u00f8yer, f\\u00f8dt i fjor eller tidligere.\"\n    },\n    {\n        \"name\": \"P146 v\\u00e5r\",\n        \"shortName\": \"p146_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"V\\u00e6rer, f\\u00f8dt i fjor eller tidligere\"\n    },\n    {\n        \"name\": \"P154 v\\u00e5r\",\n        \"shortName\": \"p154_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Sm\\u00e5griser, levendevekt under 20 kg eller alder inntil 8 uker\"\n    },\n    {\n        \"name\": \"P155 v\\u00e5r\",\n        \"shortName\": \"p155_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Avlspurker som har f\\u00e5tt minst ett kull\"\n    },\n    {\n        \"name\": \"P156 v\\u00e5r\",\n        \"shortName\": \"p156_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"R\\u00e5ner som er satt inn i avl\"\n    },\n    {\n        \"name\": \"P157 v\\u00e5r\",\n        \"shortName\": \"p157_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Slaktegriser, levendevekt minst 20 kg. Griser p\\u00e5satt til avlsdyr, levendevekt 20-50 kg\"\n    },\n    {\n        \"name\": \"P158 v\\u00e5r\",\n        \"shortName\": \"p158_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Ungpurker bestemt for avl, levendevekt minst 50 kg eller eldre enn 15 uker\"\n    },\n    {\n        \"name\": \"P159 v\\u00e5r\",\n        \"shortName\": \"p159_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Ungr\\u00e5ner bestemt for avl, levendevekt minst 50 kg eller eldre enn 15 uker\"\n    },\n    {\n        \"name\": \"P161 v\\u00e5r\",\n        \"shortName\": \"p161_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Verpeh\\u00f8ner for konsumeggproduksjon, 20 uker og eldre\"\n    },\n    {\n        \"name\": \"P168 v\\u00e5r\",\n        \"shortName\": \"p168_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Avlsdyr av ender, kalkuner og gjess\"\n    },\n    {\n        \"name\": \"P170 v\\u00e5r\",\n        \"shortName\": \"p170_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Mink, avlstisper f\\u00f8dt foreg\\u00e5ende \\u00e5r eller tidligere\"\n    },\n    {\n        \"name\": \"P171 v\\u00e5r\",\n        \"shortName\": \"p171_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Rev, avlstisper f\\u00f8dt foreg\\u00e5ende \\u00e5r eller tidligere\"\n    },\n    {\n        \"name\": \"P174 v\\u00e5r\",\n        \"shortName\": \"p174_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Ender, kalkuner og gjess for slakt\"\n    },\n    {\n        \"name\": \"P175 v\\u00e5r\",\n        \"shortName\": \"p175_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Livkyllinger, p\\u00e5satt til verpeh\\u00f8ns\"\n    },\n    {\n        \"name\": \"P176 v\\u00e5r\",\n        \"shortName\": \"p176_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Slaktekyllinger\"\n    },\n    {\n        \"name\": \"P178 v\\u00e5r\",\n        \"shortName\": \"p178_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Hjort, 1 \\u00e5r og eldre\"\n    },\n    {\n        \"name\": \"P179 v\\u00e5r\",\n        \"shortName\": \"p179_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Hjort, under 1 \\u00e5r\"\n    },\n    {\n        \"name\": \"P180 v\\u00e5r\",\n        \"shortName\": \"p180_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Kaniner som brukes i kj\\u00f8tt- eller ullproduksjon\"\n    },\n    {\n        \"name\": \"P183 v\\u00e5r\",\n        \"shortName\": \"p183_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Struts\"\n    },\n    {\n        \"name\": \"P192 v\\u00e5r\",\n        \"shortName\": \"p192_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Esel\"\n    },\n    {\n        \"name\": \"P196 v\\u00e5r\",\n        \"shortName\": \"p196_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Lama\"\n    },\n    {\n        \"name\": \"P197 v\\u00e5r\",\n        \"shortName\": \"p197_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Alpakka\"\n    },\n    {\n        \"name\": \"P801 v\\u00e5r\",\n        \"shortName\": \"p801_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\\u00d8kologiske melkekyr\"\n    },\n    {\n        \"name\": \"P802 v\\u00e5r\",\n        \"shortName\": \"p802_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\\u00d8kologiske ammekyr\"\n    },\n    {\n        \"name\": \"P803 v\\u00e5r\",\n        \"shortName\": \"p803_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\\u00d8kologiske \\u00f8vrige storfe\"\n    },\n    {\n        \"name\": \"P810 v\\u00e5r\",\n        \"shortName\": \"p810_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\\u00d8kologiske melkegeiter\"\n    },\n    {\n        \"name\": \"P811 v\\u00e5r\",\n        \"shortName\": \"p811_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\\u00d8kologiske ammegeiter\"\n    },\n    {\n        \"name\": \"P821 v\\u00e5r\",\n        \"shortName\": \"p821_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\\u00d8kologiske sauer f\\u00f8dt i fjor eller tidligere\"\n    },\n    {\n        \"name\": \"P830 v\\u00e5r\",\n        \"shortName\": \"p830_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\\u00d8kologiske avlsgriser\"\n    },\n    {\n        \"name\": \"P841 v\\u00e5r\",\n        \"shortName\": \"p841_vaar\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\\u00d8kologiske verpeh\\u00f8ner\"\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "datahotelFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "csv",
+                    "yaml"
+                ]
+            },
+            "datahotelMetadataFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "yaml"
+                ]
+            },
+            "datasetMetadata": {
+                "type": "object",
+                "properties": {
+                    "shortName": {
+                        "type": "string",
+                        "description": "Kortnamn for datasettet. Samme som siste ledd i location."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Menneskelesbart namn for datasettet."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Unik datasett-id i datahotellet"
+                    },
+                    "updated": {
+                        "type": "integer",
+                        "description": "Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer)."
+                    },
+                    "dataset": {
+                        "type": "boolean",
+                        "description": "True dersom location er eit datasett, false dersom ikkje. Ved false kan location vere ein katalog som inneheld datasett."
+                    }
+                }
+            },
+            "datasetFields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Menneskelesbart namn p\u00e5 feltet."
+                        },
+                        "shortName": {
+                            "type": "string",
+                            "description": "Kortnamn for felt. Samme som feltnamn brukt i respons og overskriftsrad i CSV-fila."
+                        },
+                        "groupable": {
+                            "type": "boolean",
+                            "description": "Kan gruppere\/filtrere p\u00e5 dette feltet via query-parameter. E.g. \u00ab?shortName=verdi\u00bb."
+                        },
+                        "searchable": {
+                            "type": "boolean",
+                            "description": "Om dette feltet er s\u00f8kbart via query-parameteret. E.g. \u00ab?query=s\u00f8kestreng\u00bb"
+                        },
+                        "indexPrimaryKey": {
+                            "type": "boolean",
+                            "description": "Ikkje i bruk."
+                        }
+                    }
+                }
+            },
+            "ldir-produksjon-og-avlosertilskudd-2020-record": {
+                "type": "object",
+                "properties": {
+                    "soeknads_aar": {
+                        "type": "string",
+                        "example": "2020",
+                        "description": "S\u00f8knads\u00e5r.\nS\u00f8knads\u00e5r"
+                    },
+                    "saksbehandlende_kommune": {
+                        "type": "string",
+                        "example": "5054",
+                        "description": "Saksbehandlende kommune.\nKommune som behandler s\u00f8knaden"
+                    },
+                    "orgnr": {
+                        "type": "string",
+                        "example": "982831547",
+                        "description": "S\u00f8kers organisasjonsnummer for foretak eller bedrift"
+                    },
+                    "orgnavn": {
+                        "type": "string",
+                        "example": "ANDERS GRANDE",
+                        "description": "Navn p\u00e5 foretak eller bedrift"
+                    },
+                    "kommunenr": {
+                        "type": "string",
+                        "example": "5054",
+                        "description": "Kommune hvor s\u00f8kers driftssenter ligger"
+                    },
+                    "gaardsnummer": {
+                        "type": "string",
+                        "example": "279",
+                        "description": "G\u00e5rdsnummer.\nGardsnummer for landbrukseiendommen hvor s\u00f8kers driftssenter ligger"
+                    },
+                    "bruksnummer": {
+                        "type": "string",
+                        "example": "1",
+                        "description": "Bruksnummer for landbrukseiendommen hvor s\u00f8kers driftssenter ligger"
+                    },
+                    "festenummer": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Festenummer for landbrukseiendommen hvor s\u00f8kers driftssenter ligger"
+                    },
+                    "p115_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P115 v\u00e5r.\nHester, under 3 \u00e5r"
+                    },
+                    "p116_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P116 v\u00e5r.\nHester, 3 \u00e5r og eldre"
+                    },
+                    "p118_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P118 v\u00e5r.\nHerav (av P121) kyr av minst 50 % av spesifiserte raser"
+                    },
+                    "p119_vaar": {
+                        "type": "string",
+                        "example": "36",
+                        "description": "P119 v\u00e5r.\n\u00d8vrig storfe"
+                    },
+                    "p120_vaar": {
+                        "type": "string",
+                        "example": "15",
+                        "description": "P120 v\u00e5r.\nMelkekyr"
+                    },
+                    "p121_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P121 v\u00e5r.\nAmmekyr"
+                    },
+                    "p139_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P139 v\u00e5r.\nMelkesau, f\u00f8dt i fjor eller tidligere"
+                    },
+                    "p140_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P140 v\u00e5r.\nMelkegeiter"
+                    },
+                    "p142_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P142 v\u00e5r.\nAmmegeiter"
+                    },
+                    "p144_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P144 v\u00e5r.\nBukker og ungdyr, medregnet kje"
+                    },
+                    "p145_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P145 v\u00e5r.\nS\u00f8yer, f\u00f8dt i fjor eller tidligere."
+                    },
+                    "p146_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P146 v\u00e5r.\nV\u00e6rer, f\u00f8dt i fjor eller tidligere"
+                    },
+                    "p154_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P154 v\u00e5r.\nSm\u00e5griser, levendevekt under 20 kg eller alder inntil 8 uker"
+                    },
+                    "p155_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P155 v\u00e5r.\nAvlspurker som har f\u00e5tt minst ett kull"
+                    },
+                    "p156_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P156 v\u00e5r.\nR\u00e5ner som er satt inn i avl"
+                    },
+                    "p157_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P157 v\u00e5r.\nSlaktegriser, levendevekt minst 20 kg. Griser p\u00e5satt til avlsdyr, levendevekt 20-50 kg"
+                    },
+                    "p158_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P158 v\u00e5r.\nUngpurker bestemt for avl, levendevekt minst 50 kg eller eldre enn 15 uker"
+                    },
+                    "p159_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P159 v\u00e5r.\nUngr\u00e5ner bestemt for avl, levendevekt minst 50 kg eller eldre enn 15 uker"
+                    },
+                    "p161_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P161 v\u00e5r.\nVerpeh\u00f8ner for konsumeggproduksjon, 20 uker og eldre"
+                    },
+                    "p168_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P168 v\u00e5r.\nAvlsdyr av ender, kalkuner og gjess"
+                    },
+                    "p170_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P170 v\u00e5r.\nMink, avlstisper f\u00f8dt foreg\u00e5ende \u00e5r eller tidligere"
+                    },
+                    "p171_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P171 v\u00e5r.\nRev, avlstisper f\u00f8dt foreg\u00e5ende \u00e5r eller tidligere"
+                    },
+                    "p174_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P174 v\u00e5r.\nEnder, kalkuner og gjess for slakt"
+                    },
+                    "p175_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P175 v\u00e5r.\nLivkyllinger, p\u00e5satt til verpeh\u00f8ns"
+                    },
+                    "p176_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P176 v\u00e5r.\nSlaktekyllinger"
+                    },
+                    "p178_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P178 v\u00e5r.\nHjort, 1 \u00e5r og eldre"
+                    },
+                    "p179_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P179 v\u00e5r.\nHjort, under 1 \u00e5r"
+                    },
+                    "p180_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P180 v\u00e5r.\nKaniner som brukes i kj\u00f8tt- eller ullproduksjon"
+                    },
+                    "p183_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P183 v\u00e5r.\nStruts"
+                    },
+                    "p192_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P192 v\u00e5r.\nEsel"
+                    },
+                    "p196_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P196 v\u00e5r.\nLama"
+                    },
+                    "p197_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P197 v\u00e5r.\nAlpakka"
+                    },
+                    "p801_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P801 v\u00e5r.\n\u00d8kologiske melkekyr"
+                    },
+                    "p802_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P802 v\u00e5r.\n\u00d8kologiske ammekyr"
+                    },
+                    "p803_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P803 v\u00e5r.\n\u00d8kologiske \u00f8vrige storfe"
+                    },
+                    "p810_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P810 v\u00e5r.\n\u00d8kologiske melkegeiter"
+                    },
+                    "p811_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P811 v\u00e5r.\n\u00d8kologiske ammegeiter"
+                    },
+                    "p821_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P821 v\u00e5r.\n\u00d8kologiske sauer f\u00f8dt i fjor eller tidligere"
+                    },
+                    "p830_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P830 v\u00e5r.\n\u00d8kologiske avlsgriser"
+                    },
+                    "p841_vaar": {
+                        "type": "string",
+                        "example": "",
+                        "description": "P841 v\u00e5r.\n\u00d8kologiske verpeh\u00f8ner"
+                    }
+                }
+            },
+            "ldir-produksjon-og-avlosertilskudd-2020-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/ldir-produksjon-og-avlosertilskudd-2020-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            }
+        },
+        "headers": {
+            "X-Datahotel-Page": {
+                "description": "Side (page) av resultatet som er returnert.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Pages": {
+                "description": "Tal p\u00e5 sider totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Posts": {
+                "description": "Tal p\u00e5 postar totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ETag": {
+                "description": "Fungerer som standard HTTP ETag. Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer).",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "2020",
+            "description": "Produksjons- og avl\u00f8sertilskudd til jordbruksforetak \u2013 s\u00f8knadsomgang 2020 del 1",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=ldir\/produksjon-og-avlosertilskudd\/2020"
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Meir dokumentasjon for hotell.difi.no",
+        "url": "https:\/\/hotell.difi.no\/api"
+    }
+}

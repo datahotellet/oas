@@ -1,0 +1,719 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "<p>Sj\u00e5 <a href=\"https:\/\/data.norge.no\/node\/1175\">datasett-oppf\u00f8ring<\/a> for meir informasjon (kontaktinformasjon, oppdateringsfrekvens, lenker til dokumentasjon etc.)<\/p>\n",
+        "version": "1.0.0",
+        "title": "Tidstyver i forvaltningen",
+        "license": {
+            "name": "Data-lisens",
+            "url": "http:\/\/data.norge.no\/nlod\/"
+        },
+        "termsOfService": "https:\/\/hotell.difi.no\/api"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/hotell.difi.no"
+        }
+    ],
+    "paths": {
+        "\/api\/{format}\/difi\/tidstyv\/2014": {
+            "get": {
+                "tags": [
+                    "2014"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getDifiTidstyv2014Page",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    },
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "S\u00f8k i datasettet. Gir treff p\u00e5 felt: nummer, departement, organisasjon, tittel, problemtype_beskrivelse, opplevelse-internt_beskrivelse, opplevelse-brukere_beskrivelse, omfang_beskrivelse, tiltak_beskrivelse",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nummer",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "departement",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "organisasjon",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "problemtype-kategori_regelverk",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "problemtype-kategori_prosedyre",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "problemtype-kategori_rapporteringskrav",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "problemtype-kategori_aktivitetskrav",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "problemtype-kategori_it-l\u00f8sning",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "problemtype-kategori_annet",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "opplevelse-internt-kategori_effektivitet",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "opplevelse-internt-kategori_un\u00f8dvendig",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "opplevelse-internt-kategori_dobbeltarbeid",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "opplevelse-internt-kategori_tid",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "opplevelse-brukere-kategori_kvalitet",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "opplevelse-brukere-kategori_tid",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "opplevelse-brukere-kategori_manuell",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "opplevelse-brukere-kategori_missforst\u00e5elser",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tiltak-kategori_regelverk",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tiltak-kategori_prosedyre-arbeidsprosess",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tiltak-kategori_rapporteringskrav",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tiltak-kategori_aktivitetskrav",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tiltak-kategori_ansvarsfordeling",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tiltak-kategori_ikt-l\u00f8sninger",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tiltak-kategori_annet",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/difi-tidstyv-2014-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/difi\/tidstyv\/2014": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "2014"
+                ],
+                "operationId": "downloadDifiTidstyv2014",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/difi\/tidstyv\/2014\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "2014"
+                ],
+                "operationId": "getDifiTidstyv2014Metadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"2014\",\n    \"name\": \"Tidstyver i forvaltningen 2014\",\n    \"location\": \"difi\/tidstyv\/2014\",\n    \"updated\": 1415183852,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/difi\/tidstyv\/2014\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "2014"
+                ],
+                "operationId": "getDifiTidstyv2014Fields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"NUMMER\",\n        \"shortName\": \"nummer\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tidstyv nummer\"\n    },\n    {\n        \"name\": \"DEPARTEMENT\",\n        \"shortName\": \"departement\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Innmelders overordnede department\"\n    },\n    {\n        \"name\": \"ORGANISASJON\",\n        \"shortName\": \"organisasjon\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Innmelders organisasjon\"\n    },\n    {\n        \"name\": \"INNLEGGSDATO\",\n        \"shortName\": \"innleggsdato\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Dato tidstyven ble f\\u00f8rst rapportert internt i organisasjonen\"\n    },\n    {\n        \"name\": \"TITTEL\",\n        \"shortName\": \"tittel\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tidstyvens tittel\"\n    },\n    {\n        \"name\": \"PROBLEMTYPE-KATEGORI_REGELVERK\",\n        \"shortName\": \"problemtype-kategori_regelverk\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Problemtype kategorisert som 'regelverk'\"\n    },\n    {\n        \"name\": \"PROBLEMTYPE-KATEGORI_PROSEDYRE\",\n        \"shortName\": \"problemtype-kategori_prosedyre\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Problemtype kategorisert som 'prosedyre'\"\n    },\n    {\n        \"name\": \"PROBLEMTYPE-KATEGORI_RAPPORTERINGSKRAV\",\n        \"shortName\": \"problemtype-kategori_rapporteringskrav\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Problemtype kategorisert som 'rapporteringskrav'\"\n    },\n    {\n        \"name\": \"PROBLEMTYPE-KATEGORI_AKTIVITETSKRAV\",\n        \"shortName\": \"problemtype-kategori_aktivitetskrav\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Problemtype kategorisert som 'aktivitetskrav'\"\n    },\n    {\n        \"name\": \"PROBLEMTYPE-KATEGORI_IT-L\\u00d8SNING\",\n        \"shortName\": \"problemtype-kategori_it-l\\u00f8sning\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Problemtype kategorisert som 'it-l\\u00f8sning'\"\n    },\n    {\n        \"name\": \"PROBLEMTYPE-KATEGORI_ANNET\",\n        \"shortName\": \"problemtype-kategori_annet\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Problemtype kategorisert som 'annet'\"\n    },\n    {\n        \"name\": \"PROBLEMTYPE_BESKRIVELSE\",\n        \"shortName\": \"problemtype_beskrivelse\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Beskrivelse av problemtype\"\n    },\n    {\n        \"name\": \"OPPLEVELSE-INTERNT-KATEGORI_EFFEKTIVITET\",\n        \"shortName\": \"opplevelse-internt-kategori_effektivitet\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Opplevelse internt i virksomheten kategorisert som 'reduserer virksomhetens muligheter til \\u00e5 n\\u00e5 m\\u00e5l\/v\\u00e6re effektiv'\"\n    },\n    {\n        \"name\": \"OPPLEVELSE-INTERNT-KATEGORI_UN\\u00d8DVENDIG\",\n        \"shortName\": \"opplevelse-internt-kategori_un\\u00f8dvendig\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Opplevelse internt i virksomheten kategorisert som 'oppleves som un\\u00f8dvendig'\"\n    },\n    {\n        \"name\": \"OPPLEVELSE-INTERNT-KATEGORI_DOBBELTARBEID\",\n        \"shortName\": \"opplevelse-internt-kategori_dobbeltarbeid\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Opplevelse internt i virksomheten kategorisert som 'skaper dobbeltarbeid'\"\n    },\n    {\n        \"name\": \"OPPLEVELSE-INTERNT-KATEGORI_TID\",\n        \"shortName\": \"opplevelse-internt-kategori_tid\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Opplevelse internt i virksomheten kategorisert som 'tar uforholdsmessig mye tid for fagpersonell'\"\n    },\n    {\n        \"name\": \"OPPLEVELSE-INTERNT_BESKRIVELSE\",\n        \"shortName\": \"opplevelse-internt_beskrivelse\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Beskrivelse av intern opplevelse\"\n    },\n    {\n        \"name\": \"OPPLEVELSE-BRUKERE-KATEGORI_KVALITET\",\n        \"shortName\": \"opplevelse-brukere-kategori_kvalitet\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Opplevelse for brukeren kategorisert som 'gir d\\u00e5rligere kvalitet p\\u00e5 tjenesten for brukere\/n\\u00e6ringsliv'\"\n    },\n    {\n        \"name\": \"OPPLEVELSE-BRUKERE-KATEGORI_TID\",\n        \"shortName\": \"opplevelse-brukere-kategori_tid\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Opplevelse for brukeren kategorisert som 'tar un\\u00f8dvendig mye tid for brukere\/n\\u00e6ringsliv'\"\n    },\n    {\n        \"name\": \"OPPLEVELSE-BRUKERE-KATEGORI_MANUELL\",\n        \"shortName\": \"opplevelse-brukere-kategori_manuell\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Opplevelse for brukeren kategorisert som 'krever un\\u00f8dvendige manuelle registreringer\/kartlegginger\/statistikk for \\u00e5 besvare'\"\n    },\n    {\n        \"name\": \"OPPLEVELSE-BRUKERE-KATEGORI_MISSFORST\\u00c5ELSER\",\n        \"shortName\": \"opplevelse-brukere-kategori_missforst\\u00e5elser\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Opplevelse for brukeren kategorisert som 'mange brukere\/n\\u00e6ringsliv misforst\\u00e5r, og har derfor mange sp\\u00f8rsm\\u00e5l til virksomheten'\"\n    },\n    {\n        \"name\": \"OPPLEVELSE-BRUKERE_BESKRIVELSE\",\n        \"shortName\": \"opplevelse-brukere_beskrivelse\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Beskrivelse av brukerens opplevelse\"\n    },\n    {\n        \"name\": \"OMFANG\",\n        \"shortName\": \"omfang\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Estimat av tidstyvens omfang (angitt i timer).\"\n    },\n    {\n        \"name\": \"OMFANG_BESKRIVELSE\",\n        \"shortName\": \"omfang_beskrivelse\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Kommentar til estimert omfang\"\n    },\n    {\n        \"name\": \"TILTAK-KATEGORI_REGELVERK\",\n        \"shortName\": \"tiltak-kategori_regelverk\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Foresl\\u00e5tt tiltak kategorisert som 'fjerne\/endre regelverk'\"\n    },\n    {\n        \"name\": \"TILTAK-KATEGORI_PROSEDYRE-ARBEIDSPROSESS\",\n        \"shortName\": \"tiltak-kategori_prosedyre-arbeidsprosess\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Foresl\\u00e5tt tiltak kategorisert som 'forenkle prosedyre\/arbeidsprosess'\"\n    },\n    {\n        \"name\": \"TILTAK-KATEGORI_RAPPORTERINGSKRAV\",\n        \"shortName\": \"tiltak-kategori_rapporteringskrav\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Foresl\\u00e5tt tiltak kategorisert som 'fjerne\/endre rapporteringskrav'\"\n    },\n    {\n        \"name\": \"TILTAK-KATEGORI_AKTIVITETSKRAV\",\n        \"shortName\": \"tiltak-kategori_aktivitetskrav\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Foresl\\u00e5tt tiltak kategorisert som 'fjerne\/endre-aktivitetskrav'\"\n    },\n    {\n        \"name\": \"TILTAK-KATEGORI_ANSVARSFORDELING\",\n        \"shortName\": \"tiltak-kategori_ansvarsfordeling\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Foresl\\u00e5tt tiltak kategorisert som 'endre ansvarsfordeling mellom virksomheter eller mellom type personell'\"\n    },\n    {\n        \"name\": \"TILTAK-KATEGORI_IKT-L\\u00d8SNINGER\",\n        \"shortName\": \"tiltak-kategori_ikt-l\\u00f8sninger\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Foresl\\u00e5tt tiltak kategorisert som 'forbedre IKT-l\\u00f8sninger'\"\n    },\n    {\n        \"name\": \"TILTAK-KATEGORI_ANNET\",\n        \"shortName\": \"tiltak-kategori_annet\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Foresl\\u00e5tt tiltak kategorisert som 'annet'\"\n    },\n    {\n        \"name\": \"tiltak_beskrivelse\",\n        \"shortName\": \"tiltak_beskrivelse\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Beskrivelse av foresl\\u00e5tt tiltak\"\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "datahotelFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "csv",
+                    "yaml"
+                ]
+            },
+            "datahotelMetadataFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "yaml"
+                ]
+            },
+            "datasetMetadata": {
+                "type": "object",
+                "properties": {
+                    "shortName": {
+                        "type": "string",
+                        "description": "Kortnamn for datasettet. Samme som siste ledd i location."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Menneskelesbart namn for datasettet."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Unik datasett-id i datahotellet"
+                    },
+                    "updated": {
+                        "type": "integer",
+                        "description": "Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer)."
+                    },
+                    "dataset": {
+                        "type": "boolean",
+                        "description": "True dersom location er eit datasett, false dersom ikkje. Ved false kan location vere ein katalog som inneheld datasett."
+                    }
+                }
+            },
+            "datasetFields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Menneskelesbart namn p\u00e5 feltet."
+                        },
+                        "shortName": {
+                            "type": "string",
+                            "description": "Kortnamn for felt. Samme som feltnamn brukt i respons og overskriftsrad i CSV-fila."
+                        },
+                        "groupable": {
+                            "type": "boolean",
+                            "description": "Kan gruppere\/filtrere p\u00e5 dette feltet via query-parameter. E.g. \u00ab?shortName=verdi\u00bb."
+                        },
+                        "searchable": {
+                            "type": "boolean",
+                            "description": "Om dette feltet er s\u00f8kbart via query-parameteret. E.g. \u00ab?query=s\u00f8kestreng\u00bb"
+                        },
+                        "indexPrimaryKey": {
+                            "type": "boolean",
+                            "description": "Ikkje i bruk."
+                        }
+                    }
+                }
+            },
+            "difi-tidstyv-2014-record": {
+                "type": "object",
+                "properties": {
+                    "nummer": {
+                        "type": "string",
+                        "example": "43",
+                        "description": "Tidstyv nummer"
+                    },
+                    "departement": {
+                        "type": "string",
+                        "example": "Kunnskapsdepartementet",
+                        "description": "Innmelders overordnede department"
+                    },
+                    "organisasjon": {
+                        "type": "string",
+                        "example": "Meteorologisk institutt",
+                        "description": "Innmelders organisasjon"
+                    },
+                    "innleggsdato": {
+                        "type": "string",
+                        "example": "12.06.2014",
+                        "description": "Dato tidstyven ble f\u00f8rst rapportert internt i organisasjonen"
+                    },
+                    "tittel": {
+                        "type": "string",
+                        "example": "Dobbeltarbeid, reiseregningen.no",
+                        "description": "Tidstyvens tittel"
+                    },
+                    "problemtype-kategori_regelverk": {
+                        "type": "string",
+                        "example": "false",
+                        "description": "Problemtype kategorisert som 'regelverk'"
+                    },
+                    "problemtype-kategori_prosedyre": {
+                        "type": "string",
+                        "example": "true",
+                        "description": "Problemtype kategorisert som 'prosedyre'"
+                    },
+                    "problemtype-kategori_rapporteringskrav": {
+                        "type": "string",
+                        "example": "true",
+                        "description": "Problemtype kategorisert som 'rapporteringskrav'"
+                    },
+                    "problemtype-kategori_aktivitetskrav": {
+                        "type": "string",
+                        "example": "false",
+                        "description": "Problemtype kategorisert som 'aktivitetskrav'"
+                    },
+                    "problemtype-kategori_it-l\u00f8sning": {
+                        "type": "string",
+                        "example": "false",
+                        "description": "PROBLEMTYPE-KATEGORI_IT-L\u00d8SNING.\nProblemtype kategorisert som 'it-l\u00f8sning'"
+                    },
+                    "problemtype-kategori_annet": {
+                        "type": "string",
+                        "example": "false",
+                        "description": "Problemtype kategorisert som 'annet'"
+                    },
+                    "problemtype_beskrivelse": {
+                        "type": "string",
+                        "example": "reiseregningen.no ber om at det skal krysses av (smart kalenderl\u00f8sning!) for hvilke m\u00e5ltider man er blitt p\u00e5spandert hvilke dag i forbindelse med en reise. Jeg krysser av for en lunch og en middag p\u00e5 dag 1, for frokost, lunch og middag p\u00e5 dag 2, og frokost p\u00e5 dag 3 (for eksempel). Vi skriver deretter ut skjemaet og leverer det til Regsnkap. Regnskap er satt til \u00e5 kontrollere at vi har trukket rett sum for riktige m\u00e5ltider. Men p\u00e5 skjemaet som dannes p\u00e5 bakgrunn av reiseregningen.no kan ikke Regnskap se hvilke m\u00e5ltider jeg har trukket for - skjemaet har bare sl\u00e5tt sammen alle summene som maten er verdt. For at Regnskap skal vite hvilke m\u00e5ltider jeg har trukket for, m\u00e5 disse f\u00f8res opp EN GANG TIL, i merknadsfeltet. Den fine kalender-kryss-av-l\u00f8sningen er mao laget for skjemaet selv, og ikke for dem som er satt til \u00e5 kontrollere skjemaet i etterkant.",
+                        "description": "Beskrivelse av problemtype"
+                    },
+                    "opplevelse-internt-kategori_effektivitet": {
+                        "type": "string",
+                        "example": "false",
+                        "description": "Opplevelse internt i virksomheten kategorisert som 'reduserer virksomhetens muligheter til \u00e5 n\u00e5 m\u00e5l\/v\u00e6re effektiv'"
+                    },
+                    "opplevelse-internt-kategori_un\u00f8dvendig": {
+                        "type": "string",
+                        "example": "false",
+                        "description": "OPPLEVELSE-INTERNT-KATEGORI_UN\u00d8DVENDIG.\nOpplevelse internt i virksomheten kategorisert som 'oppleves som un\u00f8dvendig'"
+                    },
+                    "opplevelse-internt-kategori_dobbeltarbeid": {
+                        "type": "string",
+                        "example": "true",
+                        "description": "Opplevelse internt i virksomheten kategorisert som 'skaper dobbeltarbeid'"
+                    },
+                    "opplevelse-internt-kategori_tid": {
+                        "type": "string",
+                        "example": "false",
+                        "description": "Opplevelse internt i virksomheten kategorisert som 'tar uforholdsmessig mye tid for fagpersonell'"
+                    },
+                    "opplevelse-internt_beskrivelse": {
+                        "type": "string",
+                        "example": "",
+                        "description": "Beskrivelse av intern opplevelse"
+                    },
+                    "opplevelse-brukere-kategori_kvalitet": {
+                        "type": "string",
+                        "example": "false",
+                        "description": "Opplevelse for brukeren kategorisert som 'gir d\u00e5rligere kvalitet p\u00e5 tjenesten for brukere\/n\u00e6ringsliv'"
+                    },
+                    "opplevelse-brukere-kategori_tid": {
+                        "type": "string",
+                        "example": "false",
+                        "description": "Opplevelse for brukeren kategorisert som 'tar un\u00f8dvendig mye tid for brukere\/n\u00e6ringsliv'"
+                    },
+                    "opplevelse-brukere-kategori_manuell": {
+                        "type": "string",
+                        "example": "false",
+                        "description": "Opplevelse for brukeren kategorisert som 'krever un\u00f8dvendige manuelle registreringer\/kartlegginger\/statistikk for \u00e5 besvare'"
+                    },
+                    "opplevelse-brukere-kategori_missforst\u00e5elser": {
+                        "type": "string",
+                        "example": "false",
+                        "description": "OPPLEVELSE-BRUKERE-KATEGORI_MISSFORST\u00c5ELSER.\nOpplevelse for brukeren kategorisert som 'mange brukere\/n\u00e6ringsliv misforst\u00e5r, og har derfor mange sp\u00f8rsm\u00e5l til virksomheten'"
+                    },
+                    "opplevelse-brukere_beskrivelse": {
+                        "type": "string",
+                        "example": "",
+                        "description": "Beskrivelse av brukerens opplevelse"
+                    },
+                    "omfang": {
+                        "type": "string",
+                        "example": "",
+                        "description": "Estimat av tidstyvens omfang (angitt i timer)."
+                    },
+                    "omfang_beskrivelse": {
+                        "type": "string",
+                        "example": "",
+                        "description": "Kommentar til estimert omfang"
+                    },
+                    "tiltak-kategori_regelverk": {
+                        "type": "string",
+                        "example": "false",
+                        "description": "Foresl\u00e5tt tiltak kategorisert som 'fjerne\/endre regelverk'"
+                    },
+                    "tiltak-kategori_prosedyre-arbeidsprosess": {
+                        "type": "string",
+                        "example": "false",
+                        "description": "Foresl\u00e5tt tiltak kategorisert som 'forenkle prosedyre\/arbeidsprosess'"
+                    },
+                    "tiltak-kategori_rapporteringskrav": {
+                        "type": "string",
+                        "example": "false",
+                        "description": "Foresl\u00e5tt tiltak kategorisert som 'fjerne\/endre rapporteringskrav'"
+                    },
+                    "tiltak-kategori_aktivitetskrav": {
+                        "type": "string",
+                        "example": "false",
+                        "description": "Foresl\u00e5tt tiltak kategorisert som 'fjerne\/endre-aktivitetskrav'"
+                    },
+                    "tiltak-kategori_ansvarsfordeling": {
+                        "type": "string",
+                        "example": "false",
+                        "description": "Foresl\u00e5tt tiltak kategorisert som 'endre ansvarsfordeling mellom virksomheter eller mellom type personell'"
+                    },
+                    "tiltak-kategori_ikt-l\u00f8sninger": {
+                        "type": "string",
+                        "example": "true",
+                        "description": "TILTAK-KATEGORI_IKT-L\u00d8SNINGER.\nForesl\u00e5tt tiltak kategorisert som 'forbedre IKT-l\u00f8sninger'"
+                    },
+                    "tiltak-kategori_annet": {
+                        "type": "string",
+                        "example": "false",
+                        "description": "Foresl\u00e5tt tiltak kategorisert som 'annet'"
+                    },
+                    "tiltak_beskrivelse": {
+                        "type": "string",
+                        "example": "Det b\u00f8r framg\u00e5 av skjemaet hvilke m\u00e5ltider det er trukket for, slik at man slipper \u00e5 omtale dette p\u00e5 to ulike steder i skjemaet.",
+                        "description": "Beskrivelse av foresl\u00e5tt tiltak"
+                    }
+                }
+            },
+            "difi-tidstyv-2014-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/difi-tidstyv-2014-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            }
+        },
+        "headers": {
+            "X-Datahotel-Page": {
+                "description": "Side (page) av resultatet som er returnert.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Pages": {
+                "description": "Tal p\u00e5 sider totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Posts": {
+                "description": "Tal p\u00e5 postar totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ETag": {
+                "description": "Fungerer som standard HTTP ETag. Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer).",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "2014",
+            "description": "Tidstyver i forvaltningen 2014",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=difi\/tidstyv\/2014"
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Meir dokumentasjon for hotell.difi.no",
+        "url": "https:\/\/hotell.difi.no\/api"
+    }
+}

@@ -1,0 +1,805 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "<p>Sj\u00e5 <a href=\"https:\/\/data.norge.no\/node\/3117\">datasett-oppf\u00f8ring<\/a> for meir informasjon (kontaktinformasjon, oppdateringsfrekvens, lenker til dokumentasjon etc.)<\/p>\n",
+        "version": "1.0.0",
+        "title": "S\u00f8knader til og innvilgede prosjekter fra Forskningsr\u00e5det",
+        "license": {
+            "name": "Data-lisens",
+            "url": "http:\/\/data.norge.no\/nlod\/"
+        },
+        "termsOfService": "https:\/\/hotell.difi.no\/api"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/hotell.difi.no"
+        }
+    ],
+    "paths": {
+        "\/api\/{format}\/forskningsradet\/bevilgninger": {
+            "get": {
+                "tags": [
+                    "bevilgninger"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getForskningsradetBevilgningerPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    },
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "S\u00f8k i datasettet. Gir treff p\u00e5 felt: prosjektnummer, prosjekttittel, soknadsfrist, utlysningsaktivitet, utlysningtittel, prosjektfase, prosjektansvarlig_navn, kortnavn, organisasjonsnummer, sektor, kategori, kommune, fylke, landsdel, aktivitet, fagomraade, fag, fagdisiplin",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "soknadsfrist",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "utlysningsaktivitet",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "prosjekttype",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "soknadstype",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "prosjektfase",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "prosjektleder_kjonn",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "prosjektansvarlig_type",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "prosjektansvarlig_navn",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "kortnavn",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "kp1",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "kp2",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sektor",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "kategori",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "kommune",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "kommunenummer",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "fylke",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "fylkenummer",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "landsdel",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "virkemiddel_sekvens",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "virkemiddel",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "hovedaktivitet_sekvens",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "hovedaktivitet",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "aktivitet",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "aktivitet_kode",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "fagomraade",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "fag",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "fagdisiplin",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "soknadaar",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/forskningsradet-bevilgninger-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/forskningsradet\/bevilgninger": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "bevilgninger"
+                ],
+                "operationId": "downloadForskningsradetBevilgninger",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/forskningsradet\/bevilgninger\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "bevilgninger"
+                ],
+                "operationId": "getForskningsradetBevilgningerMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"bevilgninger\",\n    \"name\": \"Bevilgninger til forsknings- og innovasjonsprosjekter i Norge\",\n    \"location\": \"forskningsradet\/bevilgninger\",\n    \"updated\": 1573735797,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/forskningsradet\/bevilgninger\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "bevilgninger"
+                ],
+                "operationId": "getForskningsradetBevilgningerFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"Prosjektnummer\",\n        \"shortName\": \"prosjektnummer\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Unik identifikasjon av den enkelte s\\u00f8knad\/det enkelte prosjekt som har f\\u00e5tt bevilgning. Datagrunnlaget inneholder en linje for hvert prosjekt\"\n    },\n    {\n        \"name\": \"Prosjekttittel\",\n        \"shortName\": \"prosjekttittel\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tittel p\\u00e5 s\\u00f8knad\/prosjekt\"\n    },\n    {\n        \"name\": \"S\\u00f8knadsfrist\",\n        \"shortName\": \"soknadsfrist\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"De fleste s\\u00f8knader er knyttet til en s\\u00f8knadsfrist, s\\u00f8knader uten s\\u00f8knadsfrist er enten s\\u00f8knader i forbindelse med en l\\u00f8pende utlysning eller manuelt opprettede prosjekter\"\n    },\n    {\n        \"name\": \"UtlysningsID\",\n        \"shortName\": \"utlysnings_id\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Unik identifikasjon av den enkelte utlysningen\"\n    },\n    {\n        \"name\": \"Utlysningsaktivitet\",\n        \"shortName\": \"utlysningsaktivitet\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Aktiviteten som lyser ut midler til forskning og innovasjon. Sammenfaller ofte med \\nAkivitet, men i noen tilfeller med fellesutlysninger\/flytting av s\\u00f8knader vil det v\\u00e6re avvik mellom utlysningsaktivitet og aktivitet.\"\n    },\n    {\n        \"name\": \"Utlysningstittel\",\n        \"shortName\": \"utlysningtittel\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tittel p\\u00e5 den enkelte utlysningen av forskningsmidler\"\n    },\n    {\n        \"name\": \"Prosjekttype\",\n        \"shortName\": \"prosjekttype\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Beskrivelse av prosjektene p\\u00e5 tvers av virkemiddelhierarkiet - inneholder verdiene Prosjektst\\u00f8tte, Institusjonsst\\u00f8tte, Personlig stipend og Andre\"\n    },\n    {\n        \"name\": \"S\\u00f8knadstype\",\n        \"shortName\": \"soknadstype\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"S\\u00f8knadstypen beskriver hvilke vurderingskriterier og krav til s\\u00f8knaden som gjelder. Se https:\/\/www.forskningsradet.no\/sok-om-finansiering\/midler-fra-forskningsradet\/nye-soknadstyper-i-2019\/\"\n    },\n    {\n        \"name\": \"S\\u00f8kt periode fra-\\u00e5r\",\n        \"shortName\": \"sokstart\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Prosjektets oppstarts\\u00e5r i henhold til s\\u00f8knaden\"\n    },\n    {\n        \"name\": \"S\\u00f8kt periode til-\\u00e5r\",\n        \"shortName\": \"sokslutt\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Prosjektets slutt\\u00e5r i henhold til s\\u00f8knaden\"\n    },\n    {\n        \"name\": \"Prosjektfase\",\n        \"shortName\": \"prosjektfase\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Et prosjekt har til en hver tid \\u00e9n prosjektfase - inneholder verdiene Mottatt, Vurderes, Avslag, Bevilgning og Avsluttet. Prosjekter som har f\\u00e5tt st\\u00f8tte har enten fasen Bevilgning (fremdeles et aktivt prosjekt) eller Avsluttet\"\n    },\n    {\n        \"name\": \"Prosjektets fra-\\u00e5r\",\n        \"shortName\": \"prosjektstart\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Prosjektets oppstarts\\u00e5r - kan avvike fra tidspunkt i s\\u00f8knaden ved for eksempel forsinkelser\"\n    },\n    {\n        \"name\": \"Prosjektets til-\\u00e5r\",\n        \"shortName\": \"prosjektslutt\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Prosjektets slutt\\u00e5r - kan avvike fra tidspunkt i s\\u00f8knaden ved for eksempel forsinkelser\"\n    },\n    {\n        \"name\": \"Prosjektleders kj\\u00f8nn\",\n        \"shortName\": \"prosjektleder_kjonn\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Prosjektleders kj\\u00f8nn\"\n    },\n    {\n        \"name\": \"Type prosjektansvarlig\",\n        \"shortName\": \"prosjektansvarlig_type\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Organisasjon eller person (gjelder kun ved personlig stipend).\"\n    },\n    {\n        \"name\": \"Prosjektansvarlig navn\",\n        \"shortName\": \"prosjektansvarlig_navn\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Prosjektansvarlig er den som har ansvaret for prosjektet. Flere samarbeidspartnere kan delta i prosjektet (og motta deler av prosjektbevilgningen fra Forskningsr\\u00e5det), men navn p\\u00e5 samarbeidspartner regnes som tauhetsbelagt informasjon. Navn p\\u00e5 prosjektansvarlig skal v\\u00e6re registrert p\\u00e5 lavest mulig niv\\u00e5 i organisasjonen.\"\n    },\n    {\n        \"name\": \"Prosjektansvarlig kortnavn\",\n        \"shortName\": \"kortnavn\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Overordnet navn p\\u00e5 prosjektansvarlig organisasjon. Er stort sett fylt ut for organisasjoner innenfor UoH-sektoren og instituttsektoren.\"\n    },\n    {\n        \"name\": \"Organisasjonsnummer\",\n        \"shortName\": \"organisasjonsnummer\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Organisasjonsnummer i Enhetsregisteret\"\n    },\n    {\n        \"name\": \"Kontraktspart 1\",\n        \"shortName\": \"kp1\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Kode p\\u00e5 overordnet niv\\u00e5 om prosjektansvarlig - gruppert for hvert enkelt universitet, vitenskapelig h\\u00f8yskole eller h\\u00f8yskole, instituttgrupper og de enkelte regionale helseforetakene\"\n    },\n    {\n        \"name\": \"Kontraktspart 2\",\n        \"shortName\": \"kp2\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Kode p\\u00e5 mer deltaljert niv\\u00e5 - de enkelte fakultetene p\\u00e5 universitetene, de enkelte helseforetak og institutter.\"\n    },\n    {\n        \"name\": \"FoU sektor\",\n        \"shortName\": \"sektor\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Fordeling av prosjektansvarlig p\\u00e5 ulike sektorer - inneholder verdiene UH-sektor, instituttsektor, n\\u00e6ringsliv, helseforetak, utlandet og \\u00f8vrige\"\n    },\n    {\n        \"name\": \"FoU kategori\",\n        \"shortName\": \"kategori\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Inneholder en spesifisering av ulike undergrupper i den enkelte sektor - en oversikt kan finnes ved hjelp av venstremenyen i Prosjektbanken (Organisasjon)\"\n    },\n    {\n        \"name\": \"Kommune\",\n        \"shortName\": \"kommune\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Kommune der forskningen finner sted\"\n    },\n    {\n        \"name\": \"Kommunenummer\",\n        \"shortName\": \"kommunenummer\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Firesifret identifikator for kommuner\"\n    },\n    {\n        \"name\": \"Fylke\",\n        \"shortName\": \"fylke\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Fylke der forskningen finner sted\"\n    },\n    {\n        \"name\": \"Fylkesnummer\",\n        \"shortName\": \"fylkenummer\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\"\n    },\n    {\n        \"name\": \"Landsdel\",\n        \"shortName\": \"landsdel\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Lansdel der forskningen finner sted\"\n    },\n    {\n        \"name\": \"Virkemiddel sekvens\",\n        \"shortName\": \"virkemiddel_sekvens\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Brukes til \\u00e5 sortere virkemidlene\"\n    },\n    {\n        \"name\": \"Virkemiddel\",\n        \"shortName\": \"virkemiddel\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Det h\\u00f8yeste niv\\u00e5et i Forskningsr\\u00e5dets hierarki av finansieringsvirkemidler - inneholder verdiene Programmer, Frittst\\u00e5ende prosjekter, Infrastruktur og institusjonelle tiltak, Nettverkstiltak, Forvaltning, Felleskostnader og Diverse FoU-relaterte aktiviteter\"\n    },\n    {\n        \"name\": \"Hovedaktivitet sekvens\",\n        \"shortName\": \"hovedaktivitet_sekvens\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Brukes til sortere hovedaktivitetene\"\n    },\n    {\n        \"name\": \"Hovedaktivitet\",\n        \"shortName\": \"hovedaktivitet\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"En mer detaljert gruppering av finansieringsvirkemidler - en oversikt kan finnes ved hjelp av venstremenyen i Prosjektbanken (Program\/Aktivitet)\"\n    },\n    {\n        \"name\": \"Aktivitetsnavn\",\n        \"shortName\": \"aktivitet\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"De enkelte prosjektene tilh\\u00f8rer en aktivitet. Aktiviteten kan v\\u00e6re et program eller en annen finansieringaktivitet som p\\u00e5 grunnlag av en programplan med overordnede m\\u00e5l, lyser ut og forvalter midler til forskning og innovasjon for \\u00e5 n\\u00e5 m\\u00e5lene i programplanen\"\n    },\n    {\n        \"name\": \"Aktivitetskode\",\n        \"shortName\": \"aktivitet_kode\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Kort kode for de ulike aktivitetene\"\n    },\n    {\n        \"name\": \"Fagomr\\u00e5de\",\n        \"shortName\": \"fagomraade\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Overordnet kategorisering av disipliner i Norsk inndeling av vitenskapsdisipliner.\"\n    },\n    {\n        \"name\": \"Fag\",\n        \"shortName\": \"fag\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Kategorisering av disipliner i Norsk innedeling av vitenskapsdispliner\"\n    },\n    {\n        \"name\": \"Fagdisiplin\",\n        \"shortName\": \"fagdisiplin\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Detaljert kategorisering av disipliner i Norsk inndeling av vitenskapsdisipliner\"\n    },\n    {\n        \"name\": \"Dr.stip - antall \\u00e5rsverk\",\n        \"shortName\": \"dr_stip_aarsverk\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Antall stipendiat\\u00e5rsverk tilknyttet prosjektet (helt eller delvis finansiert av Forskningsr\\u00e5det)\"\n    },\n    {\n        \"name\": \"Postdok - antall \\u00e5rsverk\",\n        \"shortName\": \"postdok_aarsverk\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Antall stipendiat\\u00e5rsverk tilknyttet prosjektet (helt eller delvis finansiert av Forskningsr\\u00e5det)\"\n    },\n    {\n        \"name\": \"S\\u00f8kt bel\\u00f8p\",\n        \"shortName\": \"sokt_belop\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Totalbel\\u00f8p s\\u00f8kt for hele prosjektperioden\"\n    },\n    {\n        \"name\": \"Bevilgning\",\n        \"shortName\": \"bevilget_belop\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Totalbevilgning for hele prosjektperioden\"\n    },\n    {\n        \"name\": \"S\\u00f8knadsdato\",\n        \"shortName\": \"soknaddato\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Dato for innsendt s\\u00f8knad\"\n    },\n    {\n        \"name\": \"S\\u00f8knads\\u00e5r\",\n        \"shortName\": \"soknadaar\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Det \\u00e5ret som s\\u00f8knaden er sendt inn.\"\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "datahotelFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "csv",
+                    "yaml"
+                ]
+            },
+            "datahotelMetadataFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "yaml"
+                ]
+            },
+            "datasetMetadata": {
+                "type": "object",
+                "properties": {
+                    "shortName": {
+                        "type": "string",
+                        "description": "Kortnamn for datasettet. Samme som siste ledd i location."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Menneskelesbart namn for datasettet."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Unik datasett-id i datahotellet"
+                    },
+                    "updated": {
+                        "type": "integer",
+                        "description": "Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer)."
+                    },
+                    "dataset": {
+                        "type": "boolean",
+                        "description": "True dersom location er eit datasett, false dersom ikkje. Ved false kan location vere ein katalog som inneheld datasett."
+                    }
+                }
+            },
+            "datasetFields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Menneskelesbart namn p\u00e5 feltet."
+                        },
+                        "shortName": {
+                            "type": "string",
+                            "description": "Kortnamn for felt. Samme som feltnamn brukt i respons og overskriftsrad i CSV-fila."
+                        },
+                        "groupable": {
+                            "type": "boolean",
+                            "description": "Kan gruppere\/filtrere p\u00e5 dette feltet via query-parameter. E.g. \u00ab?shortName=verdi\u00bb."
+                        },
+                        "searchable": {
+                            "type": "boolean",
+                            "description": "Om dette feltet er s\u00f8kbart via query-parameteret. E.g. \u00ab?query=s\u00f8kestreng\u00bb"
+                        },
+                        "indexPrimaryKey": {
+                            "type": "boolean",
+                            "description": "Ikkje i bruk."
+                        }
+                    }
+                }
+            },
+            "forskningsradet-bevilgninger-record": {
+                "type": "object",
+                "properties": {
+                    "prosjektnummer": {
+                        "type": "string",
+                        "example": "31804",
+                        "description": "Unik identifikasjon av den enkelte s\u00f8knad\/det enkelte prosjekt som har f\u00e5tt bevilgning. Datagrunnlaget inneholder en linje for hvert prosjekt"
+                    },
+                    "prosjekttittel": {
+                        "type": "string",
+                        "example": "St\u00e5lmat-forum",
+                        "description": "Tittel p\u00e5 s\u00f8knad\/prosjekt"
+                    },
+                    "soknadsfrist": {
+                        "type": "string",
+                        "example": "",
+                        "description": "S\u00f8knadsfrist.\nDe fleste s\u00f8knader er knyttet til en s\u00f8knadsfrist, s\u00f8knader uten s\u00f8knadsfrist er enten s\u00f8knader i forbindelse med en l\u00f8pende utlysning eller manuelt opprettede prosjekter"
+                    },
+                    "utlysnings_id": {
+                        "type": "string",
+                        "example": "",
+                        "description": "UtlysningsID.\nUnik identifikasjon av den enkelte utlysningen"
+                    },
+                    "utlysningsaktivitet": {
+                        "type": "string",
+                        "example": "",
+                        "description": "Aktiviteten som lyser ut midler til forskning og innovasjon. Sammenfaller ofte med \nAkivitet, men i noen tilfeller med fellesutlysninger\/flytting av s\u00f8knader vil det v\u00e6re avvik mellom utlysningsaktivitet og aktivitet."
+                    },
+                    "utlysningtittel": {
+                        "type": "string",
+                        "example": "",
+                        "description": "Utlysningstittel.\nTittel p\u00e5 den enkelte utlysningen av forskningsmidler"
+                    },
+                    "prosjekttype": {
+                        "type": "string",
+                        "example": "Prosjektst\u00f8tte",
+                        "description": "Beskrivelse av prosjektene p\u00e5 tvers av virkemiddelhierarkiet - inneholder verdiene Prosjektst\u00f8tte, Institusjonsst\u00f8tte, Personlig stipend og Andre"
+                    },
+                    "soknadstype": {
+                        "type": "string",
+                        "example": "Annen st\u00f8tte",
+                        "description": "S\u00f8knadstype.\nS\u00f8knadstypen beskriver hvilke vurderingskriterier og krav til s\u00f8knaden som gjelder. Se https:\/\/www.forskningsradet.no\/sok-om-finansiering\/midler-fra-forskningsradet\/nye-soknadstyper-i-2019\/"
+                    },
+                    "sokstart": {
+                        "type": "string",
+                        "example": "1994",
+                        "description": "S\u00f8kt periode fra-\u00e5r.\nProsjektets oppstarts\u00e5r i henhold til s\u00f8knaden"
+                    },
+                    "sokslutt": {
+                        "type": "string",
+                        "example": "2006",
+                        "description": "S\u00f8kt periode til-\u00e5r.\nProsjektets slutt\u00e5r i henhold til s\u00f8knaden"
+                    },
+                    "prosjektfase": {
+                        "type": "string",
+                        "example": "Avsluttet",
+                        "description": "Et prosjekt har til en hver tid \u00e9n prosjektfase - inneholder verdiene Mottatt, Vurderes, Avslag, Bevilgning og Avsluttet. Prosjekter som har f\u00e5tt st\u00f8tte har enten fasen Bevilgning (fremdeles et aktivt prosjekt) eller Avsluttet"
+                    },
+                    "prosjektstart": {
+                        "type": "string",
+                        "example": "1994",
+                        "description": "Prosjektets fra-\u00e5r.\nProsjektets oppstarts\u00e5r - kan avvike fra tidspunkt i s\u00f8knaden ved for eksempel forsinkelser"
+                    },
+                    "prosjektslutt": {
+                        "type": "string",
+                        "example": "2006",
+                        "description": "Prosjektets til-\u00e5r.\nProsjektets slutt\u00e5r - kan avvike fra tidspunkt i s\u00f8knaden ved for eksempel forsinkelser"
+                    },
+                    "prosjektleder_kjonn": {
+                        "type": "string",
+                        "example": "MANN",
+                        "description": "Prosjektleders kj\u00f8nn.\nProsjektleders kj\u00f8nn"
+                    },
+                    "prosjektansvarlig_type": {
+                        "type": "string",
+                        "example": "Organisasjon",
+                        "description": "Type prosjektansvarlig.\nOrganisasjon eller person (gjelder kun ved personlig stipend)."
+                    },
+                    "prosjektansvarlig_navn": {
+                        "type": "string",
+                        "example": "Anvendt mekanikk og korrosjon",
+                        "description": "Prosjektansvarlig navn.\nProsjektansvarlig er den som har ansvaret for prosjektet. Flere samarbeidspartnere kan delta i prosjektet (og motta deler av prosjektbevilgningen fra Forskningsr\u00e5det), men navn p\u00e5 samarbeidspartner regnes som tauhetsbelagt informasjon. Navn p\u00e5 prosjektansvarlig skal v\u00e6re registrert p\u00e5 lavest mulig niv\u00e5 i organisasjonen."
+                    },
+                    "kortnavn": {
+                        "type": "string",
+                        "example": "SINTEF",
+                        "description": "Prosjektansvarlig kortnavn.\nOverordnet navn p\u00e5 prosjektansvarlig organisasjon. Er stort sett fylt ut for organisasjoner innenfor UoH-sektoren og instituttsektoren."
+                    },
+                    "organisasjonsnummer": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Organisasjonsnummer i Enhetsregisteret"
+                    },
+                    "kp1": {
+                        "type": "string",
+                        "example": "706",
+                        "description": "Kontraktspart 1.\nKode p\u00e5 overordnet niv\u00e5 om prosjektansvarlig - gruppert for hvert enkelt universitet, vitenskapelig h\u00f8yskole eller h\u00f8yskole, instituttgrupper og de enkelte regionale helseforetakene"
+                    },
+                    "kp2": {
+                        "type": "string",
+                        "example": "14",
+                        "description": "Kontraktspart 2.\nKode p\u00e5 mer deltaljert niv\u00e5 - de enkelte fakultetene p\u00e5 universitetene, de enkelte helseforetak og institutter."
+                    },
+                    "sektor": {
+                        "type": "string",
+                        "example": "Instituttsektor",
+                        "description": "FoU sektor.\nFordeling av prosjektansvarlig p\u00e5 ulike sektorer - inneholder verdiene UH-sektor, instituttsektor, n\u00e6ringsliv, helseforetak, utlandet og \u00f8vrige"
+                    },
+                    "kategori": {
+                        "type": "string",
+                        "example": "Teknisk-industrielle institutter",
+                        "description": "FoU kategori.\nInneholder en spesifisering av ulike undergrupper i den enkelte sektor - en oversikt kan finnes ved hjelp av venstremenyen i Prosjektbanken (Organisasjon)"
+                    },
+                    "kommune": {
+                        "type": "string",
+                        "example": "Trondheim",
+                        "description": "Kommune der forskningen finner sted"
+                    },
+                    "kommunenummer": {
+                        "type": "string",
+                        "example": "5001",
+                        "description": "Firesifret identifikator for kommuner"
+                    },
+                    "fylke": {
+                        "type": "string",
+                        "example": "Tr\u00f8ndelag - Tr\u00f6\u00f6ndelage",
+                        "description": "Fylke der forskningen finner sted"
+                    },
+                    "fylkenummer": {
+                        "type": "string",
+                        "example": "50",
+                        "description": "Fylkesnummer.\n"
+                    },
+                    "landsdel": {
+                        "type": "string",
+                        "example": "",
+                        "description": "Lansdel der forskningen finner sted"
+                    },
+                    "virkemiddel_sekvens": {
+                        "type": "string",
+                        "example": "1",
+                        "description": "Virkemiddel sekvens.\nBrukes til \u00e5 sortere virkemidlene"
+                    },
+                    "virkemiddel": {
+                        "type": "string",
+                        "example": "Programmer",
+                        "description": "Det h\u00f8yeste niv\u00e5et i Forskningsr\u00e5dets hierarki av finansieringsvirkemidler - inneholder verdiene Programmer, Frittst\u00e5ende prosjekter, Infrastruktur og institusjonelle tiltak, Nettverkstiltak, Forvaltning, Felleskostnader og Diverse FoU-relaterte aktiviteter"
+                    },
+                    "hovedaktivitet_sekvens": {
+                        "type": "string",
+                        "example": "1",
+                        "description": "Hovedaktivitet sekvens.\nBrukes til sortere hovedaktivitetene"
+                    },
+                    "hovedaktivitet": {
+                        "type": "string",
+                        "example": "Brukerstyrte innovasjonsprogrammer",
+                        "description": "En mer detaljert gruppering av finansieringsvirkemidler - en oversikt kan finnes ved hjelp av venstremenyen i Prosjektbanken (Program\/Aktivitet)"
+                    },
+                    "aktivitet": {
+                        "type": "string",
+                        "example": "Vareproduksjon og materialforedling",
+                        "description": "Aktivitetsnavn.\nDe enkelte prosjektene tilh\u00f8rer en aktivitet. Aktiviteten kan v\u00e6re et program eller en annen finansieringaktivitet som p\u00e5 grunnlag av en programplan med overordnede m\u00e5l, lyser ut og forvalter midler til forskning og innovasjon for \u00e5 n\u00e5 m\u00e5lene i programplanen"
+                    },
+                    "aktivitet_kode": {
+                        "type": "string",
+                        "example": "VM",
+                        "description": "Aktivitetskode.\nKort kode for de ulike aktivitetene"
+                    },
+                    "fagomraade": {
+                        "type": "string",
+                        "example": "Teknologi",
+                        "description": "Fagomr\u00e5de.\nOverordnet kategorisering av disipliner i Norsk inndeling av vitenskapsdisipliner."
+                    },
+                    "fag": {
+                        "type": "string",
+                        "example": "Materialteknologi",
+                        "description": "Kategorisering av disipliner i Norsk innedeling av vitenskapsdispliner"
+                    },
+                    "fagdisiplin": {
+                        "type": "string",
+                        "example": "Materialteknologi",
+                        "description": "Detaljert kategorisering av disipliner i Norsk inndeling av vitenskapsdisipliner"
+                    },
+                    "dr_stip_aarsverk": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Dr.stip - antall \u00e5rsverk.\nAntall stipendiat\u00e5rsverk tilknyttet prosjektet (helt eller delvis finansiert av Forskningsr\u00e5det)"
+                    },
+                    "postdok_aarsverk": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Postdok - antall \u00e5rsverk.\nAntall stipendiat\u00e5rsverk tilknyttet prosjektet (helt eller delvis finansiert av Forskningsr\u00e5det)"
+                    },
+                    "sokt_belop": {
+                        "type": "string",
+                        "example": "1200000",
+                        "description": "S\u00f8kt bel\u00f8p.\nTotalbel\u00f8p s\u00f8kt for hele prosjektperioden"
+                    },
+                    "bevilget_belop": {
+                        "type": "string",
+                        "example": "2685890",
+                        "description": "Bevilgning.\nTotalbevilgning for hele prosjektperioden"
+                    },
+                    "soknaddato": {
+                        "type": "string",
+                        "example": "3\/10\/1994",
+                        "description": "S\u00f8knadsdato.\nDato for innsendt s\u00f8knad"
+                    },
+                    "soknadaar": {
+                        "type": "string",
+                        "example": "1994",
+                        "description": "S\u00f8knads\u00e5r.\nDet \u00e5ret som s\u00f8knaden er sendt inn."
+                    }
+                }
+            },
+            "forskningsradet-bevilgninger-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/forskningsradet-bevilgninger-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            }
+        },
+        "headers": {
+            "X-Datahotel-Page": {
+                "description": "Side (page) av resultatet som er returnert.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Pages": {
+                "description": "Tal p\u00e5 sider totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Posts": {
+                "description": "Tal p\u00e5 postar totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ETag": {
+                "description": "Fungerer som standard HTTP ETag. Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer).",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "bevilgninger",
+            "description": "Bevilgninger til forsknings- og innovasjonsprosjekter i Norge",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=forskningsradet\/bevilgninger"
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Meir dokumentasjon for hotell.difi.no",
+        "url": "https:\/\/hotell.difi.no\/api"
+    }
+}

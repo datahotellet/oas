@@ -1,0 +1,770 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "<p>Sj\u00e5 <a href=\"https:\/\/data.norge.no\/node\/116\">datasett-oppf\u00f8ring<\/a> for meir informasjon (kontaktinformasjon, oppdateringsfrekvens, lenker til dokumentasjon etc.)<\/p>\n",
+        "version": "1.0.0",
+        "title": "Forslag budsjett og \u00f8konomiplan 2012-2015 for Bergen kommune",
+        "license": {
+            "name": "Data-lisens",
+            "url": "http:\/\/data.norge.no\/nlod\/"
+        },
+        "termsOfService": "https:\/\/hotell.difi.no\/api"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/hotell.difi.no"
+        }
+    ],
+    "paths": {
+        "\/api\/{format}\/bergen\/budsjett-2012\/driftsbudsjett": {
+            "get": {
+                "tags": [
+                    "driftsbudsjett"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getBergenBudsjett-2012DriftsbudsjettPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/bergen-budsjett-2012-driftsbudsjett-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/bergen\/budsjett-2012\/driftsbudsjett": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "driftsbudsjett"
+                ],
+                "operationId": "downloadBergenBudsjett-2012Driftsbudsjett",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/bergen\/budsjett-2012\/driftsbudsjett\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "driftsbudsjett"
+                ],
+                "operationId": "getBergenBudsjett-2012DriftsbudsjettMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"driftsbudsjett\",\n    \"name\": \"Datagrunnlag for driftsbudsjett og \\u00f8konomiplan 2012-2015\",\n    \"location\": \"bergen\/budsjett-2012\/driftsbudsjett\",\n    \"updated\": 1347966468,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/bergen\/budsjett-2012\/driftsbudsjett\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "driftsbudsjett"
+                ],
+                "operationId": "getBergenBudsjett-2012DriftsbudsjettFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"Avdeling\",\n        \"shortName\": \"avdeling\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Byr\\u00e5dsavdelings-nummer (til internt bruk og sortering)\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Avdeling(T)\",\n        \"shortName\": \"avdeling-tekst\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Byr\\u00e5dsavdeling-navn. Viser hvilken kommunal byr\\u00e5dsavdeling som har ansvaret for den aktuelle budsjettposten.\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Inntekt\/Utgift\",\n        \"shortName\": \"inntekt-utgift\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Inntekt eller utgift\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Tj.omr.\",\n        \"shortName\": \"tjomr\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tjenesteomr\\u00e5de-nummer\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Tjenesteomr\\u00e5de (tekst)\",\n        \"shortName\": \"tjenesteomraade-tekst\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tjenesteomr\\u00e5de-navn.  Et tjenesteomr\\u00e5de er en samling av tjenester.  Bystyret vedtar budsjettet p\\u00e5 dette niv\\u00e5et (nettoutgift pr tjenesteomr\\u00e5de).\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Tjeneste\",\n        \"shortName\": \"tjeneste\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"5-sifret tjeneste-nummer.  De tre f\\u00f8rste sifrene angir KOSTRA-funksjon, mens de to siste brukes til ytterligere detaljering i Bergen kommune.\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Tjeneste(T)\",\n        \"shortName\": \"tjeneste-tekst\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tjeneste-navn.  En tjeneste defineres som et konkret sluttprodukt som er levert til en bestemt bruker. Tjeneste refererer til hva som leveres.\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Endrgr\",\n        \"shortName\": \"endrgr\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Endringsgruppe-nummer (til internt bruk og sortering)\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Endrgr(T)\",\n        \"shortName\": \"endrgr-tekst\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Endringsgruppe-tekst.  Endringene fra vedtatt budsjett 2011 til budsjettforslag 2012 og \\u00f8knomiplan\\u00e5rene er kategorisert i ulike endringsgrupper som sier noe om hva endringene gjelder, f.eks. nye tiltak, effektivisering osv.\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Tekst\",\n        \"shortName\": \"tekst\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tekst gir en n\\u00e6rmere detaljering av de ulike endringene.\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"2012\",\n        \"shortName\": \"2012\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Budsjett\\u00e5r\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"2013\",\n        \"shortName\": \"2013\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\\u00c5r i \\u00f8konomiplanperioden\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"2014\",\n        \"shortName\": \"2014\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\\u00c5r i \\u00f8konomiplanperioden\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"2015\",\n        \"shortName\": \"2015\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\\u00c5r i \\u00f8konomiplanperioden\",\n        \"definition\": \"navn\"\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/bergen\/budsjett-2012\/investeringsbudsjett": {
+            "get": {
+                "tags": [
+                    "investeringsbudsjett"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getBergenBudsjett-2012InvesteringsbudsjettPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    },
+                    {
+                        "name": "versjoner",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sumart1",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sumart1-tekst",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "kost2a",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "hovedgruppering-art",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/bergen-budsjett-2012-investeringsbudsjett-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/bergen\/budsjett-2012\/investeringsbudsjett": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "investeringsbudsjett"
+                ],
+                "operationId": "downloadBergenBudsjett-2012Investeringsbudsjett",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/bergen\/budsjett-2012\/investeringsbudsjett\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "investeringsbudsjett"
+                ],
+                "operationId": "getBergenBudsjett-2012InvesteringsbudsjettMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"investeringsbudsjett\",\n    \"name\": \"Datagrunnlag for investeringsbudsjett og program 2012-2015\",\n    \"location\": \"bergen\/budsjett-2012\/investeringsbudsjett\",\n    \"updated\": 1347966248,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/bergen\/budsjett-2012\/investeringsbudsjett\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "investeringsbudsjett"
+                ],
+                "operationId": "getBergenBudsjett-2012InvesteringsbudsjettFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"Versjoner\",\n        \"shortName\": \"versjoner\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Teknisk betegnelse p\\u00e5 hvilke versjoner i budsjettsystemet data er hentet fra.\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Sumart1\",\n        \"shortName\": \"sumart1\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Utgift (1) eller inntekt (2)\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Sumart1(T)\",\n        \"shortName\": \"sumart1-tekst\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Utgifts- eller inntektstekst\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Kost2a\",\n        \"shortName\": \"kost2a\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"3-sifret artsgruppe\\r\\n\",\n        \"definition\": \"kategori\"\n    },\n    {\n        \"name\": \"Hovedgruppering art\",\n        \"shortName\": \"hovedgruppering-art\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Felles betegnelse\/navn p\\u00e5 artsgrupen over, brukes bl.a. i obligatoriske hovedoversikter og skiller mellom investeringer i prosjekter, finansiering og andre deler av investeringsbudsjettet.\\r\\n\",\n        \"definition\": \"kategori\"\n    },\n    {\n        \"name\": \"Avdeling\",\n        \"shortName\": \"avdeling\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Byr\\u00e5dsavdelings-nummer (til internt bruk og sortering)\\r\\n\",\n        \"definition\": \"kategori\"\n    },\n    {\n        \"name\": \"Avdeling(T)\",\n        \"shortName\": \"avdeling-tekst\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Byr\\u00e5dsavdeling-navn.  Viser hvilken kommunal byr\\u00e5dsavdeling som har ansvaret for den aktuelle budsjettposten.\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Avgiftsfinansiert\/ikke-avgiftsfinansiert\",\n        \"shortName\": \"avgfin-ikke-avgfin\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Skiller mellom avgiftsfinansierte tjenester som finansieres gjennom gebyrer (selvkost), og \\u00f8vrige tjenester.\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Tjenesteomr\\u00e5de\",\n        \"shortName\": \"tjenesteomraade\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tjenesteomr\\u00e5de-nummer\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Tjenesteomr\\u00e5de(T)\",\n        \"shortName\": \"tjenesteomraade-tekst\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tjenesteomr\\u00e5de-navn.  Et tjenesteomr\\u00e5de er en samling av tjenester.\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Tjeneste\",\n        \"shortName\": \"tjeneste\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"5-sifret tjeneste-nummer.  De tre f\\u00f8rste sifrene angir KOSTRA-funksjon, mens de to siste brukes til ytterligere detaljering i Bergen kommune.\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Tjeneste(T)\",\n        \"shortName\": \"tjeneste-tekst\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Tjeneste-navn.  En tjeneste defineres som et konkret sluttprodukt som er levert til en bestemt bruker. Tjeneste refererer til hva som leveres.\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Proplan\",\n        \"shortName\": \"proplan\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Teknisk samlekode for en gruppe av prosjekter.\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Prosjektkategori\",\n        \"shortName\": \"prosjektkategori\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Beskrivelse av en gruppering av prosjekter, f.eks. Kirkeinvesteringer.\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Prosjekt\",\n        \"shortName\": \"prosjekt\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Prosjektnummer i budsjettsystemet.\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Prosjekt(T)\",\n        \"shortName\": \"prosjekt-tekst\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Prosjekt-navn.\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Geografisk bydel\",\n        \"shortName\": \"geografisk-bydel\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Angir hvilken bydel (nummer)  investeringsobjektet h\\u00f8rer hjemme i.  For bydekkende tjenester brukes nr. 90.\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Geografisk bydel(T)\",\n        \"shortName\": \"geografisk-bydel-tekst\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Angir hvilken bydel (tekst) investeringsobjektet h\\u00f8rer hjemme i.  For bydekkende tjenester brukes nr. 90.\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"2011 (fra vedt. \\u00f8k.plan)\",\n        \"shortName\": \"2011-fra-vedt-okonomiplan\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Vedtatt budsjettbel\\u00f8p for 2011.  Bel\\u00f8pet hentes fra vedtatt \\u00f8konomiplan i stedet for vedtatt \\u00e5rsbudsjett, fordi investeringer i \\u00f8konomiplanen budsjetteres p\\u00e5 bestillende byr\\u00e5dsavdeling, mens det i \\u00e5rsbudsjettet budsjetteres p\\u00e5 utf\\u00f8rende enhet (ofte BKB el\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"2012\",\n        \"shortName\": \"2012\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Budsjett\\u00e5ret 2012\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"2013\",\n        \"shortName\": \"2013\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\\u00d8konomiplan\\u00e5ret 2013\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"2014\",\n        \"shortName\": \"2014\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\\u00d8konomiplan\\u00e5ret 2014\\r\\n\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"2015\",\n        \"shortName\": \"2015\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"\\u00d8konomiplan\\u00e5ret 2015\\r\\n\",\n        \"definition\": \"navn\"\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "datahotelFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "csv",
+                    "yaml"
+                ]
+            },
+            "datahotelMetadataFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "yaml"
+                ]
+            },
+            "datasetMetadata": {
+                "type": "object",
+                "properties": {
+                    "shortName": {
+                        "type": "string",
+                        "description": "Kortnamn for datasettet. Samme som siste ledd i location."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Menneskelesbart namn for datasettet."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Unik datasett-id i datahotellet"
+                    },
+                    "updated": {
+                        "type": "integer",
+                        "description": "Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer)."
+                    },
+                    "dataset": {
+                        "type": "boolean",
+                        "description": "True dersom location er eit datasett, false dersom ikkje. Ved false kan location vere ein katalog som inneheld datasett."
+                    }
+                }
+            },
+            "datasetFields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Menneskelesbart namn p\u00e5 feltet."
+                        },
+                        "shortName": {
+                            "type": "string",
+                            "description": "Kortnamn for felt. Samme som feltnamn brukt i respons og overskriftsrad i CSV-fila."
+                        },
+                        "groupable": {
+                            "type": "boolean",
+                            "description": "Kan gruppere\/filtrere p\u00e5 dette feltet via query-parameter. E.g. \u00ab?shortName=verdi\u00bb."
+                        },
+                        "searchable": {
+                            "type": "boolean",
+                            "description": "Om dette feltet er s\u00f8kbart via query-parameteret. E.g. \u00ab?query=s\u00f8kestreng\u00bb"
+                        },
+                        "indexPrimaryKey": {
+                            "type": "boolean",
+                            "description": "Ikkje i bruk."
+                        }
+                    }
+                }
+            },
+            "bergen-budsjett-2012-driftsbudsjett-record": {
+                "type": "object",
+                "properties": {
+                    "avdeling": {
+                        "type": "string",
+                        "example": "1",
+                        "description": "Byr\u00e5dsavdelings-nummer (til internt bruk og sortering)\r\n"
+                    },
+                    "avdeling-tekst": {
+                        "type": "string",
+                        "example": "Byr\u00e5dsleders avdeling",
+                        "description": "Avdeling(T).\nByr\u00e5dsavdeling-navn. Viser hvilken kommunal byr\u00e5dsavdeling som har ansvaret for den aktuelle budsjettposten.\r\n"
+                    },
+                    "inntekt-utgift": {
+                        "type": "string",
+                        "example": "Utgift",
+                        "description": "Inntekt\/Utgift.\nInntekt eller utgift\r\n"
+                    },
+                    "tjomr": {
+                        "type": "string",
+                        "example": "02",
+                        "description": "Tj.omr..\nTjenesteomr\u00e5de-nummer\r\n"
+                    },
+                    "tjenesteomraade-tekst": {
+                        "type": "string",
+                        "example": "Barnevern",
+                        "description": "Tjenesteomr\u00e5de (tekst).\nTjenesteomr\u00e5de-navn.  Et tjenesteomr\u00e5de er en samling av tjenester.  Bystyret vedtar budsjettet p\u00e5 dette niv\u00e5et (nettoutgift pr tjenesteomr\u00e5de).\r\n"
+                    },
+                    "tjeneste": {
+                        "type": "string",
+                        "example": "24410",
+                        "description": "5-sifret tjeneste-nummer.  De tre f\u00f8rste sifrene angir KOSTRA-funksjon, mens de to siste brukes til ytterligere detaljering i Bergen kommune.\r\n"
+                    },
+                    "tjeneste-tekst": {
+                        "type": "string",
+                        "example": "Barneverntjeneste",
+                        "description": "Tjeneste(T).\nTjeneste-navn.  En tjeneste defineres som et konkret sluttprodukt som er levert til en bestemt bruker. Tjeneste refererer til hva som leveres.\r\n"
+                    },
+                    "endrgr": {
+                        "type": "string",
+                        "example": "N00",
+                        "description": "Endringsgruppe-nummer (til internt bruk og sortering)\r\n"
+                    },
+                    "endrgr-tekst": {
+                        "type": "string",
+                        "example": "Vedtatt budsjett innev\u00e6rende \u00e5r",
+                        "description": "Endrgr(T).\nEndringsgruppe-tekst.  Endringene fra vedtatt budsjett 2011 til budsjettforslag 2012 og \u00f8knomiplan\u00e5rene er kategorisert i ulike endringsgrupper som sier noe om hva endringene gjelder, f.eks. nye tiltak, effektivisering osv.\r\n"
+                    },
+                    "tekst": {
+                        "type": "string",
+                        "example": "Vedtatt budsjett 2011",
+                        "description": "Tekst gir en n\u00e6rmere detaljering av de ulike endringene.\r\n"
+                    },
+                    "2012": {
+                        "type": "string",
+                        "example": "3 484 248",
+                        "description": "Budsjett\u00e5r"
+                    },
+                    "2013": {
+                        "type": "string",
+                        "example": "3 484 248",
+                        "description": "\u00c5r i \u00f8konomiplanperioden"
+                    },
+                    "2014": {
+                        "type": "string",
+                        "example": "3 484 248",
+                        "description": "\u00c5r i \u00f8konomiplanperioden"
+                    },
+                    "2015": {
+                        "type": "string",
+                        "example": "3 484 248",
+                        "description": "\u00c5r i \u00f8konomiplanperioden"
+                    }
+                }
+            },
+            "bergen-budsjett-2012-driftsbudsjett-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/bergen-budsjett-2012-driftsbudsjett-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "bergen-budsjett-2012-investeringsbudsjett-record": {
+                "type": "object",
+                "properties": {
+                    "versjoner": {
+                        "type": "string",
+                        "example": "11-14VB",
+                        "description": "Teknisk betegnelse p\u00e5 hvilke versjoner i budsjettsystemet data er hentet fra.\r\n"
+                    },
+                    "sumart1": {
+                        "type": "string",
+                        "example": "1",
+                        "description": "Utgift (1) eller inntekt (2)\r\n"
+                    },
+                    "sumart1-tekst": {
+                        "type": "string",
+                        "example": "Sum utgifter",
+                        "description": "Sumart1(T).\nUtgifts- eller inntektstekst\r\n"
+                    },
+                    "kost2a": {
+                        "type": "string",
+                        "example": "100",
+                        "description": "3-sifret artsgruppe\r\n"
+                    },
+                    "hovedgruppering-art": {
+                        "type": "string",
+                        "example": "Investeringer i anleggsmidler",
+                        "description": "Hovedgruppering art.\nFelles betegnelse\/navn p\u00e5 artsgrupen over, brukes bl.a. i obligatoriske hovedoversikter og skiller mellom investeringer i prosjekter, finansiering og andre deler av investeringsbudsjettet.\r\n"
+                    },
+                    "avdeling": {
+                        "type": "string",
+                        "example": "2",
+                        "description": "Byr\u00e5dsavdelings-nummer (til internt bruk og sortering)\r\n"
+                    },
+                    "avdeling-tekst": {
+                        "type": "string",
+                        "example": "Byr\u00e5dsavd. for finans, konkurranse og eierskap",
+                        "description": "Avdeling(T).\nByr\u00e5dsavdeling-navn.  Viser hvilken kommunal byr\u00e5dsavdeling som har ansvaret for den aktuelle budsjettposten.\r\n"
+                    },
+                    "avgfin-ikke-avgfin": {
+                        "type": "string",
+                        "example": "Ikke-avg.fin.",
+                        "description": "Avgiftsfinansiert\/ikke-avgiftsfinansiert.\nSkiller mellom avgiftsfinansierte tjenester som finansieres gjennom gebyrer (selvkost), og \u00f8vrige tjenester.\r\n"
+                    },
+                    "tjenesteomraade": {
+                        "type": "string",
+                        "example": "16",
+                        "description": "Tjenesteomr\u00e5de.\nTjenesteomr\u00e5de-nummer\r\n"
+                    },
+                    "tjenesteomraade-tekst": {
+                        "type": "string",
+                        "example": "Administrasjon og fellesfunksjoner",
+                        "description": "Tjenesteomr\u00e5de(T).\nTjenesteomr\u00e5de-navn.  Et tjenesteomr\u00e5de er en samling av tjenester.\r\n"
+                    },
+                    "tjeneste": {
+                        "type": "string",
+                        "example": "12000",
+                        "description": "5-sifret tjeneste-nummer.  De tre f\u00f8rste sifrene angir KOSTRA-funksjon, mens de to siste brukes til ytterligere detaljering i Bergen kommune.\r\n"
+                    },
+                    "tjeneste-tekst": {
+                        "type": "string",
+                        "example": "Administrasjon",
+                        "description": "Tjeneste(T).\nTjeneste-navn.  En tjeneste defineres som et konkret sluttprodukt som er levert til en bestemt bruker. Tjeneste refererer til hva som leveres.\r\n"
+                    },
+                    "proplan": {
+                        "type": "string",
+                        "example": "IKTPLAN",
+                        "description": "Teknisk samlekode for en gruppe av prosjekter.\r\n"
+                    },
+                    "prosjektkategori": {
+                        "type": "string",
+                        "example": "Prosjekter under IKT-Handlingsplanen",
+                        "description": "Beskrivelse av en gruppering av prosjekter, f.eks. Kirkeinvesteringer.\r\n"
+                    },
+                    "prosjekt": {
+                        "type": "string",
+                        "example": "BUD343",
+                        "description": "Prosjektnummer i budsjettsystemet.\r\n"
+                    },
+                    "prosjekt-tekst": {
+                        "type": "string",
+                        "example": "Agresso investeringsmodul",
+                        "description": "Prosjekt(T).\nProsjekt-navn.\r\n"
+                    },
+                    "geografisk-bydel": {
+                        "type": "string",
+                        "example": "90",
+                        "description": "Geografisk bydel.\nAngir hvilken bydel (nummer)  investeringsobjektet h\u00f8rer hjemme i.  For bydekkende tjenester brukes nr. 90.\r\n"
+                    },
+                    "geografisk-bydel-tekst": {
+                        "type": "string",
+                        "example": "BYDEKKENDE",
+                        "description": "Geografisk bydel(T).\nAngir hvilken bydel (tekst) investeringsobjektet h\u00f8rer hjemme i.  For bydekkende tjenester brukes nr. 90.\r\n"
+                    },
+                    "2011-fra-vedt-okonomiplan": {
+                        "type": "string",
+                        "example": "810 000,00",
+                        "description": "2011 (fra vedt. \u00f8k.plan).\nVedtatt budsjettbel\u00f8p for 2011.  Bel\u00f8pet hentes fra vedtatt \u00f8konomiplan i stedet for vedtatt \u00e5rsbudsjett, fordi investeringer i \u00f8konomiplanen budsjetteres p\u00e5 bestillende byr\u00e5dsavdeling, mens det i \u00e5rsbudsjettet budsjetteres p\u00e5 utf\u00f8rende enhet (ofte BKB el"
+                    },
+                    "2012": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Budsjett\u00e5ret 2012\r\n"
+                    },
+                    "2013": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "\u00d8konomiplan\u00e5ret 2013\r\n"
+                    },
+                    "2014": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "\u00d8konomiplan\u00e5ret 2014\r\n"
+                    },
+                    "2015": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "\u00d8konomiplan\u00e5ret 2015\r\n"
+                    }
+                }
+            },
+            "bergen-budsjett-2012-investeringsbudsjett-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/bergen-budsjett-2012-investeringsbudsjett-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            }
+        },
+        "headers": {
+            "X-Datahotel-Page": {
+                "description": "Side (page) av resultatet som er returnert.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Pages": {
+                "description": "Tal p\u00e5 sider totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Posts": {
+                "description": "Tal p\u00e5 postar totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ETag": {
+                "description": "Fungerer som standard HTTP ETag. Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer).",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "driftsbudsjett",
+            "description": "Datagrunnlag for driftsbudsjett og \u00f8konomiplan 2012-2015",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=bergen\/budsjett-2012\/driftsbudsjett"
+            }
+        },
+        {
+            "name": "investeringsbudsjett",
+            "description": "Datagrunnlag for investeringsbudsjett og program 2012-2015",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=bergen\/budsjett-2012\/investeringsbudsjett"
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Meir dokumentasjon for hotell.difi.no",
+        "url": "https:\/\/hotell.difi.no\/api"
+    }
+}

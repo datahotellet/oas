@@ -1,0 +1,2160 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "<p>Sj\u00e5 <a href=\"https:\/\/data.norge.no\/node\/574\">datasett-oppf\u00f8ring<\/a> for meir informasjon (kontaktinformasjon, oppdateringsfrekvens, lenker til dokumentasjon etc.)<\/p>\n",
+        "version": "1.0.0",
+        "title": "Unders\u00f8kelser (Survey)",
+        "license": {
+            "name": "Data-lisens",
+            "url": "http:\/\/data.norge.no\/nlod\/"
+        },
+        "termsOfService": "https:\/\/hotell.difi.no\/api"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/hotell.difi.no"
+        }
+    ],
+    "paths": {
+        "\/api\/{format}\/npd\/survey\/cancelled": {
+            "get": {
+                "tags": [
+                    "cancelled"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getNpdSurveyCancelledPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/npd-survey-cancelled-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/npd\/survey\/cancelled": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "cancelled"
+                ],
+                "operationId": "downloadNpdSurveyCancelled",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/cancelled\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "cancelled"
+                ],
+                "operationId": "getNpdSurveyCancelledMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"cancelled\",\n    \"name\": \"NPD - Survey - Cancelled\",\n    \"location\": \"npd\/survey\/cancelled\",\n    \"updated\": 1590373908,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/cancelled\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "cancelled"
+                ],
+                "operationId": "getNpdSurveyCancelledFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"seaGeographicalArea\",\n        \"shortName\": \"seaGeographicalArea\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaName\",\n        \"shortName\": \"seaName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaPlanFromDate\",\n        \"shortName\": \"seaPlanFromDate\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaPlanToDate\",\n        \"shortName\": \"seaPlanToDate\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaStatus\",\n        \"shortName\": \"seaStatus\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaCategory\",\n        \"shortName\": \"seaCategory\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaSurveyTypeMain\",\n        \"shortName\": \"seaSurveyTypeMain\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaSurveyTypePart\",\n        \"shortName\": \"seaSurveyTypePart\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaCompanyReported\",\n        \"shortName\": \"seaCompanyReported\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"datesyncNPD\",\n        \"shortName\": \"datesyncNPD\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/coordinates": {
+            "get": {
+                "tags": [
+                    "coordinates"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getNpdSurveyCoordinatesPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/npd-survey-coordinates-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/npd\/survey\/coordinates": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "coordinates"
+                ],
+                "operationId": "downloadNpdSurveyCoordinates",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/coordinates\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "coordinates"
+                ],
+                "operationId": "getNpdSurveyCoordinatesMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"coordinates\",\n    \"name\": \"NPD - Survey - Coordinates\",\n    \"location\": \"npd\/survey\/coordinates\",\n    \"updated\": 1590373908,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/coordinates\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "coordinates"
+                ],
+                "operationId": "getNpdSurveyCoordinatesFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"seaSurveyName\",\n        \"shortName\": \"seaSurveyName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaNpdidSurvey\",\n        \"shortName\": \"seaNpdidSurvey\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaPolygonPointNumber\",\n        \"shortName\": \"seaPolygonPointNumber\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaPolygonNSDeg\",\n        \"shortName\": \"seaPolygonNSDeg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaPolygonNSMin\",\n        \"shortName\": \"seaPolygonNSMin\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaPolygonNSSec\",\n        \"shortName\": \"seaPolygonNSSec\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaPolygonEWDeg\",\n        \"shortName\": \"seaPolygonEWDeg\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaPolygonEWMin\",\n        \"shortName\": \"seaPolygonEWMin\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaPolygonEWSec\",\n        \"shortName\": \"seaPolygonEWSec\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"datesyncNPD\",\n        \"shortName\": \"datesyncNPD\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/last-updates": {
+            "get": {
+                "tags": [
+                    "last-updates"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getNpdSurveyLast-updatesPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/npd-survey-last-updates-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/npd\/survey\/last-updates": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "last-updates"
+                ],
+                "operationId": "downloadNpdSurveyLast-updates",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/last-updates\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "last-updates"
+                ],
+                "operationId": "getNpdSurveyLast-updatesMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"last-updates\",\n    \"name\": \"NPD - Survey - Last updates\",\n    \"location\": \"npd\/survey\/last-updates\",\n    \"updated\": 1590373910,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/last-updates\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "last-updates"
+                ],
+                "operationId": "getNpdSurveyLast-updatesFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"seaProgressDate\",\n        \"shortName\": \"seaProgressDate\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaSurveyName\",\n        \"shortName\": \"seaSurveyName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaProgressText\",\n        \"shortName\": \"seaProgressText\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaProgressDescription\",\n        \"shortName\": \"seaProgressDescription\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaNpdidSurvey\",\n        \"shortName\": \"seaNpdidSurvey\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/seismic\/ongoing": {
+            "get": {
+                "tags": [
+                    "ongoing"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getNpdSurveySeismicOngoingPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/npd-survey-seismic-ongoing-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/npd\/survey\/seismic\/ongoing": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "ongoing"
+                ],
+                "operationId": "downloadNpdSurveySeismicOngoing",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/seismic\/ongoing\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "ongoing"
+                ],
+                "operationId": "getNpdSurveySeismicOngoingMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"ongoing\",\n    \"name\": \"NPD - Survey - Ongoing\",\n    \"location\": \"npd\/survey\/seismic\/ongoing\",\n    \"updated\": 1590373907,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/seismic\/ongoing\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "ongoing"
+                ],
+                "operationId": "getNpdSurveySeismicOngoingFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"seaGeographicalArea\",\n        \"shortName\": \"seaGeographicalArea\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaDateStarting\",\n        \"shortName\": \"seaDateStarting\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaName\",\n        \"shortName\": \"seaName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaMidPoint\",\n        \"shortName\": \"seaMidPoint\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaVesselAll\",\n        \"shortName\": \"seaVesselAll\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaStatus\",\n        \"shortName\": \"seaStatus\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaSurveyTypeMain\",\n        \"shortName\": \"seaSurveyTypeMain\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaSurveyTypePart\",\n        \"shortName\": \"seaSurveyTypePart\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaCompanyReported\",\n        \"shortName\": \"seaCompanyReported\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaPlanToDate\",\n        \"shortName\": \"seaPlanToDate\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"datesyncNPD\",\n        \"shortName\": \"datesyncNPD\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/overview": {
+            "get": {
+                "tags": [
+                    "overview"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getNpdSurveyOverviewPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/npd-survey-overview-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/npd\/survey\/overview": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "overview"
+                ],
+                "operationId": "downloadNpdSurveyOverview",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/overview\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "overview"
+                ],
+                "operationId": "getNpdSurveyOverviewMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"overview\",\n    \"name\": \"NPD - Survey - Overview\",\n    \"location\": \"npd\/survey\/overview\",\n    \"updated\": 1590373906,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/overview\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "overview"
+                ],
+                "operationId": "getNpdSurveyOverviewFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"seaName\",\n        \"shortName\": \"seaName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaPlanFromDate\",\n        \"shortName\": \"seaPlanFromDate\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaNpdidSurvey\",\n        \"shortName\": \"seaNpdidSurvey\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaStatus\",\n        \"shortName\": \"seaStatus\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaGeographicalArea\",\n        \"shortName\": \"seaGeographicalArea\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaMidPoint\",\n        \"shortName\": \"seaMidPoint\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaCategory\",\n        \"shortName\": \"seaCategory\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaSurveyTypeMain\",\n        \"shortName\": \"seaSurveyTypeMain\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaSurveyTypePart\",\n        \"shortName\": \"seaSurveyTypePart\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaCompanyReported\",\n        \"shortName\": \"seaCompanyReported\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaVesselAll\",\n        \"shortName\": \"seaVesselAll\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaPlanToDate\",\n        \"shortName\": \"seaPlanToDate\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaDateStarting\",\n        \"shortName\": \"seaDateStarting\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaDateFinalized\",\n        \"shortName\": \"seaDateFinalized\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaCdpTotalKm\",\n        \"shortName\": \"seaCdpTotalKm\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaBoatTotalKm\",\n        \"shortName\": \"seaBoatTotalKm\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"sea3DKm2\",\n        \"shortName\": \"sea3DKm2\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaSurveyAcquired\",\n        \"shortName\": \"seaSurveyAcquired\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaMarketAvailable\",\n        \"shortName\": \"seaMarketAvailable\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaSampling\",\n        \"shortName\": \"seaSampling\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaShallowDrilling\",\n        \"shortName\": \"seaShallowDrilling\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaGeotechnical\",\n        \"shortName\": \"seaGeotechnical\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaFactPageUrl\",\n        \"shortName\": \"seaFactPageUrl\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaFactMapHtml5Url\",\n        \"shortName\": \"seaFactMapHtml5Url\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"datesyncNPD\",\n        \"shortName\": \"datesyncNPD\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/pause": {
+            "get": {
+                "tags": [
+                    "pause"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getNpdSurveyPausePage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/npd-survey-pause-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/npd\/survey\/pause": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "pause"
+                ],
+                "operationId": "downloadNpdSurveyPause",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/pause\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "pause"
+                ],
+                "operationId": "getNpdSurveyPauseMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"pause\",\n    \"name\": \"NPD - Survey - Pause\",\n    \"location\": \"npd\/survey\/pause\",\n    \"updated\": 1590373908,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/pause\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "pause"
+                ],
+                "operationId": "getNpdSurveyPauseFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"seaGeographicalArea\",\n        \"shortName\": \"seaGeographicalArea\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaName\",\n        \"shortName\": \"seaName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaDateStarting\",\n        \"shortName\": \"seaDateStarting\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaPlanToDate\",\n        \"shortName\": \"seaPlanToDate\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaVesselAll\",\n        \"shortName\": \"seaVesselAll\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaStatus\",\n        \"shortName\": \"seaStatus\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaCategory\",\n        \"shortName\": \"seaCategory\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaSurveyTypeMain\",\n        \"shortName\": \"seaSurveyTypeMain\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaSurveyTypePart\",\n        \"shortName\": \"seaSurveyTypePart\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaCompanyReported\",\n        \"shortName\": \"seaCompanyReported\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"datesyncNPD\",\n        \"shortName\": \"datesyncNPD\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/pending": {
+            "get": {
+                "tags": [
+                    "pending"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getNpdSurveyPendingPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/npd-survey-pending-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/npd\/survey\/pending": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "pending"
+                ],
+                "operationId": "downloadNpdSurveyPending",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/pending\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "pending"
+                ],
+                "operationId": "getNpdSurveyPendingMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"pending\",\n    \"name\": \"NPD - Survey - Pending\",\n    \"location\": \"npd\/survey\/pending\",\n    \"updated\": 1590373907,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/pending\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "pending"
+                ],
+                "operationId": "getNpdSurveyPendingFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"seaGeographicalArea\",\n        \"shortName\": \"seaGeographicalArea\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaName\",\n        \"shortName\": \"seaName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaPlanFromDate\",\n        \"shortName\": \"seaPlanFromDate\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaPlanToDate\",\n        \"shortName\": \"seaPlanToDate\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaMidPoint\",\n        \"shortName\": \"seaMidPoint\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaVesselAll\",\n        \"shortName\": \"seaVesselAll\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaStatus\",\n        \"shortName\": \"seaStatus\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaCategory\",\n        \"shortName\": \"seaCategory\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaSurveyTypeMain\",\n        \"shortName\": \"seaSurveyTypeMain\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaSurveyTypePart\",\n        \"shortName\": \"seaSurveyTypePart\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaCompanyReported\",\n        \"shortName\": \"seaCompanyReported\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"datesyncNPD\",\n        \"shortName\": \"datesyncNPD\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/seismic\/planned": {
+            "get": {
+                "tags": [
+                    "planned"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getNpdSurveySeismicPlannedPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/npd-survey-seismic-planned-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/npd\/survey\/seismic\/planned": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "planned"
+                ],
+                "operationId": "downloadNpdSurveySeismicPlanned",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/seismic\/planned\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "planned"
+                ],
+                "operationId": "getNpdSurveySeismicPlannedMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"planned\",\n    \"name\": \"NPD - Survey - Planned\",\n    \"location\": \"npd\/survey\/seismic\/planned\",\n    \"updated\": 1590373907,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/npd\/survey\/seismic\/planned\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "planned"
+                ],
+                "operationId": "getNpdSurveySeismicPlannedFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"seaGeographicalArea\",\n        \"shortName\": \"seaGeographicalArea\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaPlanFromDate\",\n        \"shortName\": \"seaPlanFromDate\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaName\",\n        \"shortName\": \"seaName\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaPlanToDate\",\n        \"shortName\": \"seaPlanToDate\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaMidPoint\",\n        \"shortName\": \"seaMidPoint\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaVesselAll\",\n        \"shortName\": \"seaVesselAll\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaStatus\",\n        \"shortName\": \"seaStatus\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaFactMapUrl\",\n        \"shortName\": \"seaFactMapUrl\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaSurveyTypeMain\",\n        \"shortName\": \"seaSurveyTypeMain\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaSurveyTypePart\",\n        \"shortName\": \"seaSurveyTypePart\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"seaCompanyReported\",\n        \"shortName\": \"seaCompanyReported\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"datesyncNPD\",\n        \"shortName\": \"datesyncNPD\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "datahotelFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "csv",
+                    "yaml"
+                ]
+            },
+            "datahotelMetadataFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "yaml"
+                ]
+            },
+            "datasetMetadata": {
+                "type": "object",
+                "properties": {
+                    "shortName": {
+                        "type": "string",
+                        "description": "Kortnamn for datasettet. Samme som siste ledd i location."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Menneskelesbart namn for datasettet."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Unik datasett-id i datahotellet"
+                    },
+                    "updated": {
+                        "type": "integer",
+                        "description": "Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer)."
+                    },
+                    "dataset": {
+                        "type": "boolean",
+                        "description": "True dersom location er eit datasett, false dersom ikkje. Ved false kan location vere ein katalog som inneheld datasett."
+                    }
+                }
+            },
+            "datasetFields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Menneskelesbart namn p\u00e5 feltet."
+                        },
+                        "shortName": {
+                            "type": "string",
+                            "description": "Kortnamn for felt. Samme som feltnamn brukt i respons og overskriftsrad i CSV-fila."
+                        },
+                        "groupable": {
+                            "type": "boolean",
+                            "description": "Kan gruppere\/filtrere p\u00e5 dette feltet via query-parameter. E.g. \u00ab?shortName=verdi\u00bb."
+                        },
+                        "searchable": {
+                            "type": "boolean",
+                            "description": "Om dette feltet er s\u00f8kbart via query-parameteret. E.g. \u00ab?query=s\u00f8kestreng\u00bb"
+                        },
+                        "indexPrimaryKey": {
+                            "type": "boolean",
+                            "description": "Ikkje i bruk."
+                        }
+                    }
+                }
+            },
+            "npd-survey-cancelled-record": {
+                "type": "object",
+                "properties": {
+                    "seaGeographicalArea": {
+                        "type": "string",
+                        "example": "Barentshavet - Nord"
+                    },
+                    "seaName": {
+                        "type": "string",
+                        "example": "EMGS1402"
+                    },
+                    "seaPlanFromDate": {
+                        "type": "string",
+                        "example": "01.03.2014"
+                    },
+                    "seaPlanToDate": {
+                        "type": "string",
+                        "example": "30.09.2014"
+                    },
+                    "seaStatus": {
+                        "type": "string",
+                        "example": "Avlyst"
+                    },
+                    "seaCategory": {
+                        "type": "string",
+                        "example": "Elektromagnetisk unders\u00f8kelse"
+                    },
+                    "seaSurveyTypeMain": {
+                        "type": "string",
+                        "example": "Elektromagnetisk unders\u00f8kelse"
+                    },
+                    "seaSurveyTypePart": {
+                        "type": "string",
+                        "example": "3D"
+                    },
+                    "seaCompanyReported": {
+                        "type": "string",
+                        "example": "Electromagnetic Geoservices ASA"
+                    },
+                    "datesyncNPD": {
+                        "type": "string",
+                        "example": "25.05.2020"
+                    }
+                }
+            },
+            "npd-survey-cancelled-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/npd-survey-cancelled-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "npd-survey-coordinates-record": {
+                "type": "object",
+                "properties": {
+                    "seaSurveyName": {
+                        "type": "string",
+                        "example": "ABP17001"
+                    },
+                    "seaNpdidSurvey": {
+                        "type": "string",
+                        "example": "8461"
+                    },
+                    "seaPolygonPointNumber": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "seaPolygonNSDeg": {
+                        "type": "string",
+                        "example": "59"
+                    },
+                    "seaPolygonNSMin": {
+                        "type": "string",
+                        "example": "22"
+                    },
+                    "seaPolygonNSSec": {
+                        "type": "string",
+                        "example": "40.00"
+                    },
+                    "seaPolygonEWDeg": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "seaPolygonEWMin": {
+                        "type": "string",
+                        "example": "43"
+                    },
+                    "seaPolygonEWSec": {
+                        "type": "string",
+                        "example": "32.00"
+                    },
+                    "datesyncNPD": {
+                        "type": "string",
+                        "example": "25.05.2020"
+                    }
+                }
+            },
+            "npd-survey-coordinates-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/npd-survey-coordinates-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "npd-survey-last-updates-record": {
+                "type": "object",
+                "properties": {
+                    "seaProgressDate": {
+                        "type": "string",
+                        "example": "22.05.2020"
+                    },
+                    "seaSurveyName": {
+                        "type": "string",
+                        "example": "VE20001"
+                    },
+                    "seaProgressText": {
+                        "type": "string",
+                        "example": "Melding - endringsmelding"
+                    },
+                    "seaProgressDescription": {
+                        "type": "string",
+                        "example": "Meldingen gjelder sm\u00e5 endring p\u00e5 kilde st\u00f8rrelsen."
+                    },
+                    "seaNpdidSurvey": {
+                        "type": "string",
+                        "example": "9127"
+                    }
+                }
+            },
+            "npd-survey-last-updates-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/npd-survey-last-updates-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "npd-survey-seismic-ongoing-record": {
+                "type": "object",
+                "properties": {
+                    "seaGeographicalArea": {
+                        "type": "string",
+                        "example": "Nordsj\u00f8en"
+                    },
+                    "seaDateStarting": {
+                        "type": "string",
+                        "example": "19.04.2020"
+                    },
+                    "seaName": {
+                        "type": "string",
+                        "example": "CP20218"
+                    },
+                    "seaMidPoint": {
+                        "type": "string",
+                        "example": "56\u00b0 32.1' N  3\u00b0 13.5' \u00d8"
+                    },
+                    "seaVesselAll": {
+                        "type": "string",
+                        "example": "Skandi Nova (hoved)"
+                    },
+                    "seaStatus": {
+                        "type": "string",
+                        "example": "P\u00e5g\u00e5ende"
+                    },
+                    "seaSurveyTypeMain": {
+                        "type": "string",
+                        "example": "Havbunnseismisk unders\u00f8kelse"
+                    },
+                    "seaSurveyTypePart": {
+                        "type": "string",
+                        "example": "4D"
+                    },
+                    "seaCompanyReported": {
+                        "type": "string",
+                        "example": "ConocoPhillips Skandinavia AS"
+                    },
+                    "seaPlanToDate": {
+                        "type": "string",
+                        "example": "01.06.2020"
+                    },
+                    "datesyncNPD": {
+                        "type": "string",
+                        "example": "25.05.2020"
+                    }
+                }
+            },
+            "npd-survey-seismic-ongoing-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/npd-survey-seismic-ongoing-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "npd-survey-overview-record": {
+                "type": "object",
+                "properties": {
+                    "seaName": {
+                        "type": "string",
+                        "example": "SH20101"
+                    },
+                    "seaPlanFromDate": {
+                        "type": "string",
+                        "example": "15.08.2020"
+                    },
+                    "seaNpdidSurvey": {
+                        "type": "string",
+                        "example": "9140"
+                    },
+                    "seaStatus": {
+                        "type": "string",
+                        "example": "Under behandling"
+                    },
+                    "seaGeographicalArea": {
+                        "type": "string",
+                        "example": "Norskehavet"
+                    },
+                    "seaMidPoint": {
+                        "type": "string",
+                        "example": "63\u00b0 28.5' N  5\u00b0 20.5' \u00d8"
+                    },
+                    "seaCategory": {
+                        "type": "string",
+                        "example": "Andre unders\u00f8kelser"
+                    },
+                    "seaSurveyTypeMain": {
+                        "type": "string",
+                        "example": "Grunnunders\u00f8kelse"
+                    },
+                    "seaSurveyTypePart": {
+                        "type": "string",
+                        "example": "Ikke seismikk"
+                    },
+                    "seaCompanyReported": {
+                        "type": "string",
+                        "example": "A\/S Norske Shell"
+                    },
+                    "seaVesselAll": {
+                        "type": "string",
+                        "example": "M\/V Siem Pride (hoved)"
+                    },
+                    "seaPlanToDate": {
+                        "type": "string",
+                        "example": "15.10.2020"
+                    },
+                    "seaDateStarting": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "seaDateFinalized": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "seaCdpTotalKm": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "seaBoatTotalKm": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "sea3DKm2": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "seaSurveyAcquired": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "seaMarketAvailable": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "seaSampling": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "seaShallowDrilling": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "seaGeotechnical": {
+                        "type": "string",
+                        "example": "Ja"
+                    },
+                    "seaFactPageUrl": {
+                        "type": "string",
+                        "example": "https:\/\/factpages.npd.no\/factpages\/default.aspx?nav1=survey&nav2=PageView|Pending&nav3=9140"
+                    },
+                    "seaFactMapHtml5Url": {
+                        "type": "string",
+                        "example": "https:\/\/factmaps.npd.no\/factmaps\/3_0\/?run=SurveyByNPDID&NPDID=9140"
+                    },
+                    "datesyncNPD": {
+                        "type": "string",
+                        "example": "25.05.2020"
+                    }
+                }
+            },
+            "npd-survey-overview-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/npd-survey-overview-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "npd-survey-pause-record": {
+                "type": "object",
+                "properties": {
+                    "seaGeographicalArea": {
+                        "type": "string",
+                        "example": "Nordsj\u00f8en"
+                    },
+                    "seaName": {
+                        "type": "string",
+                        "example": "ABP20301"
+                    },
+                    "seaDateStarting": {
+                        "type": "string",
+                        "example": "16.04.2020"
+                    },
+                    "seaPlanToDate": {
+                        "type": "string",
+                        "example": "25.06.2020"
+                    },
+                    "seaVesselAll": {
+                        "type": "string",
+                        "example": "M\/V \"Ocean Reliance\" (hoved) - Edda Fauna (hoved)"
+                    },
+                    "seaStatus": {
+                        "type": "string",
+                        "example": "Pause"
+                    },
+                    "seaCategory": {
+                        "type": "string",
+                        "example": "Seismisk unders\u00f8kelse"
+                    },
+                    "seaSurveyTypeMain": {
+                        "type": "string",
+                        "example": "Borestedunders\u00f8kelse"
+                    },
+                    "seaSurveyTypePart": {
+                        "type": "string",
+                        "example": "4D"
+                    },
+                    "seaCompanyReported": {
+                        "type": "string",
+                        "example": "Aker BP ASA"
+                    },
+                    "datesyncNPD": {
+                        "type": "string",
+                        "example": "25.05.2020"
+                    }
+                }
+            },
+            "npd-survey-pause-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/npd-survey-pause-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "npd-survey-pending-record": {
+                "type": "object",
+                "properties": {
+                    "seaGeographicalArea": {
+                        "type": "string",
+                        "example": "Barentshavet - S\u00f8r"
+                    },
+                    "seaName": {
+                        "type": "string",
+                        "example": "EQ20100"
+                    },
+                    "seaPlanFromDate": {
+                        "type": "string",
+                        "example": "01.07.2020"
+                    },
+                    "seaPlanToDate": {
+                        "type": "string",
+                        "example": "04.09.2020"
+                    },
+                    "seaMidPoint": {
+                        "type": "string",
+                        "example": "73\u00b0 27.0' N  24\u00b0 20.5' \u00d8"
+                    },
+                    "seaVesselAll": {
+                        "type": "string",
+                        "example": "Fugro Synergi (hoved)"
+                    },
+                    "seaStatus": {
+                        "type": "string",
+                        "example": "Under behandling"
+                    },
+                    "seaCategory": {
+                        "type": "string",
+                        "example": "Andre unders\u00f8kelser"
+                    },
+                    "seaSurveyTypeMain": {
+                        "type": "string",
+                        "example": "Grunnunders\u00f8kelse"
+                    },
+                    "seaSurveyTypePart": {
+                        "type": "string",
+                        "example": "Ikke seismikk"
+                    },
+                    "seaCompanyReported": {
+                        "type": "string",
+                        "example": "Equinor Energy AS"
+                    },
+                    "datesyncNPD": {
+                        "type": "string",
+                        "example": "25.05.2020"
+                    }
+                }
+            },
+            "npd-survey-pending-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/npd-survey-pending-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "npd-survey-seismic-planned-record": {
+                "type": "object",
+                "properties": {
+                    "seaGeographicalArea": {
+                        "type": "string",
+                        "example": "Barentshavet - S\u00f8r"
+                    },
+                    "seaPlanFromDate": {
+                        "type": "string",
+                        "example": "06.06.2020"
+                    },
+                    "seaName": {
+                        "type": "string",
+                        "example": "VE20001"
+                    },
+                    "seaPlanToDate": {
+                        "type": "string",
+                        "example": "31.07.2020"
+                    },
+                    "seaMidPoint": {
+                        "type": "string",
+                        "example": "71\u00b0 17.8' N  22\u00b0 16.2' \u00d8"
+                    },
+                    "seaVesselAll": {
+                        "type": "string",
+                        "example": "Ramform Tethys (hoved) - Thor Freyja (f\u00f8lge) - Ocean Fortune (f\u00f8lge)"
+                    },
+                    "seaStatus": {
+                        "type": "string",
+                        "example": "Planlagt"
+                    },
+                    "seaFactMapUrl": {
+                        "type": "string",
+                        "example": "link"
+                    },
+                    "seaSurveyTypeMain": {
+                        "type": "string",
+                        "example": "Ordin\u00e6r seismisk unders\u00f8kelse"
+                    },
+                    "seaSurveyTypePart": {
+                        "type": "string",
+                        "example": "4D"
+                    },
+                    "seaCompanyReported": {
+                        "type": "string",
+                        "example": "V\u00e5r Energi AS"
+                    },
+                    "datesyncNPD": {
+                        "type": "string",
+                        "example": "25.05.2020"
+                    }
+                }
+            },
+            "npd-survey-seismic-planned-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/npd-survey-seismic-planned-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            }
+        },
+        "headers": {
+            "X-Datahotel-Page": {
+                "description": "Side (page) av resultatet som er returnert.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Pages": {
+                "description": "Tal p\u00e5 sider totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Posts": {
+                "description": "Tal p\u00e5 postar totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ETag": {
+                "description": "Fungerer som standard HTTP ETag. Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer).",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "cancelled",
+            "description": "NPD - Survey - Cancelled",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=npd\/survey\/cancelled"
+            }
+        },
+        {
+            "name": "coordinates",
+            "description": "NPD - Survey - Coordinates",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=npd\/survey\/coordinates"
+            }
+        },
+        {
+            "name": "last-updates",
+            "description": "NPD - Survey - Last updates",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=npd\/survey\/last-updates"
+            }
+        },
+        {
+            "name": "ongoing",
+            "description": "NPD - Survey - Ongoing",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=npd\/survey\/seismic\/ongoing"
+            }
+        },
+        {
+            "name": "overview",
+            "description": "NPD - Survey - Overview",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=npd\/survey\/overview"
+            }
+        },
+        {
+            "name": "pause",
+            "description": "NPD - Survey - Pause",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=npd\/survey\/pause"
+            }
+        },
+        {
+            "name": "pending",
+            "description": "NPD - Survey - Pending",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=npd\/survey\/pending"
+            }
+        },
+        {
+            "name": "planned",
+            "description": "NPD - Survey - Planned",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=npd\/survey\/seismic\/planned"
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Meir dokumentasjon for hotell.difi.no",
+        "url": "https:\/\/hotell.difi.no\/api"
+    }
+}

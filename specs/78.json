@@ -1,0 +1,593 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "<p>Sj\u00e5 <a href=\"https:\/\/data.norge.no\/node\/78\">datasett-oppf\u00f8ring<\/a> for meir informasjon (kontaktinformasjon, oppdateringsfrekvens, lenker til dokumentasjon etc.)<\/p>\n",
+        "version": "1.0.0",
+        "title": "Anleggsregisteret",
+        "license": {
+            "name": "Data-lisens",
+            "url": "http:\/\/data.norge.no\/nlod\/"
+        },
+        "termsOfService": "https:\/\/hotell.difi.no\/api"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/hotell.difi.no"
+        }
+    ],
+    "paths": {
+        "\/api\/{format}\/kud\/idrettsanlegg": {
+            "get": {
+                "tags": [
+                    "idrettsanlegg"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getKudIdrettsanleggPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    },
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "S\u00f8k i datasettet. Gir treff p\u00e5 felt: anleggsnavn, anleggsnummer, eier, driver",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "anleggsnummer",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "eier",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "driver",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "anleggsklasse",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "anleggskategori",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "anleggstype",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "uu",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "byggear",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ombyggear",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/kud-idrettsanlegg-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/kud\/idrettsanlegg": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "idrettsanlegg"
+                ],
+                "operationId": "downloadKudIdrettsanlegg",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/kud\/idrettsanlegg\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "idrettsanlegg"
+                ],
+                "operationId": "getKudIdrettsanleggMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"idrettsanlegg\",\n    \"name\": \"KUD - Idrettsanleggsregisteret\",\n    \"location\": \"kud\/idrettsanlegg\",\n    \"updated\": 1460706181,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/kud\/idrettsanlegg\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "idrettsanlegg"
+                ],
+                "operationId": "getKudIdrettsanleggFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"Anleggsnavn\",\n        \"shortName\": \"anleggsnavn\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Navn p\\u00e5 idrettsanlegget\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Anleggsnummer\",\n        \"shortName\": \"anleggsnummer\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Unik ID for anlegget\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Status\",\n        \"shortName\": \"status\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Anleggets status.\",\n        \"definition\": \"kategori\"\n    },\n    {\n        \"name\": \"Eier\",\n        \"shortName\": \"eier\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Hvem som eier anlegget.\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Driver\",\n        \"shortName\": \"driver\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Hvem som har ansvaret for drift av anlegget.\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Anleggsklasse\",\n        \"shortName\": \"anleggsklasse\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Kategorisering av anleggsklasse.\",\n        \"definition\": \"kategori\"\n    },\n    {\n        \"name\": \"Anleggskategori\",\n        \"shortName\": \"anleggskategori\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Kategorisering av anleggskategori.\",\n        \"definition\": \"kategori\"\n    },\n    {\n        \"name\": \"Anleggstype\",\n        \"shortName\": \"anleggstype\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Hva slags type anlegg det er snakk om.\",\n        \"definition\": \"kategori\"\n    },\n    {\n        \"name\": \"Universell utforming\",\n        \"shortName\": \"uu\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Hvorvidt anlegget er universelt utformet eller ikke.\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"Bygge\\u00e5r\",\n        \"shortName\": \"byggear\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Bygge\\u00e5r for anlegget.\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"Ombygd \\u00e5r\",\n        \"shortName\": \"ombyggear\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Hvilket \\u00e5r anlegget ble ombygd.\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"M\\u00e5ldata 1, type\",\n        \"shortName\": \"maltype1\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Typen m\\u00e5l for m\\u00e5ldata 1\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"M\\u00e5ldata 1, verdi\",\n        \"shortName\": \"malverdi1\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Verdien for m\\u00e5ldata 1\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"M\\u00e5ldata 1, enhet\",\n        \"shortName\": \"malenhet1\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"M\\u00e5lenhet for m\\u00e5ldata 1\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"M\\u00e5ldata 2, type\",\n        \"shortName\": \"maltype2\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Typen m\\u00e5l for m\\u00e5ldata 2\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"M\\u00e5ldata 2, verdi\",\n        \"shortName\": \"malverdi2\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Verdien for m\\u00e5ldata 2\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"M\\u00e5ldata 2, enhet\",\n        \"shortName\": \"malenhet2\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"M\\u00e5lenhet for m\\u00e5ldata 2\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"M\\u00e5ldata 3, type\",\n        \"shortName\": \"maltype3\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Typen m\\u00e5l for m\\u00e5ldata 3\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"M\\u00e5ldata 3, verdi\",\n        \"shortName\": \"malverdi3\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Verdien for m\\u00e5ldata 3\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"M\\u00e5ldata 3, enhet\",\n        \"shortName\": \"malenhet3\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"M\\u00e5lenhet for m\\u00e5ldata 3\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"M\\u00e5ldata 4, type\",\n        \"shortName\": \"maltype4\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Typen m\\u00e5l for m\\u00e5ldata 4\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"M\\u00e5ldata 4, verdi\",\n        \"shortName\": \"malverdi4\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Verdien for m\\u00e5ldata 4\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"M\\u00e5ldata 4, enhet\",\n        \"shortName\": \"malenhet4\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"M\\u00e5lenhet for m\\u00e5ldata 4\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"NGO X koordinat\",\n        \"shortName\": \"ngo_x\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Koordinater\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"NGO Y koordinat\",\n        \"shortName\": \"ngo_y\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Koordinater\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"NGO Akse\",\n        \"shortName\": \"ngo_akse\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Koordinater\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"UTM Nord\",\n        \"shortName\": \"utm_nord\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Koordinater i utm-format.\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"UTM \\u00d8st\",\n        \"shortName\": \"utm_ost\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Koordinater i utm-format.\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"UTM Sone\",\n        \"shortName\": \"utm_sone\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Hvilken UTM-sone koordinatene tilh\\u00f8rer.\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"Sum tildelt\",\n        \"shortName\": \"tildelt\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Hvor mye st\\u00f8tte anlegget er tildelt.\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"Sum utbetalt\",\n        \"shortName\": \"utbetalt\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Hvor mye st\\u00f8tte som er utbetalt.\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"Sum inndratt\",\n        \"shortName\": \"inndratt\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Hvor mye st\\u00f8tte som er inndratt.\",\n        \"definition\": \"verdi\"\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "datahotelFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "csv",
+                    "yaml"
+                ]
+            },
+            "datahotelMetadataFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "yaml"
+                ]
+            },
+            "datasetMetadata": {
+                "type": "object",
+                "properties": {
+                    "shortName": {
+                        "type": "string",
+                        "description": "Kortnamn for datasettet. Samme som siste ledd i location."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Menneskelesbart namn for datasettet."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Unik datasett-id i datahotellet"
+                    },
+                    "updated": {
+                        "type": "integer",
+                        "description": "Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer)."
+                    },
+                    "dataset": {
+                        "type": "boolean",
+                        "description": "True dersom location er eit datasett, false dersom ikkje. Ved false kan location vere ein katalog som inneheld datasett."
+                    }
+                }
+            },
+            "datasetFields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Menneskelesbart namn p\u00e5 feltet."
+                        },
+                        "shortName": {
+                            "type": "string",
+                            "description": "Kortnamn for felt. Samme som feltnamn brukt i respons og overskriftsrad i CSV-fila."
+                        },
+                        "groupable": {
+                            "type": "boolean",
+                            "description": "Kan gruppere\/filtrere p\u00e5 dette feltet via query-parameter. E.g. \u00ab?shortName=verdi\u00bb."
+                        },
+                        "searchable": {
+                            "type": "boolean",
+                            "description": "Om dette feltet er s\u00f8kbart via query-parameteret. E.g. \u00ab?query=s\u00f8kestreng\u00bb"
+                        },
+                        "indexPrimaryKey": {
+                            "type": "boolean",
+                            "description": "Ikkje i bruk."
+                        }
+                    }
+                }
+            },
+            "kud-idrettsanlegg-record": {
+                "type": "object",
+                "properties": {
+                    "anleggsnavn": {
+                        "type": "string",
+                        "example": "Halden stadion",
+                        "description": "Navn p\u00e5 idrettsanlegget"
+                    },
+                    "anleggsnummer": {
+                        "type": "string",
+                        "example": "101000101",
+                        "description": "Unik ID for anlegget"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "Eksisterende",
+                        "description": "Anleggets status."
+                    },
+                    "eier": {
+                        "type": "string",
+                        "example": "Halden kommune",
+                        "description": "Hvem som eier anlegget."
+                    },
+                    "driver": {
+                        "type": "string",
+                        "example": "",
+                        "description": "Hvem som har ansvaret for drift av anlegget."
+                    },
+                    "anleggsklasse": {
+                        "type": "string",
+                        "example": "Kommuneanlegg",
+                        "description": "Kategorisering av anleggsklasse."
+                    },
+                    "anleggskategori": {
+                        "type": "string",
+                        "example": "Fotballanlegg",
+                        "description": "Kategorisering av anleggskategori."
+                    },
+                    "anleggstype": {
+                        "type": "string",
+                        "example": "Fotball gressbane",
+                        "description": "Hva slags type anlegg det er snakk om."
+                    },
+                    "uu": {
+                        "type": "string",
+                        "example": "Nei",
+                        "description": "Universell utforming.\nHvorvidt anlegget er universelt utformet eller ikke."
+                    },
+                    "byggear": {
+                        "type": "string",
+                        "example": "1928",
+                        "description": "Bygge\u00e5r.\nBygge\u00e5r for anlegget."
+                    },
+                    "ombyggear": {
+                        "type": "string",
+                        "example": "",
+                        "description": "Ombygd \u00e5r.\nHvilket \u00e5r anlegget ble ombygd."
+                    },
+                    "maltype1": {
+                        "type": "string",
+                        "example": "Lengde",
+                        "description": "M\u00e5ldata 1, type.\nTypen m\u00e5l for m\u00e5ldata 1"
+                    },
+                    "malverdi1": {
+                        "type": "string",
+                        "example": "103",
+                        "description": "M\u00e5ldata 1, verdi.\nVerdien for m\u00e5ldata 1"
+                    },
+                    "malenhet1": {
+                        "type": "string",
+                        "example": "",
+                        "description": "M\u00e5ldata 1, enhet.\nM\u00e5lenhet for m\u00e5ldata 1"
+                    },
+                    "maltype2": {
+                        "type": "string",
+                        "example": "Bredde",
+                        "description": "M\u00e5ldata 2, type.\nTypen m\u00e5l for m\u00e5ldata 2"
+                    },
+                    "malverdi2": {
+                        "type": "string",
+                        "example": "65",
+                        "description": "M\u00e5ldata 2, verdi.\nVerdien for m\u00e5ldata 2"
+                    },
+                    "malenhet2": {
+                        "type": "string",
+                        "example": "",
+                        "description": "M\u00e5ldata 2, enhet.\nM\u00e5lenhet for m\u00e5ldata 2"
+                    },
+                    "maltype3": {
+                        "type": "string",
+                        "example": "",
+                        "description": "M\u00e5ldata 3, type.\nTypen m\u00e5l for m\u00e5ldata 3"
+                    },
+                    "malverdi3": {
+                        "type": "string",
+                        "example": "",
+                        "description": "M\u00e5ldata 3, verdi.\nVerdien for m\u00e5ldata 3"
+                    },
+                    "malenhet3": {
+                        "type": "string",
+                        "example": "",
+                        "description": "M\u00e5ldata 3, enhet.\nM\u00e5lenhet for m\u00e5ldata 3"
+                    },
+                    "maltype4": {
+                        "type": "string",
+                        "example": "",
+                        "description": "M\u00e5ldata 4, type.\nTypen m\u00e5l for m\u00e5ldata 4"
+                    },
+                    "malverdi4": {
+                        "type": "string",
+                        "example": "",
+                        "description": "M\u00e5ldata 4, verdi.\nVerdien for m\u00e5ldata 4"
+                    },
+                    "malenhet4": {
+                        "type": "string",
+                        "example": "",
+                        "description": "M\u00e5ldata 4, enhet.\nM\u00e5lenhet for m\u00e5ldata 4"
+                    },
+                    "ngo_x": {
+                        "type": "string",
+                        "example": "125115",
+                        "description": "NGO X koordinat.\nKoordinater"
+                    },
+                    "ngo_y": {
+                        "type": "string",
+                        "example": "37590",
+                        "description": "NGO Y koordinat.\nKoordinater"
+                    },
+                    "ngo_akse": {
+                        "type": "string",
+                        "example": "6",
+                        "description": "NGO Akse.\nKoordinater"
+                    },
+                    "utm_nord": {
+                        "type": "string",
+                        "example": "6559339",
+                        "description": "UTM Nord.\nKoordinater i utm-format."
+                    },
+                    "utm_ost": {
+                        "type": "string",
+                        "example": "292517",
+                        "description": "UTM \u00d8st.\nKoordinater i utm-format."
+                    },
+                    "utm_sone": {
+                        "type": "string",
+                        "example": "33",
+                        "description": "UTM Sone.\nHvilken UTM-sone koordinatene tilh\u00f8rer."
+                    },
+                    "tildelt": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Sum tildelt.\nHvor mye st\u00f8tte anlegget er tildelt."
+                    },
+                    "utbetalt": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Sum utbetalt.\nHvor mye st\u00f8tte som er utbetalt."
+                    },
+                    "inndratt": {
+                        "type": "string",
+                        "example": "0",
+                        "description": "Sum inndratt.\nHvor mye st\u00f8tte som er inndratt."
+                    }
+                }
+            },
+            "kud-idrettsanlegg-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/kud-idrettsanlegg-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            }
+        },
+        "headers": {
+            "X-Datahotel-Page": {
+                "description": "Side (page) av resultatet som er returnert.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Pages": {
+                "description": "Tal p\u00e5 sider totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Posts": {
+                "description": "Tal p\u00e5 postar totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ETag": {
+                "description": "Fungerer som standard HTTP ETag. Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer).",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "idrettsanlegg",
+            "description": "KUD - Idrettsanleggsregisteret",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=kud\/idrettsanlegg"
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Meir dokumentasjon for hotell.difi.no",
+        "url": "https:\/\/hotell.difi.no\/api"
+    }
+}

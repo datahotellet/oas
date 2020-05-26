@@ -1,0 +1,448 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "<p>Sj\u00e5 <a href=\"https:\/\/data.norge.no\/node\/1294\">datasett-oppf\u00f8ring<\/a> for meir informasjon (kontaktinformasjon, oppdateringsfrekvens, lenker til dokumentasjon etc.)<\/p>\n",
+        "version": "1.0.0",
+        "title": "Partist\u00f8tte for 2013",
+        "license": {
+            "name": "Data-lisens",
+            "url": "http:\/\/data.norge.no\/nlod\/"
+        },
+        "termsOfService": "https:\/\/hotell.difi.no\/api"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/hotell.difi.no"
+        }
+    ],
+    "paths": {
+        "\/api\/{format}\/kmd\/partistotte\/2013": {
+            "get": {
+                "tags": [
+                    "2013"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getKmdPartistotte2013Page",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    },
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "S\u00f8k i datasettet. Gir treff p\u00e5 felt: partinamn",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "fylkesnr",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "kommunenr",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "partitype",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "valar",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "utbetalingsar",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/kmd-partistotte-2013-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/kmd\/partistotte\/2013": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "2013"
+                ],
+                "operationId": "downloadKmdPartistotte2013",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/kmd\/partistotte\/2013\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "2013"
+                ],
+                "operationId": "getKmdPartistotte2013Metadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"2013\",\n    \"name\": \"KMD - Partist\\u00f8tte 2013\",\n    \"location\": \"kmd\/partistotte\/2013\",\n    \"updated\": 1424782470,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/kmd\/partistotte\/2013\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "2013"
+                ],
+                "operationId": "getKmdPartistotte2013Fields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"Partinamn\",\n        \"shortName\": \"partinamn\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false,\n        \"description\": \"SSB sitt namn p\\u00e5 det aktuelle partilag\",\n        \"definition\": \"navn\"\n    },\n    {\n        \"name\": \"Fylkesnr\",\n        \"shortName\": \"fylkesnr\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"01 for \\u00d8stfold, 02 Akershus, 03 Oslo m.m.\",\n        \"definition\": \"fylkenr\"\n    },\n    {\n        \"name\": \"Kommunenr\",\n        \"shortName\": \"kommunenr\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"fylkesnr og eit tosifra tal.\",\n        \"definition\": \"kommunenr\"\n    },\n    {\n        \"name\": \"Partitype\",\n        \"shortName\": \"partitype\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"Det finst fleire typar parti, i dette datasettet skil vi bare mellom fylkesparti, ungdomsparti og kommuneparti. (det finst samlingslister og koalisjonslister med meir).\",\n        \"definition\": \"kategori\"\n    },\n    {\n        \"name\": \"Val\\u00e5r\",\n        \"shortName\": \"valar\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"er \\u00e5rstal for siste registrerte val i kolonnane (Stemmer, relativdel og mandat).\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"stemmer\",\n        \"shortName\": \"stemmer\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \": er stemmetal i det aktuelle valet\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"relativdel\",\n        \"shortName\": \"relativdel\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"er prosentvis oppslutning i h\\u00f8ve andre relevante parti i eit val\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"Mandat\",\n        \"shortName\": \"mandat\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"er tal p\\u00e5 politiske mandat som dette partiet vann i det aktuelle valet\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"Utbetalings\\u00e5r\",\n        \"shortName\": \"utbetalingsar\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \"siste \\u00e5rstal for utbetalingar (i kolonne grunnst\\u00f8nad, stemmest\\u00f8tte og totalt)\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"Grunnst\\u00f8nad\",\n        \"shortName\": \"grunnstonad\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \": for \\u00e5 ha rett p\\u00e5 grunnst\\u00f8tte m\\u00e5 lista anten ha oppn\\u00e5dd eit valresultat p\\u00e5 4 % av stemmene, eller minst 1 representant i kommunestyre \/fylkesting\",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"Stemmest\\u00f8tte\",\n        \"shortName\": \"stemmestotte\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \": er summen av tal stemmer, multiplisert med ein \\u00e5rleg sats som vert gjeven av fornyings- administrasjons og kyrkjedepartementet ut fr\\u00e5 l\\u00f8yving i statsbudsjettet. \",\n        \"definition\": \"verdi\"\n    },\n    {\n        \"name\": \"Totalt\",\n        \"shortName\": \"totalt\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false,\n        \"description\": \": summen av grunnst\\u00f8tte og stemmest\\u00f8tte er bel\\u00f8pet som \\u00e5rleg vert utbetalt fr\\u00e5 staten til ulike politiske parti. Partia kan og f\\u00e5 bl.a. fylkeskommunal og kommunal st\\u00f8tte.\",\n        \"definition\": \"verdi\"\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "datahotelFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "csv",
+                    "yaml"
+                ]
+            },
+            "datahotelMetadataFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "yaml"
+                ]
+            },
+            "datasetMetadata": {
+                "type": "object",
+                "properties": {
+                    "shortName": {
+                        "type": "string",
+                        "description": "Kortnamn for datasettet. Samme som siste ledd i location."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Menneskelesbart namn for datasettet."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Unik datasett-id i datahotellet"
+                    },
+                    "updated": {
+                        "type": "integer",
+                        "description": "Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer)."
+                    },
+                    "dataset": {
+                        "type": "boolean",
+                        "description": "True dersom location er eit datasett, false dersom ikkje. Ved false kan location vere ein katalog som inneheld datasett."
+                    }
+                }
+            },
+            "datasetFields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Menneskelesbart namn p\u00e5 feltet."
+                        },
+                        "shortName": {
+                            "type": "string",
+                            "description": "Kortnamn for felt. Samme som feltnamn brukt i respons og overskriftsrad i CSV-fila."
+                        },
+                        "groupable": {
+                            "type": "boolean",
+                            "description": "Kan gruppere\/filtrere p\u00e5 dette feltet via query-parameter. E.g. \u00ab?shortName=verdi\u00bb."
+                        },
+                        "searchable": {
+                            "type": "boolean",
+                            "description": "Om dette feltet er s\u00f8kbart via query-parameteret. E.g. \u00ab?query=s\u00f8kestreng\u00bb"
+                        },
+                        "indexPrimaryKey": {
+                            "type": "boolean",
+                            "description": "Ikkje i bruk."
+                        }
+                    }
+                }
+            },
+            "kmd-partistotte-2013-record": {
+                "type": "object",
+                "properties": {
+                    "partinamn": {
+                        "type": "string",
+                        "example": "\u00d8stfold Arbeiderparti",
+                        "description": "SSB sitt namn p\u00e5 det aktuelle partilag"
+                    },
+                    "fylkesnr": {
+                        "type": "string",
+                        "example": "1",
+                        "description": "01 for \u00d8stfold, 02 Akershus, 03 Oslo m.m."
+                    },
+                    "kommunenr": {
+                        "type": "string",
+                        "example": "100",
+                        "description": "fylkesnr og eit tosifra tal."
+                    },
+                    "partitype": {
+                        "type": "string",
+                        "example": "Fylke",
+                        "description": "Det finst fleire typar parti, i dette datasettet skil vi bare mellom fylkesparti, ungdomsparti og kommuneparti. (det finst samlingslister og koalisjonslister med meir)."
+                    },
+                    "valar": {
+                        "type": "string",
+                        "example": "2011",
+                        "description": "Val\u00e5r.\ner \u00e5rstal for siste registrerte val i kolonnane (Stemmer, relativdel og mandat)."
+                    },
+                    "stemmer": {
+                        "type": "string",
+                        "example": "47298",
+                        "description": ": er stemmetal i det aktuelle valet"
+                    },
+                    "relativdel": {
+                        "type": "string",
+                        "example": "40,1",
+                        "description": "er prosentvis oppslutning i h\u00f8ve andre relevante parti i eit val"
+                    },
+                    "mandat": {
+                        "type": "string",
+                        "example": "15",
+                        "description": "er tal p\u00e5 politiske mandat som dette partiet vann i det aktuelle valet"
+                    },
+                    "utbetalingsar": {
+                        "type": "string",
+                        "example": "2013",
+                        "description": "Utbetalings\u00e5r.\nsiste \u00e5rstal for utbetalingar (i kolonne grunnst\u00f8nad, stemmest\u00f8tte og totalt)"
+                    },
+                    "grunnstonad": {
+                        "type": "string",
+                        "example": "48 107,00",
+                        "description": "Grunnst\u00f8nad.\n: for \u00e5 ha rett p\u00e5 grunnst\u00f8tte m\u00e5 lista anten ha oppn\u00e5dd eit valresultat p\u00e5 4 % av stemmene, eller minst 1 representant i kommunestyre \/fylkesting"
+                    },
+                    "stemmestotte": {
+                        "type": "string",
+                        "example": null,
+                        "description": "Stemmest\u00f8tte.\n: er summen av tal stemmer, multiplisert med ein \u00e5rleg sats som vert gjeven av fornyings- administrasjons og kyrkjedepartementet ut fr\u00e5 l\u00f8yving i statsbudsjettet. "
+                    },
+                    "totalt": {
+                        "type": "string",
+                        "example": "1 377 180,80",
+                        "description": ": summen av grunnst\u00f8tte og stemmest\u00f8tte er bel\u00f8pet som \u00e5rleg vert utbetalt fr\u00e5 staten til ulike politiske parti. Partia kan og f\u00e5 bl.a. fylkeskommunal og kommunal st\u00f8tte."
+                    }
+                }
+            },
+            "kmd-partistotte-2013-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/kmd-partistotte-2013-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            }
+        },
+        "headers": {
+            "X-Datahotel-Page": {
+                "description": "Side (page) av resultatet som er returnert.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Pages": {
+                "description": "Tal p\u00e5 sider totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Posts": {
+                "description": "Tal p\u00e5 postar totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ETag": {
+                "description": "Fungerer som standard HTTP ETag. Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer).",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "2013",
+            "description": "KMD - Partist\u00f8tte 2013",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=kmd\/partistotte\/2013"
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Meir dokumentasjon for hotell.difi.no",
+        "url": "https:\/\/hotell.difi.no\/api"
+    }
+}

@@ -1,0 +1,2155 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "<p>Sj\u00e5 <a href=\"https:\/\/data.norge.no\/node\/1152\">datasett-oppf\u00f8ring<\/a> for meir informasjon (kontaktinformasjon, oppdateringsfrekvens, lenker til dokumentasjon etc.)<\/p>\n",
+        "version": "1.0.0",
+        "title": "Norske mottakere i OpenPEPPOL",
+        "license": {
+            "name": "Data-lisens",
+            "url": "http:\/\/data.norge.no\/nlod\/"
+        },
+        "termsOfService": "https:\/\/hotell.difi.no\/api"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/hotell.difi.no"
+        }
+    ],
+    "paths": {
+        "\/api\/{format}\/difi\/elma\/participants": {
+            "get": {
+                "tags": [
+                    "participants"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getDifiElmaParticipantsPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    },
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "S\u00f8k i datasettet. Gir treff p\u00e5 felt: identifier, name",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Icd",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "identifier",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "regdate",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Arkivmelding_Administrasjon",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Arkivmelding_ByggOgGeodata",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Arkivmelding_HelseSosialOgOmsorg",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Arkivmelding_KulturIdrettOgFritid",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Arkivmelding_Naeringsutvikling",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Arkivmelding_NaturOgMiljoe",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Arkivmelding_OppvekstOgUtdanning",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Arkivmelding_Response",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Arkivmelding_SkatterOgAvgifter",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Arkivmelding_TekniskeTjenester",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Arkivmelding_TrafikkReiserOgSamferdsel",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Avtalt_avtalt",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "BIS01",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "BIS03",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "BIS04_V2",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "BIS05_V2",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "BIS06",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "BIS36_MLR",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Digitalpost_Info",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Digitalpost_Vedtak",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EGOV_GE_1_0_REQUEST",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EGOV_GE_1_0_RESPONSE",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EHF_30A_1_0",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EHF_ADVORDER_3_0_PILOT_REQUEST",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EHF_ADVORDER_3_0_PILOT_RESPONSE",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EHF_CATALOGUE",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EHF_CATALOGUE_RESPONSE",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EHF_CREDITNOTE_2_0",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EHF_INVOICE_2_0",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EHF_INVOICE_CREDITNOTE_2_0",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EHF_ORDER",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EHF_ORDER_RESPONSE",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EHF_POSTAWARD_G3_P01_3_0_CA",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EHF_POSTAWARD_G3_P01_3_0_EO",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EHF_POSTAWARD_G3_P02_3_0_CA",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EHF_POSTAWARD_G3_P02_3_0_EO",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EHF_POSTAWARD_G3_P03_3_0",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EHF_POSTAWARD_G3_P05_3_0",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EHF_POSTAWARD_G3_P06_3_0",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EHF_POSTAWARD_G3_P07_3_0",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EHF_POSTAWARD_G3_P08_3_0",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EHF_POSTAWARD_G3_P09_3_0_CA",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EHF_POSTAWARD_G3_P09_3_0_EO",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "EHF_XYA_1_0_REMINDER",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ISO20022_Pain_001",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PAYMENT_01",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PAYMENT_01_OLD",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PAYMENT_01_RESPONSE",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PAYMENT_01_RESPONSE_OLD",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PAYMENT_02",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PAYMENT_02_OLD",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PAYMENT_02_RESPONSE",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PAYMENT_02_RESPONSE_OLD",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PAYMENT_03",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PAYMENT_03_OLD",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PAYMENT_03_RESPONSE",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PAYMENT_03_RESPONSE_OLD",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PAYMENT_04",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PAYMENT_04_OLD",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PAYMENT_04_RESPONSE",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PAYMENT_04_RESPONSE_OLD",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PAYMENT_10",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PAYMENT_10_OLD",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PAYMENT_10_RESPONSE",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PAYMENT_10_RESPONSE_OLD",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PEPPOLBIS_01A_2_0",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PEPPOLBIS_03A_2_0",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PEPPOLBIS_28A_2_0",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PEPPOLBIS_28A_2_0_RESPONSE",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PEPPOLBIS_3_0_DESPATCH_ADVICE_CA",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PEPPOLBIS_3_0_INVOICE_RESPONSE_EO",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PEPPOLBIS_3_0_ORDERING_CA",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PEPPOLBIS_3_0_ORDERING_EO",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PEPPOLBIS_3_0_ORDER_AGREEMENT_CA",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PEPPOLBIS_3_0_ORDER_ONLY_EO",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PEPPOLBIS_30A_2_0",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PEPPOLBIS_3_0_BILLING_01_CII",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PEPPOLBIS_3_0_BILLING_01_UBL",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PEPPOLBIS_3_0_BILLING_01_UBL_SWEDEN",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PRACC_ESENS_P001_CA",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PRACC_ESENS_P001_EO",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PRACC_ESENS_P002_CA",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PRACC_ESENS_P002_EO",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PRACC_ESENS_P003_CA",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "PRACC_ESENS_P003_EO",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "eInnsyn_Innsynskrav",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "eInnsyn_Journalpost",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "eInnsyn_Meeting",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "eInnsyn_Response",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/difi-elma-participants-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/difi\/elma\/participants": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "participants"
+                ],
+                "operationId": "downloadDifiElmaParticipants",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/difi\/elma\/participants\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "participants"
+                ],
+                "operationId": "getDifiElmaParticipantsMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"participants\",\n    \"name\": \"ELMA - Participants with processes\",\n    \"location\": \"difi\/elma\/participants\",\n    \"updated\": 1590416322718,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/difi\/elma\/participants\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "participants"
+                ],
+                "operationId": "getDifiElmaParticipantsFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"Icd\",\n        \"shortName\": \"Icd\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Identifier\",\n        \"shortName\": \"identifier\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Organization name\",\n        \"shortName\": \"name\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Registration date\",\n        \"shortName\": \"regdate\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Arkivmelding_Administrasjon\",\n        \"shortName\": \"Arkivmelding_Administrasjon\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Arkivmelding_ByggOgGeodata\",\n        \"shortName\": \"Arkivmelding_ByggOgGeodata\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Arkivmelding_HelseSosialOgOmsorg\",\n        \"shortName\": \"Arkivmelding_HelseSosialOgOmsorg\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Arkivmelding_KulturIdrettOgFritid\",\n        \"shortName\": \"Arkivmelding_KulturIdrettOgFritid\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Arkivmelding_Naeringsutvikling\",\n        \"shortName\": \"Arkivmelding_Naeringsutvikling\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Arkivmelding_NaturOgMiljoe\",\n        \"shortName\": \"Arkivmelding_NaturOgMiljoe\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Arkivmelding_OppvekstOgUtdanning\",\n        \"shortName\": \"Arkivmelding_OppvekstOgUtdanning\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Arkivmelding_Response\",\n        \"shortName\": \"Arkivmelding_Response\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Arkivmelding_SkatterOgAvgifter\",\n        \"shortName\": \"Arkivmelding_SkatterOgAvgifter\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Arkivmelding_TekniskeTjenester\",\n        \"shortName\": \"Arkivmelding_TekniskeTjenester\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Arkivmelding_TrafikkReiserOgSamferdsel\",\n        \"shortName\": \"Arkivmelding_TrafikkReiserOgSamferdsel\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Avtalt_avtalt\",\n        \"shortName\": \"Avtalt_avtalt\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"BIS01\",\n        \"shortName\": \"BIS01\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"BIS03\",\n        \"shortName\": \"BIS03\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"BIS04_V2\",\n        \"shortName\": \"BIS04_V2\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"BIS05_V2\",\n        \"shortName\": \"BIS05_V2\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"BIS06\",\n        \"shortName\": \"BIS06\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"BIS36_MLR\",\n        \"shortName\": \"BIS36_MLR\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Digitalpost_Info\",\n        \"shortName\": \"Digitalpost_Info\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Digitalpost_Vedtak\",\n        \"shortName\": \"Digitalpost_Vedtak\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EGOV_GE_1_0_REQUEST\",\n        \"shortName\": \"EGOV_GE_1_0_REQUEST\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EGOV_GE_1_0_RESPONSE\",\n        \"shortName\": \"EGOV_GE_1_0_RESPONSE\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EHF_30A_1_0\",\n        \"shortName\": \"EHF_30A_1_0\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EHF_ADVORDER_3_0_PILOT_REQUEST\",\n        \"shortName\": \"EHF_ADVORDER_3_0_PILOT_REQUEST\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EHF_ADVORDER_3_0_PILOT_RESPONSE\",\n        \"shortName\": \"EHF_ADVORDER_3_0_PILOT_RESPONSE\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EHF_CATALOGUE\",\n        \"shortName\": \"EHF_CATALOGUE\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EHF_CATALOGUE_RESPONSE\",\n        \"shortName\": \"EHF_CATALOGUE_RESPONSE\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EHF_CREDITNOTE_2_0\",\n        \"shortName\": \"EHF_CREDITNOTE_2_0\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EHF_INVOICE_2_0\",\n        \"shortName\": \"EHF_INVOICE_2_0\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EHF_INVOICE_CREDITNOTE_2_0\",\n        \"shortName\": \"EHF_INVOICE_CREDITNOTE_2_0\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EHF_ORDER\",\n        \"shortName\": \"EHF_ORDER\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EHF_ORDER_RESPONSE\",\n        \"shortName\": \"EHF_ORDER_RESPONSE\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EHF_POSTAWARD_G3_P01_3_0_CA\",\n        \"shortName\": \"EHF_POSTAWARD_G3_P01_3_0_CA\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EHF_POSTAWARD_G3_P01_3_0_EO\",\n        \"shortName\": \"EHF_POSTAWARD_G3_P01_3_0_EO\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EHF_POSTAWARD_G3_P02_3_0_CA\",\n        \"shortName\": \"EHF_POSTAWARD_G3_P02_3_0_CA\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EHF_POSTAWARD_G3_P02_3_0_EO\",\n        \"shortName\": \"EHF_POSTAWARD_G3_P02_3_0_EO\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EHF_POSTAWARD_G3_P03_3_0\",\n        \"shortName\": \"EHF_POSTAWARD_G3_P03_3_0\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EHF_POSTAWARD_G3_P05_3_0\",\n        \"shortName\": \"EHF_POSTAWARD_G3_P05_3_0\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EHF_POSTAWARD_G3_P06_3_0\",\n        \"shortName\": \"EHF_POSTAWARD_G3_P06_3_0\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EHF_POSTAWARD_G3_P07_3_0\",\n        \"shortName\": \"EHF_POSTAWARD_G3_P07_3_0\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EHF_POSTAWARD_G3_P08_3_0\",\n        \"shortName\": \"EHF_POSTAWARD_G3_P08_3_0\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EHF_POSTAWARD_G3_P09_3_0_CA\",\n        \"shortName\": \"EHF_POSTAWARD_G3_P09_3_0_CA\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EHF_POSTAWARD_G3_P09_3_0_EO\",\n        \"shortName\": \"EHF_POSTAWARD_G3_P09_3_0_EO\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"EHF_XYA_1_0_REMINDER\",\n        \"shortName\": \"EHF_XYA_1_0_REMINDER\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"ISO20022_Pain_001\",\n        \"shortName\": \"ISO20022_Pain_001\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PAYMENT_01\",\n        \"shortName\": \"PAYMENT_01\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PAYMENT_01_OLD\",\n        \"shortName\": \"PAYMENT_01_OLD\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PAYMENT_01_RESPONSE\",\n        \"shortName\": \"PAYMENT_01_RESPONSE\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PAYMENT_01_RESPONSE_OLD\",\n        \"shortName\": \"PAYMENT_01_RESPONSE_OLD\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PAYMENT_02\",\n        \"shortName\": \"PAYMENT_02\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PAYMENT_02_OLD\",\n        \"shortName\": \"PAYMENT_02_OLD\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PAYMENT_02_RESPONSE\",\n        \"shortName\": \"PAYMENT_02_RESPONSE\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PAYMENT_02_RESPONSE_OLD\",\n        \"shortName\": \"PAYMENT_02_RESPONSE_OLD\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PAYMENT_03\",\n        \"shortName\": \"PAYMENT_03\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PAYMENT_03_OLD\",\n        \"shortName\": \"PAYMENT_03_OLD\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PAYMENT_03_RESPONSE\",\n        \"shortName\": \"PAYMENT_03_RESPONSE\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PAYMENT_03_RESPONSE_OLD\",\n        \"shortName\": \"PAYMENT_03_RESPONSE_OLD\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PAYMENT_04\",\n        \"shortName\": \"PAYMENT_04\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PAYMENT_04_OLD\",\n        \"shortName\": \"PAYMENT_04_OLD\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PAYMENT_04_RESPONSE\",\n        \"shortName\": \"PAYMENT_04_RESPONSE\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PAYMENT_04_RESPONSE_OLD\",\n        \"shortName\": \"PAYMENT_04_RESPONSE_OLD\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PAYMENT_10\",\n        \"shortName\": \"PAYMENT_10\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PAYMENT_10_OLD\",\n        \"shortName\": \"PAYMENT_10_OLD\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PAYMENT_10_RESPONSE\",\n        \"shortName\": \"PAYMENT_10_RESPONSE\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PAYMENT_10_RESPONSE_OLD\",\n        \"shortName\": \"PAYMENT_10_RESPONSE_OLD\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PEPPOLBIS_01A_2_0\",\n        \"shortName\": \"PEPPOLBIS_01A_2_0\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PEPPOLBIS_03A_2_0\",\n        \"shortName\": \"PEPPOLBIS_03A_2_0\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PEPPOLBIS_28A_2_0\",\n        \"shortName\": \"PEPPOLBIS_28A_2_0\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PEPPOLBIS_28A_2_0_RESPONSE\",\n        \"shortName\": \"PEPPOLBIS_28A_2_0_RESPONSE\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PEPPOLBIS_3_0_DESPATCH_ADVICE_CA\",\n        \"shortName\": \"PEPPOLBIS_3_0_DESPATCH_ADVICE_CA\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PEPPOLBIS_3_0_INVOICE_RESPONSE_EO\",\n        \"shortName\": \"PEPPOLBIS_3_0_INVOICE_RESPONSE_EO\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PEPPOLBIS_3_0_ORDERING_CA\",\n        \"shortName\": \"PEPPOLBIS_3_0_ORDERING_CA\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PEPPOLBIS_3_0_ORDERING_EO\",\n        \"shortName\": \"PEPPOLBIS_3_0_ORDERING_EO\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PEPPOLBIS_3_0_ORDER_AGREEMENT_CA\",\n        \"shortName\": \"PEPPOLBIS_3_0_ORDER_AGREEMENT_CA\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PEPPOLBIS_3_0_ORDER_ONLY_EO\",\n        \"shortName\": \"PEPPOLBIS_3_0_ORDER_ONLY_EO\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PEPPOLBIS_30A_2_0\",\n        \"shortName\": \"PEPPOLBIS_30A_2_0\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PEPPOLBIS_3_0_BILLING_01_CII\",\n        \"shortName\": \"PEPPOLBIS_3_0_BILLING_01_CII\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PEPPOLBIS_3_0_BILLING_01_UBL\",\n        \"shortName\": \"PEPPOLBIS_3_0_BILLING_01_UBL\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PEPPOLBIS_3_0_BILLING_01_UBL_SWEDEN\",\n        \"shortName\": \"PEPPOLBIS_3_0_BILLING_01_UBL_SWEDEN\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PRACC_ESENS_P001_CA\",\n        \"shortName\": \"PRACC_ESENS_P001_CA\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PRACC_ESENS_P001_EO\",\n        \"shortName\": \"PRACC_ESENS_P001_EO\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PRACC_ESENS_P002_CA\",\n        \"shortName\": \"PRACC_ESENS_P002_CA\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PRACC_ESENS_P002_EO\",\n        \"shortName\": \"PRACC_ESENS_P002_EO\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PRACC_ESENS_P003_CA\",\n        \"shortName\": \"PRACC_ESENS_P003_CA\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"PRACC_ESENS_P003_EO\",\n        \"shortName\": \"PRACC_ESENS_P003_EO\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"eInnsyn_Innsynskrav\",\n        \"shortName\": \"eInnsyn_Innsynskrav\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"eInnsyn_Journalpost\",\n        \"shortName\": \"eInnsyn_Journalpost\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"eInnsyn_Meeting\",\n        \"shortName\": \"eInnsyn_Meeting\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"eInnsyn_Response\",\n        \"shortName\": \"eInnsyn_Response\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/difi\/elma\/capabilities": {
+            "get": {
+                "tags": [
+                    "capabilities"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getDifiElmaCapabilitiesPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    },
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "S\u00f8k i datasettet. Gir treff p\u00e5 felt: identifier, name",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "identifier",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ehf_catalogue",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ehf_catalogue_1",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ehf_creditnote",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ehf_creditnote_2",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ehf_invoice",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ehf_invoice_2",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ehf_order",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "peppolbis_creditnote",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "peppolbis_creditnote_2",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "peppolbis_invoice",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "peppolbis_invoice_2",
+                        "in": "query",
+                        "description": "Filtrer s\u00f8keresultat p\u00e5 eksakt match p\u00e5 dette feltet.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/difi-elma-capabilities-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/difi\/elma\/capabilities": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "capabilities"
+                ],
+                "operationId": "downloadDifiElmaCapabilities",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/difi\/elma\/capabilities\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "capabilities"
+                ],
+                "operationId": "getDifiElmaCapabilitiesMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"capabilities\",\n    \"name\": \"ELMA - Participants with capabilities\",\n    \"location\": \"difi\/elma\/capabilities\",\n    \"updated\": 1590416365100,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/difi\/elma\/capabilities\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "capabilities"
+                ],
+                "operationId": "getDifiElmaCapabilitiesFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"ICD\",\n        \"shortName\": \"ICD\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Identifier\",\n        \"shortName\": \"identifier\",\n        \"groupable\": true,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Organization name\",\n        \"shortName\": \"name\",\n        \"groupable\": false,\n        \"searchable\": true,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"ehf_catalogue\",\n        \"shortName\": \"ehf_catalogue\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"ehf_catalogue_1\",\n        \"shortName\": \"ehf_catalogue_1\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"ehf_creditnote\",\n        \"shortName\": \"ehf_creditnote\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"ehf_creditnote_2\",\n        \"shortName\": \"ehf_creditnote_2\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"ehf_invoice\",\n        \"shortName\": \"ehf_invoice\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"ehf_invoice_2\",\n        \"shortName\": \"ehf_invoice_2\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"ehf_order\",\n        \"shortName\": \"ehf_order\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"ehf_order_1\",\n        \"shortName\": \"ehf_order_1\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"peppolbis_creditnote\",\n        \"shortName\": \"peppolbis_creditnote\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"peppolbis_creditnote_2\",\n        \"shortName\": \"peppolbis_creditnote_2\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"peppolbis_invoice\",\n        \"shortName\": \"peppolbis_invoice\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"peppolbis_invoice_2\",\n        \"shortName\": \"peppolbis_invoice_2\",\n        \"groupable\": true,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"peppolbis_order\",\n        \"shortName\": \"peppolbis_order\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"peppolbis_order_2\",\n        \"shortName\": \"peppolbis_order_2\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/difi\/elma\/documenttypes": {
+            "get": {
+                "tags": [
+                    "documenttypes"
+                ],
+                "description": "Hent ut ei side (page) med data. Inntil 100 postar pr. side.",
+                "operationId": "getDifiElmaDocumenttypesPage",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelFormats"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Spesifiser side i resultatet \u00e5 hente ut. Standardverdi: 1.",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ei side (page) med data. Inntil 100 rader",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/difi-elma-documenttypes-response"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            },
+                            "X-Datahotel-Page": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Page"
+                            },
+                            "X-Datahotel-Total-Pages": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Pages"
+                            },
+                            "X-Datahotel-Total-Posts": {
+                                "$ref": "#\/components\/headers\/X-Datahotel-Total-Posts"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/download\/difi\/elma\/documenttypes": {
+            "get": {
+                "summary": "Last ned heile datasettet som CSV",
+                "description": "Teiknsett er UTF8. Dersom fila skal opnast i Excel eller liknande, bruk parameter ?download. For alle andre bruksomr\u00e5de vil nedlasting utan ?download-parameteret passe betre.",
+                "tags": [
+                    "documenttypes"
+                ],
+                "operationId": "downloadDifiElmaDocumenttypes",
+                "parameters": [
+                    {
+                        "name": "download",
+                        "in": "query",
+                        "description": "Dersom parameter er angitt, s\u00e5 f\u00e5r ein fil med UTF8 _med_ BOM i staden for UTF8. Denne varianter egnar seg dersom ein vil opne fila i Excel eller liknande",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Last ned heile datasettet som CSV",
+                        "content": {
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application~\/vnd.ms-excel~": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/difi\/elma\/documenttypes\/meta": {
+            "get": {
+                "description": "Hent ut metadata for datasettet. ",
+                "tags": [
+                    "documenttypes"
+                ],
+                "operationId": "getDifiElmaDocumenttypesMetadata",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metadata",
+                        "content": {
+                            "application\/json": {
+                                "example": "{\n    \"shortName\": \"documenttypes\",\n    \"name\": \"ELMA - Document types\",\n    \"location\": \"difi\/elma\/documenttypes\",\n    \"updated\": 1590416365570,\n    \"dataset\": true\n}",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetMetadata"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/{format}\/difi\/elma\/documenttypes\/fields": {
+            "get": {
+                "description": "Hent ut feltdefinisjonar for datasettet. ",
+                "tags": [
+                    "documenttypes"
+                ],
+                "operationId": "getDifiElmaDocumenttypesFields",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Velg format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/components\/schemas\/datahotelMetadataFormats"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Feltdefinisjoner",
+                        "content": {
+                            "application\/json": {
+                                "example": "[\n    {\n        \"name\": \"Profil\",\n        \"shortName\": \"Profil\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Prosess\",\n        \"shortName\": \"Prosess\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    },\n    {\n        \"name\": \"Dokumenttype\",\n        \"shortName\": \"Dokumenttype\",\n        \"groupable\": false,\n        \"searchable\": false,\n        \"indexPrimaryKey\": false\n    }\n]",
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/datasetFields"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "ETag": {
+                                "$ref": "#\/components\/headers\/ETag"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "datahotelFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "csv",
+                    "yaml"
+                ]
+            },
+            "datahotelMetadataFormats": {
+                "type": "string",
+                "enum": [
+                    "json",
+                    "jsonp",
+                    "xml",
+                    "yaml"
+                ]
+            },
+            "datasetMetadata": {
+                "type": "object",
+                "properties": {
+                    "shortName": {
+                        "type": "string",
+                        "description": "Kortnamn for datasettet. Samme som siste ledd i location."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Menneskelesbart namn for datasettet."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Unik datasett-id i datahotellet"
+                    },
+                    "updated": {
+                        "type": "integer",
+                        "description": "Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer)."
+                    },
+                    "dataset": {
+                        "type": "boolean",
+                        "description": "True dersom location er eit datasett, false dersom ikkje. Ved false kan location vere ein katalog som inneheld datasett."
+                    }
+                }
+            },
+            "datasetFields": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Menneskelesbart namn p\u00e5 feltet."
+                        },
+                        "shortName": {
+                            "type": "string",
+                            "description": "Kortnamn for felt. Samme som feltnamn brukt i respons og overskriftsrad i CSV-fila."
+                        },
+                        "groupable": {
+                            "type": "boolean",
+                            "description": "Kan gruppere\/filtrere p\u00e5 dette feltet via query-parameter. E.g. \u00ab?shortName=verdi\u00bb."
+                        },
+                        "searchable": {
+                            "type": "boolean",
+                            "description": "Om dette feltet er s\u00f8kbart via query-parameteret. E.g. \u00ab?query=s\u00f8kestreng\u00bb"
+                        },
+                        "indexPrimaryKey": {
+                            "type": "boolean",
+                            "description": "Ikkje i bruk."
+                        }
+                    }
+                }
+            },
+            "difi-elma-participants-record": {
+                "type": "object",
+                "properties": {
+                    "Icd": {
+                        "type": "string",
+                        "example": "9908"
+                    },
+                    "identifier": {
+                        "type": "string",
+                        "example": "966261218"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "B\u00d8MLO FOLKEH\u00d8GSKULE",
+                        "description": "Organization name"
+                    },
+                    "regdate": {
+                        "type": "string",
+                        "example": "2014.04.07",
+                        "description": "Registration date"
+                    },
+                    "Arkivmelding_Administrasjon": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "Arkivmelding_ByggOgGeodata": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "Arkivmelding_HelseSosialOgOmsorg": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "Arkivmelding_KulturIdrettOgFritid": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "Arkivmelding_Naeringsutvikling": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "Arkivmelding_NaturOgMiljoe": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "Arkivmelding_OppvekstOgUtdanning": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "Arkivmelding_Response": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "Arkivmelding_SkatterOgAvgifter": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "Arkivmelding_TekniskeTjenester": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "Arkivmelding_TrafikkReiserOgSamferdsel": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "Avtalt_avtalt": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "BIS01": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "BIS03": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "BIS04_V2": {
+                        "type": "string",
+                        "example": "Ja"
+                    },
+                    "BIS05_V2": {
+                        "type": "string",
+                        "example": "Ja"
+                    },
+                    "BIS06": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "BIS36_MLR": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "Digitalpost_Info": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "Digitalpost_Vedtak": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "EGOV_GE_1_0_REQUEST": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "EGOV_GE_1_0_RESPONSE": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "EHF_30A_1_0": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "EHF_ADVORDER_3_0_PILOT_REQUEST": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "EHF_ADVORDER_3_0_PILOT_RESPONSE": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "EHF_CATALOGUE": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "EHF_CATALOGUE_RESPONSE": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "EHF_CREDITNOTE_2_0": {
+                        "type": "string",
+                        "example": "Ja"
+                    },
+                    "EHF_INVOICE_2_0": {
+                        "type": "string",
+                        "example": "Ja"
+                    },
+                    "EHF_INVOICE_CREDITNOTE_2_0": {
+                        "type": "string",
+                        "example": "Ja"
+                    },
+                    "EHF_ORDER": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "EHF_ORDER_RESPONSE": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "EHF_POSTAWARD_G3_P01_3_0_CA": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "EHF_POSTAWARD_G3_P01_3_0_EO": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "EHF_POSTAWARD_G3_P02_3_0_CA": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "EHF_POSTAWARD_G3_P02_3_0_EO": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "EHF_POSTAWARD_G3_P03_3_0": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "EHF_POSTAWARD_G3_P05_3_0": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "EHF_POSTAWARD_G3_P06_3_0": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "EHF_POSTAWARD_G3_P07_3_0": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "EHF_POSTAWARD_G3_P08_3_0": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "EHF_POSTAWARD_G3_P09_3_0_CA": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "EHF_POSTAWARD_G3_P09_3_0_EO": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "EHF_XYA_1_0_REMINDER": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "ISO20022_Pain_001": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PAYMENT_01": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PAYMENT_01_OLD": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PAYMENT_01_RESPONSE": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PAYMENT_01_RESPONSE_OLD": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PAYMENT_02": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PAYMENT_02_OLD": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PAYMENT_02_RESPONSE": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PAYMENT_02_RESPONSE_OLD": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PAYMENT_03": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PAYMENT_03_OLD": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PAYMENT_03_RESPONSE": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PAYMENT_03_RESPONSE_OLD": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PAYMENT_04": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PAYMENT_04_OLD": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PAYMENT_04_RESPONSE": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PAYMENT_04_RESPONSE_OLD": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PAYMENT_10": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PAYMENT_10_OLD": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PAYMENT_10_RESPONSE": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PAYMENT_10_RESPONSE_OLD": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PEPPOLBIS_01A_2_0": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PEPPOLBIS_03A_2_0": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PEPPOLBIS_28A_2_0": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PEPPOLBIS_28A_2_0_RESPONSE": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PEPPOLBIS_3_0_DESPATCH_ADVICE_CA": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PEPPOLBIS_3_0_INVOICE_RESPONSE_EO": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PEPPOLBIS_3_0_ORDERING_CA": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PEPPOLBIS_3_0_ORDERING_EO": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PEPPOLBIS_3_0_ORDER_AGREEMENT_CA": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PEPPOLBIS_3_0_ORDER_ONLY_EO": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PEPPOLBIS_30A_2_0": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PEPPOLBIS_3_0_BILLING_01_CII": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PEPPOLBIS_3_0_BILLING_01_UBL": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PEPPOLBIS_3_0_BILLING_01_UBL_SWEDEN": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PRACC_ESENS_P001_CA": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PRACC_ESENS_P001_EO": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PRACC_ESENS_P002_CA": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PRACC_ESENS_P002_EO": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PRACC_ESENS_P003_CA": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "PRACC_ESENS_P003_EO": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "eInnsyn_Innsynskrav": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "eInnsyn_Journalpost": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "eInnsyn_Meeting": {
+                        "type": "string",
+                        "example": "Nei"
+                    },
+                    "eInnsyn_Response": {
+                        "type": "string",
+                        "example": "Nei"
+                    }
+                }
+            },
+            "difi-elma-participants-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/difi-elma-participants-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "difi-elma-capabilities-record": {
+                "type": "object",
+                "properties": {
+                    "ICD": {
+                        "type": "string",
+                        "example": "9908"
+                    },
+                    "identifier": {
+                        "type": "string",
+                        "example": "966261218"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "B\u00d8MLO FOLKEH\u00d8GSKULE",
+                        "description": "Organization name"
+                    },
+                    "ehf_catalogue": {
+                        "type": "string",
+                        "example": "false"
+                    },
+                    "ehf_catalogue_1": {
+                        "type": "string",
+                        "example": "false"
+                    },
+                    "ehf_creditnote": {
+                        "type": "string",
+                        "example": "false"
+                    },
+                    "ehf_creditnote_2": {
+                        "type": "string",
+                        "example": "true"
+                    },
+                    "ehf_invoice": {
+                        "type": "string",
+                        "example": "false"
+                    },
+                    "ehf_invoice_2": {
+                        "type": "string",
+                        "example": "true"
+                    },
+                    "ehf_order": {
+                        "type": "string",
+                        "example": "false"
+                    },
+                    "ehf_order_1": {
+                        "type": "string",
+                        "example": "false"
+                    },
+                    "peppolbis_creditnote": {
+                        "type": "string",
+                        "example": "false"
+                    },
+                    "peppolbis_creditnote_2": {
+                        "type": "string",
+                        "example": "false"
+                    },
+                    "peppolbis_invoice": {
+                        "type": "string",
+                        "example": "false"
+                    },
+                    "peppolbis_invoice_2": {
+                        "type": "string",
+                        "example": "true"
+                    },
+                    "peppolbis_order": {
+                        "type": "string",
+                        "example": "false"
+                    },
+                    "peppolbis_order_2": {
+                        "type": "string",
+                        "example": "false"
+                    }
+                }
+            },
+            "difi-elma-capabilities-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/difi-elma-capabilities-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            },
+            "difi-elma-documenttypes-record": {
+                "type": "object",
+                "properties": {
+                    "Profil": {
+                        "type": "string",
+                        "example": "Arkivmelding_Administrasjon"
+                    },
+                    "Prosess": {
+                        "type": "string",
+                        "example": "urn:no:difi:profile:arkivmelding:administrasjon:ver1.0"
+                    },
+                    "Dokumenttype": {
+                        "type": "string",
+                        "example": "urn:no:difi:arkivmelding:xsd::arkivmelding"
+                    }
+                }
+            },
+            "difi-elma-documenttypes-response": {
+                "type": "object",
+                "properties": {
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/difi-elma-documenttypes-record"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Side (page) av resultatet som er returnert."
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 sider totalt."
+                    },
+                    "posts": {
+                        "type": "integer",
+                        "description": "Tal p\u00e5 postar totalt."
+                    }
+                }
+            }
+        },
+        "headers": {
+            "X-Datahotel-Page": {
+                "description": "Side (page) av resultatet som er returnert.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Pages": {
+                "description": "Tal p\u00e5 sider totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "X-Datahotel-Total-Posts": {
+                "description": "Tal p\u00e5 postar totalt.",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ETag": {
+                "description": "Fungerer som standard HTTP ETag. Timestamp for n\u00e5r tid datasettet sist vart endra p\u00e5 datahotellet. Verdien er unix timestamp, enten i sekund (10 siffer) eller millisekund (13 siffer).",
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "participants",
+            "description": "ELMA - Participants with processes",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=difi\/elma\/participants"
+            }
+        },
+        {
+            "name": "capabilities",
+            "description": "ELMA - Participants with capabilities",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=difi\/elma\/capabilities"
+            }
+        },
+        {
+            "name": "documenttypes",
+            "description": "ELMA - Document types",
+            "externalDocs": {
+                "url": "https:\/\/hotell.difi.no\/?dataset=difi\/elma\/documenttypes"
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Meir dokumentasjon for hotell.difi.no",
+        "url": "https:\/\/hotell.difi.no\/api"
+    }
+}
